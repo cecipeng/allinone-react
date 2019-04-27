@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 通用userhead ---------------------//
+
+.com-userhead {
+	display: inline-block;
+	vertical-align: middle;
+	.head {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		overflow: hidden;
+		&:before {
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			@extend %iconfont;
+			@extend %icon-bussinessman;
+			background-color: $border;
+			color: #fff;
+			z-index: $zindex-down;
+		}
+		img {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			z-index: $zindex-up;
+		}
+	}
+	.name {
+		display: inline-block;
+		vertical-align: middle;
+		margin-left: 10px;
+		line-height: 50px;
+		font-size: 12px;
+		color: rgba(255,255,255,.75);
+	}
+	&[data-style-size="s"] {
+		line-height: 30px;
+		.head {
+			width: 30px;
+			height: 30px;
+		}
+		.name {
+			margin-left: 5px;
+			line-height: 30px;
+			color: $fz;
+		}
+	}
+	&[data-style-size="ver"] {
+		display: block;
+		.head {
+			display: block;
+			margin: 0 auto;
+			width: 78px;
+			height: 78px;
+			border: 4px solid rgba(255,255,255,.35);
+			box-shadow: 0 -2px 5px rgba(0,0,0,.1);
+		}
+		.name {
+			display: block;
+			line-height: 40px;
+			font-size: 16px;
+			color: $main;
+			text-align: center;
+		}
+	}
+}

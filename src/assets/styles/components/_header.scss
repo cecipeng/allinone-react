@@ -1,0 +1,159 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 通用header ---------------------//
+
+.com-header {
+	height: $header-h;
+	@extend %cf;
+	background-color: $bgdark-d;
+	.layout-wrapper {
+		height: 100%;
+	}
+	.flbox,
+	.frbox {
+		float: left;
+		height: 100%;
+		@extend %vm;
+	}
+	.frbox {
+		float: right;
+	}
+	//头部下拉菜单特殊处理
+	.ui-dropdown {
+		.dropdown-list {
+			background-color: $bgdark;
+		}
+	}
+	//logo
+	.logo {
+		display: inline-block;
+		vertical-align: middle;
+		height: 40px;
+		line-height: 40px;
+		padding-left: 80px;
+		font-size: 16px;
+		color: #fff;
+		@include bgurl('logo.png');
+		background-size: auto 25px;
+		background-position: left center;
+		@include hover(transform,scale(1.07),scale(1.07));
+	}
+	//下拉菜单
+	.header-userdrop {
+		padding: 10px 0;
+		.com-userhead .name {
+			color: #fff;
+			font-size: 14px;
+		}
+		.selector {
+			display: block;
+			padding-right: 24px;
+			line-height: 30px;
+		}
+		.dropdown-list {
+			top: 40px;
+			border: none;
+			.dropitem {
+				color: #fff;
+				font-size: 12px;
+				@include hover(background,none,none);
+				@include hover(color,$main-l,$main);
+			}
+		}
+	}
+	//退出
+	.btn-sign {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.unlogin {
+		height: 100%;
+		@extend %vm;
+		.ui-link {
+			margin-left: 10px;
+		}
+	}
+}
+
+
+//--------------------- 通用主菜单 ---------------------//
+.com-mainmenu {
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 50px;
+	//菜单
+	.mainmenu {
+		@extend %cf;
+		> li {
+			position: relative;
+			float: left;
+		}
+		.item {
+			position: relative;
+			display: block;
+			padding: 0 20px;
+			height: $header-h;
+			line-height: $header-h;
+			font-size: 14px;
+			color: #fff;
+			cursor: pointer;
+			// font-weight: lighter;
+			@extend %tof;
+			@include hover(background-color,$bgdark,$bgdark);
+			&.is-active {
+				color: $main;
+			}
+			&.selector {
+				position: relative;
+				padding-right: 33px;
+				&.on {
+					background-color: $bgdark;
+				}
+			}
+		}
+		.dropdown-arrow {
+			position: absolute;
+			top: 50%;
+			right: 15px;
+			margin-top: -4px;
+			width: 13px;
+			height: 7px;
+			line-height: 7px;
+			font-size: 10px;
+			content: "";
+			@extend %iconfont;
+			@extend %icon-arrow3;
+		}
+		.dropdown-list {
+			position: absolute;
+			left: 50%;
+			top: $header-h;
+			width: 140px;
+			margin-left: -70px;
+			padding-top: 5px;
+			z-index: $zindex-dd;
+			background-color: $bgdark;
+			.dropitem {
+				display: block;
+				height: 36px;
+				line-height: 36px;
+				color: #fff;
+				font-size: 12px;
+				text-align: center;
+				@extend %tof;
+				@include hover(color,$main-l,$main);
+			}
+		}
+	}
+	//头部下拉菜单特殊处理
+	.ui-dropdown {
+		.dropdown-list {
+			background-color: $bgdark;
+		}
+	}
+}

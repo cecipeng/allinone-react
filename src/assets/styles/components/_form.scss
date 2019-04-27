@@ -1,0 +1,437 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+//局部变量
+$ui-form-row-h: 40px;		//单行默认高度
+$ui-form-row-w: 315px;		//单行默认宽度
+$ui-label-w:    115px;      //label宽度
+//定义通用边框
+%comform-border {
+	display: inline-block;
+	vertical-align: top;	//
+	width: $ui-form-row-w;
+	height: $ui-form-row-h;
+	line-height: $ui-form-row-h - 2px;
+	padding: 0 10px;	//
+	font-size: 14px;	//
+	color: $fz-d;	//
+	border-radius: 3px;
+	border: 1px solid $border;	//
+	@include transition(border-color);	//
+}
+
+//定义通用聚焦
+%comform-focus {
+	&:focus {
+		border-color: $main;
+		z-index: 5;
+	}
+}
+
+//定义隐藏元素
+%comform-hidden {
+	position: absolute;
+	right: 0;
+	top: 0;
+	opacity: 0;
+	font-size: 100px;	//
+}
+
+
+//--------------------- 表单通用样式——表单框架 ---------------------//
+.ui-formbox {
+	// width: 700px;	//
+	// margin: 0 auto;
+}
+.ui-formrow {
+	position: relative;
+	margin-bottom: 20px;
+	padding-left: $ui-label-w;
+	//无标题
+	&.ui-formnolabel {
+		padding-left: 0;
+	}
+	&.ui-forminline {
+		float: left;
+		clear: both;
+	}
+	//标题
+	.form-label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: inline-block;
+		width: 100px;
+		line-height: $ui-form-row-h;
+		font-size: 14px;
+		color: $fz;
+		text-align: right;
+	}
+	// //必选项标记
+	// .must {
+	// 	margin-left: 4px;	//
+	// 	color: $red;
+	// }
+	// //内容容器
+	// .form-con {
+	// 	position: relative;
+	// 	padding-right: 160px;     //
+	// 	min-height: $ui-form-row-h;
+	// }
+	//提示文字
+	.form-tip {
+		display: none;
+		position: absolute;
+		left: 100%;
+		top: 0;  
+		width: 160px;     //与form-con的padding-right一致
+		height: $ui-form-row-h;
+		line-height: $ui-form-row-h - 2px;
+		padding-left: 12px;
+		font-size: 12px; 
+		color: $red;
+		text-align: left;
+	}
+
+	//隐藏元素
+	.form-hidden {
+		@extend %comform-hidden;
+	}
+
+	// 纯文本
+	.form-value {
+		line-height: 40px;
+	}
+}
+
+
+//--------------------- 提交按钮 ---------------------//
+.form-btnwrap {
+	padding-left: $ui-label-w;
+	.ui-btn {
+		min-width: 100px;
+		margin-right: 10px;
+	}
+}
+
+//--------------------- 状态汇总 ---------------------//
+.ui-formrow {
+	//聚焦状态
+	&[data-status="focus"] {
+
+	}
+
+	//错误状态
+	&.form-error {
+		//input
+		.form-input,
+		.form-textarea {
+			border-color: $red;
+		}
+		.form-tip {
+			display: block;
+			color: $red;
+		}
+	}
+
+	//正确状态
+	&.form-correct {
+		//input
+		.form-input,
+		.form-textarea {
+			border-color: $green;
+		}
+		.form-tip {
+			color: $green;
+		}
+	}
+}
+
+//--------------------- input输入框 ---------------------//
+.form-input {
+	@extend %comform-border;
+	@extend %comform-focus;
+	&.form-input-wide {
+		display: block;
+		width: 100%;
+	}
+}
+
+//--------------------- 单选框 ---------------------//
+.form-radio {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 6px;
+	line-height: 24px; 
+	padding-left: 24px;
+	cursor: pointer;
+	overflow: hidden;
+	font-size: 14px;
+	color: $fz;
+	//图标
+	&:before {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		width: 16px; 
+		height: 16px; 
+		margin-top: -8px;
+		content: "";
+		border: 1px solid $border;
+		border-radius: 50%;
+	}
+	&[data-status="check"]{
+		&:before {
+			background-color: $main;
+			border-color: $main;
+		}
+	}
+	//文字
+	.radio-txt {
+		font-size: 14px;     //
+		color: $fz;     //
+	}
+	.form-hidden {
+		@extend %comform-hidden;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+}
+
+
+//--------------------- 多选框 ---------------------//
+.form-checkbox {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 20px;    
+	padding-left: 22px;
+	cursor: pointer;
+	overflow: hidden;
+	&:before {
+		position: absolute;
+		left: 0;
+		top: 50%;
+		width: 16px;  
+		height: 16px; 
+		line-height: 14px;
+		content: "";
+		margin-top: -8px;
+		border-radius: 1px;
+		font-size: 12px;
+		color: #fff;
+		font-weight: bold;
+		border: 1px solid $border;
+		border-radius: 2px;
+	}
+	&.check {
+		&:before {
+			@extend %iconfont;
+			@extend %icon-ok;
+		}
+		
+		.checkbox-txt {
+			color: $main;
+		}
+		&:before {
+			background-color: $main;
+			border-color: $main;
+			// @include bgurl('login-check-icon.png');     //
+		}
+	}
+	&:hover {
+		.checkbox-txt {
+			color: $main;
+		}
+	}
+	.checkbox-txt {
+		font-size: 14px;  
+		color: $fz;  
+	}
+	.form-hidden {
+		@extend %comform-hidden;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+	}
+}
+
+
+//--------------------- select下拉选择框 ---------------------//
+.form-select {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	.selector {
+		position: relative;
+		padding-right: 24px;     //
+		@extend %comform-border;
+		@extend %tof;
+		.dropdown-arrow {
+			position: absolute;
+			right: 7px;     //
+			top: 50%;
+			margin-top: -4px;     //
+		}
+	}
+	.dropdown {
+		top: $ui-form-row-h - 1px;     //
+	}
+}
+
+
+//--------------------- textarea文本域框 ---------------------//
+.form-textarea {
+	@extend %comform-border;
+	@extend %comform-focus;
+	padding-top: 4px;     //
+	padding-bottom: 4px;     //
+	height: 132px;     //
+	resize: none;
+}
+
+
+//--------------------- 上传图标 ---------------------//
+.form-upload {
+	.uploadbtn {
+		height: 40px;
+		@extend %vm;
+	}
+	//上传按钮
+	.btn-upload {
+		overflow: hidden;
+		position: relative;
+	}
+	//上传完成后显示区域
+	.imgpreview {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
+		margin-top: 16px;
+		width: 380px;
+		height: 200px;
+		overflow: hidden;
+		border: 1px dashed $border;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	//删除图标
+	.btn-delImg {
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		font-size: 22px;
+		color: #fff;
+		background-color: rgba(255,0,0,0.5);
+		@extend %iconfont;
+		@extend %icon-shanchu;
+		cursor: pointer;
+		transition: background-color 0.3s ease-out;
+		&:hover {
+			background-color: rgba(255,0,0,0.65);
+		}
+		&:active {
+			background-color: rgba(255,0,0,0.75);
+		}
+	}
+	//上传要求说明文字
+	.upload-intro {
+		line-height: 20px;     //
+		font-size: 12px;     //
+		color: $fz;     //
+	}
+	.form-hidden {
+		@extend %comform-hidden;
+	}
+}
+
+
+//--------------------- 获取验证码 ---------------------//
+.form-vercode {
+	position: relative;
+	padding-right: 160px;     //
+	.form-input {
+		width: 100%;
+	}
+	.ui-btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 146px;     //
+	}
+}
+
+//--------------------- 开关 ---------------------//
+.form-switch {
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	width: 60px;     //
+	height: 24px;     //
+	padding: 0 12px;
+	margin-top: 8px;
+	line-height: 24px;     //
+	border-radius: 12px;     //
+	text-align: center;
+	font-size: 14px;     //
+	color: #fff;     //
+	transition: background-color 0.3s ease-out;     //
+	@include hover(opacity,0.8,1);     //
+	cursor: pointer;
+	//切换按钮
+	&:before {
+		position: absolute;
+		left: -1px;     //
+		top: -3px;     //
+		width: 28px;     //
+		height: 28px;      //
+		// @include bgurl('form-switch.png');     //
+		border: 1px solid $border;     //
+		background-color: #fff;
+		box-shadow: 0 3px 5px rgba(0,0,0,0.15);
+		border-radius: 50%;
+		content: "";
+		@include transition(transform);
+	}
+	.form-switch-off,
+	.form-switch-on, {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 14px;
+	}
+	.form-switch-off {
+		color: $fz;
+		float: left;
+	}
+	.form-switch-on {
+		float: right;
+		color: #fff;
+	}
+ 	&[data-status="on"] {
+		background-color: $main;  
+		transform: translateX(0px);
+		.form-switch-off {
+			display: none;
+		}
+ 	}
+ 	&[data-status="off"] {
+		background-color: #ddd;  
+		.form-switch-on {
+			display: none;
+		}
+		&:before {
+			transform: translateX(34px);     //
+		}
+ 	}
+}
+

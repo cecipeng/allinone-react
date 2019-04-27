@@ -1,0 +1,102 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 弹窗外框 ---------------------//
+.ui-pop {
+	// display: none;
+	position: fixed;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,0.74);	//
+	z-index: $zindex-modal;
+	.popwrap {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		border-radius: 8px;
+		.btn-closepop {
+			position: absolute;
+			right: 10px;
+			top: 5px;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			font-size: 20px;
+			color: $fz;			
+			@extend %iconfont;
+			@extend %icon-guanbijiantou;
+			cursor: pointer;
+			&:hover {
+				color: $main;	
+			}
+			&:active {
+				color: $main-d;	
+			}
+		}
+		//关闭按钮的三种位置：最外层
+		> .btn-closepop {
+			&:active {
+				opacity: 1;
+				background-position: 0 -36px;
+			}
+		}
+		//关闭按钮的三种位置：pop-header中
+		.pop-header .btn-closepop {
+			
+		}
+		//关闭按钮的三种位置：pop-body中
+		.pop-body .btn-closepop {
+
+		}
+	}
+
+
+	///////////////////////////////// 默认弹窗样式（可删）
+	.popwrap {
+		width: 520px;
+		margin-left: -260px;
+		margin-top: -100px;
+		border: 1px solid $border;
+		background-color: #fff;
+		box-shadow: 0 2px 4px rgba(7, 0, 2, 0.1);
+		
+	}
+	.pop-header {
+		position: relative;
+		height: 48px;
+		padding: 0 20px;
+		background-color: #57a2ff;
+		.poptit {
+			float: left;
+			line-height: 48px;
+			font-size: 16px;
+			color: #fff;
+		}
+	}
+	.pop-body {
+		padding: 32px 20px 47px;
+		.maintxt {
+			line-height: 25px;
+			font-size: 14px;
+			color: $fz-d;
+			text-align: center;
+		}
+	}
+	.pop-footer {
+		padding: 0 20px 27px;
+		text-align: right;
+		.ui-btn {
+			min-width: 106px;
+			margin: 0 6px;
+		}
+	}
+
+
+}

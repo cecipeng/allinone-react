@@ -1,0 +1,104 @@
+// other color
+$org:                   #ddd;
+
+$green:                 #00bc9c;
+$green-l:               #20d0b2;
+$green-d:               #00a085;
+
+$yellow:                #fdc556;
+$yellow-l:              #fccf74;
+$yellow-d:              #f7af25;
+
+$red:                   #ff7878;
+$red-l:                 #fc8a8a;
+$red-d:                 #ea6060;
+
+$blue:                  #ddd;
+$purple:                #ddd;
+$pink:                  #ddd;
+
+// main color
+$main:                  $green;
+$main-d:                $green-d;
+$main-dr:               $green-d;
+$main-l:                $green-l;
+$main-lr:               $green-l;
+
+// sub color
+$sub: 					$red;
+$sub-d: 				$red-d;
+$sub-dr: 			    $red-d;
+$sub-l: 			    $red-l;
+$sub-lr: 			    $red-l;
+
+// grey color
+$bgdark:                #2f4052;
+$bgdark-d:              #283645;
+$bgdark-l:              #4e5c6c;
+$border: 			    	#ddd;
+$border-d: 		            #ccc;
+$border-l: 	                #eee;
+$nav:                   #373a49;
+$nav-l:                 #5f616d;
+$bg: 			        #ddd;
+$bg-d: 	                #ccc;
+$bg-l: 	                     #f5f5f5;
+$fz:                    #73879c;
+$fz-d: 			        #506a85;
+$fz-l: 		            #707e8c;
+$fz-lr: 		            #aaa;
+$icon:                      #fff;
+
+//--------------------- radius ---------------------//
+
+$radius:                3px;           //rem：去掉单位
+$radius-s:              2px;
+$radius-l:              6px;
+
+
+//--------------------- z-index ---------------------//
+
+$zindex-below:          -1;
+$zindex-default:        1;
+$zindex-fix:            50;		//fixed topbar,backtotop
+$zindex-dd:             70;		//dropdown
+$zindex-modal:          100;	//pop    
+$zindex-up:             3;
+$zindex-down:           2;
+
+
+//--------------------- animation ---------------------//
+
+$dur-s:                 0.3s;
+$dur:                   0.5s;
+$dur-l:                 1s;
+$dur-h:                 2s;
+
+
+//--------------------- width and height ---------------------//
+
+$header-h:              50px;      // header height  
+$nav-h:                 64px;      // mainnav height  
+$footer-h:              0px;      // footer height 
+$wrapper-w:				1200px;      // 正文 width
+$min-w:				    1024px;      // 正文 width,1024还需加上滚动条宽度
+$side-w:				234px;      // 侧栏 width
+$padding:  				30px;
+
+
+
+//--------------------- media ---------------------//
+
+$mq-s:                  max-width $min-w;
+// $mq-n:                  1024px 1200px;
+// $mq-l:                  1000px;
+// $mq-h:                  1600px;
+// media query
+// @example:
+// 示例scss:
+//   .foo{
+//     width: 500px;
+//     @include breakpoint($mq-n){
+//       width: 200px;
+//     }
+//   }

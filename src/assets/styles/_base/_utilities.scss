@@ -1,0 +1,78 @@
+@charset "UTF-8";
+
+//--------------------- display ---------------------//
+
+.show {
+	display: block;
+}
+.ibshow {
+	display: inline-block;
+}
+.hide {
+	display: none;
+}
+.oh {
+	overflow: hidden;
+}
+
+
+//--------------------- float ---------------------//
+
+.relative { position: relative; }
+.fixed { position: fixed; }
+
+
+//--------------------- float ---------------------//
+
+.fl { 
+	float: left;
+} 
+.fr { 
+	float: right;
+}
+
+
+//--------------------- clearfix ---------------------//
+
+.cl { 
+	clear: both;
+}
+.clx:after { 
+	content: ""; 
+	display: table; 
+	clear: both;
+}
+
+
+//--------------------- margin ---------------------//
+
+.mt10 { margin-top: 10px; }
+.mt20 { margin-top: 20px; }
+
+.ml10 { margin-left: 10px; }
+.ml20 { margin-left: 20px; }
+
+.mr10 { margin-right: 10px; }
+.mr20 { margin-right: 20px; }
+
+.mb10 { margin-bottom: 10px; }
+.mb20 { margin-bottom: 20px; }
+.mb30 { margin-bottom: 30px; }
+
+//--------------------- font ---------------------//
+
+.tl { text-align: left; } 
+.tc { text-align: center; } 
+.tr { text-align: right; }
+.fz12 { font-size: 12px; } 
+.fz14 { font-size: 14px; }
+.textoverflow { 
+	overflow: hidden; 
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
+.wordbreak { 
+	word-break: break-all; 
+	word-wrap: break-word; 
+}
+.nowrap { white-space: nowrap; }

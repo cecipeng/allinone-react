@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 通用模块头部head ---------------------//
+
+.ui-modhead {
+	padding: 20px 0;
+	height: 120px;
+	background-color: #fff;
+	@extend %cf;
+	.layout-wrapper {
+		height: 100%;
+	}
+	&__fr {
+		float: right;
+		height: 100%;
+		@extend %vm;
+	}
+	&__fl {
+		float: left;
+		height: 100%;
+		@extend %vm;
+	}
+	&__title {
+		display: inline-block;
+		vertical-align: middle;
+		line-height: 40px;
+		font-size: 28px;
+		color: $main;
+	}
+	&__intro {
+		overflow: hidden;
+	}
+	///////////////////////////// 
+
+}

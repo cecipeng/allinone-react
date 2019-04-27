@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 样式1 ---------------------//
+.ui-maintitle {
+	position: relative;
+	@extend %cf;
+	text-align: right;
+	height: 30px;
+	overflow: hidden;
+	.maintitle {
+		float: left;
+		height: 30px;
+		line-height: 30px;
+		font-size: 20px;
+		color: $fz-d;
+	}
+	.frbox {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	///////////////// 一级
+	&[data-style='style1'] {
+		padding-left: 35px;
+		.maintitle {
+			color: $main;
+		}
+		
+		&:before {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+			font-size: 28px;
+			color: $main;
+			text-align: left;
+			@extend %iconfont;
+		}
+	}
+
+	///////////////// 二级
+	&[data-style='style2'] {
+		// border-bottom: 1px solid lighten($border,3%);
+		.maintitle {
+			line-height: 30px;
+			color: $fz-l;
+			font-size: 16px;
+			// @include transition(transform);
+			cursor: default;
+			// &:hover {
+			// 	transform: translateY(-10px);
+			// }
+		}
+	}
+}

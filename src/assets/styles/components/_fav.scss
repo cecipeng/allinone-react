@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 收藏 ---------------------//
+
+.com-fav {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 24px;
+	font-size: 16px;
+	color: $fz-l;
+	@extend %iconfont;
+	@extend %icon-shoucang1;
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
+	}
+
+	///////////////////////////// 写法2：可点击评分
+	&[data-style="style2"] {
+	 	.star {
+	 		
+	 	}
+	}
+}

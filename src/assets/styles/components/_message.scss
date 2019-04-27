@@ -1,0 +1,60 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 全局提示外框 ---------------------//
+.ui-message {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	// display: none;
+	z-index: $zindex-modal + 50;
+	&:before {
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		content: "";
+	}
+	.message-con {
+		position: absolute;
+		left: 50%;
+		top: 30%;
+		transform: translate(-50%,-50%);
+		border-radius: 6px;
+		padding: 10px 25px;
+		background-color: rgba(0,0,0,0.6);
+		.btn-close {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+			width: 12px;
+			height: 12px;
+			line-height: 12px;
+			text-align: center;
+			font-size: 12px;
+			color: #fff;			
+			@extend %iconfont;
+			@extend %icon-guanbijiantou;
+			cursor: pointer;
+			&:hover {
+				color: $main;	
+			}
+			&:active {
+				color: $main-d;	
+			}
+		}
+	}
+	.message-text {
+		line-height: 1.5;
+		font-size: 14px;
+		color: #fff;
+	}
+
+}

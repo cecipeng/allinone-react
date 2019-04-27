@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+
+//--------------------- 淡入淡出 ---------------------//
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active /* .fade-leave-active in below version 2.1.8 */ {
+  opacity: 0
+}
+
+//--------------------- slide ---------------------//
+//top
+.slide-top-enter-active {
+  transition: all .3s ease;
+}
+.slide-top-leave-active {
+  transition: all .15s ease;
+}
+.slide-top-enter, .slide-top-leave-to {
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+//bottom
+.slide-top-enter-active {
+  transition: all .3s ease;
+}
+.slide-top-leave-active {
+  transition: all .15s ease;
+}
+.slide-top-enter, .slide-top-leave-to {
+  -webkit-transform: translateY(-10px);
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+//left
+.slide-left-enter-active {
+  transition: all .3s ease;
+}
+.slide-left-leave-active {
+  transition: all .15s ease;
+}
+.slide-left-enter, .slide-left-leave-to {
+  -webkit-transform: translateX(10px);
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+//right
+.slide-right-enter-active {
+  transition: all .3s ease;
+}
+.slide-right-leave-active {
+  transition: all .15s ease;
+}
+.slide-right-enter, .slide-right-leave-to {
+  -webkit-transform: translateX(-10px);
+  transform: translateX(-10px);
+  opacity: 0;
+}
