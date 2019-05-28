@@ -39,8 +39,9 @@
 
 // rem
 $fzrem: 30; 
-@function torem($px, $basefzrem:$fzrem){
-    @return $px / $basefzrem * 1rem;
+@function unit($px, $basefzrem:$fzrem){
+    @return $px * 1px;
+    // @return $px / $basefzrem * 1rem;
 }
 
 
@@ -52,7 +53,7 @@ $fzrem: 30;
 
 
 // 小三角
-@mixin triangle($d:top,$color:#ddd,$xsize:10px,$ysize:10px) {
+@mixin triangle($d:top,$color:#ddd,$xsize:unit(10),$ysize:unit(10)) {
     width: 0;
     height: 0;
     border-width: $xsize $ysize;

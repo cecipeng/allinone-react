@@ -1,16 +1,17 @@
 import React from 'react';
-import Header from './elements/header/header'
+import { Route, Switch, Redirect } from 'react-router-dom'
+import Homepages from './modules/Homepages/Homepages'
+import Login from './modules/Login/Login'
 
 export default class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <div className="layout-header">
-          <Header />
-        </div>
-        <div class="layout-mod mod-home">
-          {this.props.children}
-      </div>
+      <div id="app">
+        <Switch>
+          <Route path='/homepages' component={Homepages} />
+          <Route path='/login' component={Login} />
+          <Redirect to="/homepages" />
+        </Switch>
       </div>
     )
   }

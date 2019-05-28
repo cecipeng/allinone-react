@@ -2,52 +2,61 @@
 //-----------------------------------------------------
 // author:  590000
 //-----------------------------------------------------
-//--------------------- 通用layout ---------------------//
+
+//--------------------- 根节点设置 ---------------------//
 body {
     min-width: $min-w; //modify
     overflow: auto; //modify
 }
-
-//居中内容统一使用类名：layout-wrapper
-.layout-wrapper {
-    width: $wrapper-w;
-    margin: 0 auto;
-    @include breakpoint($mq-s) {
-        width: $min-w;
-    }
+#root {
+	height: 100%;
 }
-
 #app {
-    position: relative;
-    .layout-header {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        // height: $header-h;
-		z-index: $zindex-fix;
-    }
+	height: 100%;
+    
 }
 
-.layout-mod {
-    /////////////////// 项目中的布局——edit
-    .layout-mod {
-        height: 100%;
+//--------------------- 通用类名 ---------------------//
+
+
+
+//--------------------- 布局 ---------------------//
+.layout {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+
+	/////////////////// 常规布局
+	&-header {
+        height: $header-h;
     }
-    /////////////////// 以下为常用的布局效果，视情况注释掉
+    &-body {
+		flex: 1;
+		padding-bottom: unit(80); //内容底部留一定距离
+	}
+	&-footer {
+        height: $footer-h;
+    }
+	
+    /////////////////// 以下为常用的布局效果，视情况使用对应类名
     //局部滚动条统一使用类名：layout-scroll
-	.layout-scroll {   
+	&-scroll {   
 		height: 100%;
 		overflow-y: auto !important;
 	}
 
-	//内容底部留一定距离
-	.layout-body {
-		padding-bottom: 80px;
+	//居中内容统一使用类名：layout-wrapper
+	&-wrapper {
+		width: $wrapper-w;
+		margin: 0 auto;
+		@include breakpoint($mq-s) {
+			width: $min-w;
+		}
 	}
 
 	//固定悬浮在居中内容外侧
-	.layout-fix {
+	&-fix {
 		position: fixed;
 		left: 50%;
 		bottom: 200px; //
@@ -55,34 +64,23 @@ body {
 		margin-left: -($wrapper-w / 2);  //
 	}
 
-	//左右布局统一使用类名：layout-side、layout-main
-	.layout-2col {
-		position: relative;
-		padding-right: 270px; //
-	}
-	.layout-side {
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 270px;   //
-		&.layout-side-fix { //侧栏固定
-			position: fixed;
-			right: 50%;
-			margin-right: -($wrapper-w / 2);
-			z-index: $zindex-fix;
-			@include breakpoint($mq-s) { //屏幕过窄时不固定
-				position: absolute;
-				right: 0;
-				margin-right: 0;
-			}
+	//BFC布局
+	&-bfc {
+		@extend %cf;
+		&__left {
+			float: left;
 		}
-	}
-	.layout-main {
-		
+		&__right {
+			float: right;
+		}
+		&__content {
+			display: block;
+			overflow: hidden;
+		}
 	}
 
 	//出现弹窗时主体内容不出现滚动条，统一使用类名：layout-mod-pop
-	&.layout-mod-pop {
+	&.layout--pop {
 		height: 100%;
 		overflow: hidden;
 		.layout-footer {
@@ -99,24 +97,5 @@ body {
 		left: 0;
 		bottom: 0;
 		right: 0;
-	}
-
-	//顶部固定的处理
-	.layout-header {
-		position: relative;
-		padding-bottom: $nav-h;
-		.com-mainnav {
-			position: absolute;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			&.fixed {
-				position: fixed;
-				left: 0;
-				right: 0;
-				top: 0;
-				z-index: $zindex-fix;
-			}
-		}
 	}
 }
