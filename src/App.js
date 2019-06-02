@@ -1,16 +1,16 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
-import Homepages from './modules/Homepages/Homepages'
-import Login from './modules/Login/Login'
+import { view as RootPage } from './features/RootPage/index'
+import { view as Login } from './features/Login/index'
 
 export default class App extends React.Component {
   render() {
     return (
       <div id="app">
         <Switch>
-          <Route path='/homepages' component={Homepages} />
+          <Route path='/rootPage' component={RootPage} />
           <Route path='/login' component={Login} />
-          <Redirect to="/homepages" />
+          <Redirect to="/rootPage" />
         </Switch>
       </div>
     )

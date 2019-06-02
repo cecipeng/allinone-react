@@ -8,14 +8,16 @@
 //--------------------- 通用userhead ---------------------//
 
 .com-userhead {
+	$userhead-h: unit(30);
+
 	display: inline-block;
 	vertical-align: middle;
 	.head {
 		position: relative;
 		display: inline-block;
 		vertical-align: middle;
-		width: 50px;
-		height: 50px;
+		width: $userhead-h;
+		height: $userhead-h;
 		border-radius: 50%;
 		overflow: hidden;
 		&:before {
@@ -41,19 +43,19 @@
 		display: inline-block;
 		vertical-align: middle;
 		margin-left: 10px;
-		line-height: 50px;
+		line-height: $userhead-h;
 		font-size: 12px;
 		color: rgba(255,255,255,.75);
 	}
 	&[data-style-size="s"] {
-		line-height: 30px;
+		line-height: $userhead-h;
 		.head {
-			width: 30px;
-			height: 30px;
+			width: $userhead-h;
+			height: $userhead-h;
 		}
 		.name {
 			margin-left: 5px;
-			line-height: 30px;
+			line-height: $userhead-h;
 			color: $fz;
 		}
 	}

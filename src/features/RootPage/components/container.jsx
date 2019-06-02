@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Header from '../../elements/header/header'
-import Home from './Home/Home'
-import Navigation from './Navigation/Navigation'
+import Header from './header'
+import { view as Home } from '../../Home/index'
+import { view as Navigation } from '../../Navigation/index'
 
-export default class Homepages extends React.Component {
+export default class RootPage extends React.Component {
     render () {
         return (
             <div className="layout">
@@ -13,8 +13,8 @@ export default class Homepages extends React.Component {
                 </div>
                 <div class="layout-body">
                     <Switch>
-                        <Route exact path='/homepages/home' component={Home}/>
-                        <Route path='/homepages/navigation' component={Navigation}/>
+                        <Route exact path='/rootPage/home' component={Home}/>
+                        <Route path='/rootPage/navigation' component={Navigation}/>
                     </Switch>
                 </div>
             </div>
