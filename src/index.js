@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import './assets/styles/styles.scss'
 
 const store = configStore()
+
 ReactDOM.render((
     <Provider store={store}>
         <Router>

@@ -2,7 +2,7 @@ import initialState from './initialState'
 import { reducer as updateUserInfo } from './updateUserInfo'
 
 const reducers = [
-    updateUserInfo
+  updateUserInfo
 ];
 
 export default function reducer(state = initialState, action) {
