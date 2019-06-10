@@ -4,7 +4,7 @@ import { UPDATE_USER_INFO } from './actionTypes';
 export function updateUserInfo(userInfo) {
     return {
         type: UPDATE_USER_INFO,
-        userInfo: userInfo
+        userInfo
     }
 }
 

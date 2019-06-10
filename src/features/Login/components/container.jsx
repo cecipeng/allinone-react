@@ -28,7 +28,7 @@ export class Login extends React.Component {
   loginIn (e) {
     e.preventDefault()
 
-    // 1.切换为：正在登录中
+    // 1.按钮切换为：正在登录中
     this.setLoginState(true)
 
     // 2.验证输入合法性
@@ -47,18 +47,16 @@ export class Login extends React.Component {
             this.setMessage('')
 
             // 4.存储localStorage
-            // localStorage.setItem('userId', res.data.datas.userId);
-            // localStorage.setItem('userName', res.data.datas.userName);
-            // localStorage.setItem('userHead', res.data.datas.userHead);
+            localStorage.setItem('userId', res.data.datas.userId);
+            localStorage.setItem('userName', res.data.datas.userName);
+            localStorage.setItem('userHead', res.data.datas.userHead);
             localStorage.setItem('accessToken', res.data.datas.accessToken);
 
-            // 5.切换为：登录
+            // 5.按钮切换为：登录
             this.setLoginState(false)
 
             // 6.存储用户信息到store
-            console.log(this.props.userInfo.userInfo);
-            this.props.updateUserInfo.updateUserInfo(res.data.datas)
-            console.log(this.props.userInfo.userInfo);
+            this.props.updateUserInfo(res.data.datas)
 
             // 7.跳转到前一个页面
             this.props.history.goBack()
@@ -153,17 +151,11 @@ export class Login extends React.Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    userInfo: state.userInfo, //?
-  }
+  return state.userInfo
 }
 
 function mapDispatchToProps(dispatch) {
-  debugger
-  return {
-    updateUserInfo: bindActionCreators({ ...actions }, dispatch),
-  }
+  return bindActionCreators({ ...actions }, dispatch)
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

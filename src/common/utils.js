@@ -27,7 +27,7 @@ const UTIL = {
         .then(function (response) {
             switch(response.data.meta.code) {
                 case "1001": //未登录
-                    // router.push({ path: '/login' }); //跳转到登录页
+                    window.location.href = '/login' //跳转到登录页
                     break;
                 case "1002": //请求参数错误
                     // const mess = {

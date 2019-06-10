@@ -11,9 +11,9 @@ export class Header extends React.Component {
                 <div className="layout-wrapper layout-bfc">
                     <div className="layout-bfc__right">
                         {
-                            this.props.userInfo.userInfo.userId != null ? (
+                            this.props.userInfo != null ? (
                                 <div className="header-userdrop ui-dropdown">
-                                    <UserHead userInfo={this.props.userInfo.userInfo} />
+                                    <UserHead userInfo={this.props.userInfo} />
                                 </div>
                             ) : (
                                 <div className="unlogin">
@@ -41,7 +41,7 @@ export class Header extends React.Component {
 
 function mapStateToProps(state) {
     return {
-      userInfo: state.userInfo,
+        userInfo: state.userInfo
     }
 }
   

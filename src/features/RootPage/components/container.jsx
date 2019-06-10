@@ -11,7 +11,7 @@ export default class RootPage extends React.Component {
                 <div className="layout-header">
                     <Header />
                 </div>
-                <div class="layout-body">
+                <div className="layout-body">
                     <Switch>
                         <Route exact path='/rootPage/home' component={Home}/>
                         <Route path='/rootPage/navigation' component={Navigation}/>
