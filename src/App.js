@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { view as RootPage } from './features/RootPage/index'
 import { view as Login } from './features/Login/index'
+import  { Mask } from './common/components/mask/index'
+
 
 export default class App extends React.Component {
   render() {
@@ -12,7 +14,9 @@ export default class App extends React.Component {
           <Route path='/login' component={Login} />
           <Redirect to="/rootPage" />
         </Switch>
+        <Mask />
       </div>
     )
   }
 }
+

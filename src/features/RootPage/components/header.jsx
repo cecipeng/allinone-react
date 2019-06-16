@@ -1,9 +1,7 @@
 import React from 'react'
-import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from '../redux/actions'
 import { NavLink } from 'react-router-dom'
-import UserHead from '../../../common/components/userHead'
+import UserHead from '../../../common/components/userHead/index'
 export class Header extends React.Component {
     render() {
         return (
@@ -40,9 +38,7 @@ export class Header extends React.Component {
 
 
 function mapStateToProps(state) {
-    return {
-        userInfo: state.userInfo
-    }
+    return state.userInfo
 }
   
 export default connect(mapStateToProps)(Header)

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 
 import UTIL from '../../../common/utils'
+import Modal from '../../../common/components/modal/index';
 
 export class Login extends React.Component {
   constructor(props) {
@@ -56,7 +57,7 @@ export class Login extends React.Component {
             this.setLoginState(false)
 
             // 6.存储用户信息到store
-            this.props.updateUserInfo(res.data.datas)
+            this.props.action.updateUserInfo(res.data.datas)
 
             // 7.跳转到前一个页面
             this.props.history.goBack()
@@ -127,6 +128,11 @@ export class Login extends React.Component {
   render() {
     return (
       <div className='layout-mod mod-login'>
+        <Modal
+          titleText = '111'
+          isVisible
+          isMask
+        ></Modal>
         <div className='layout-wrapper'>
           <div className='formbox'>
             <div className='form-title'>登录 Allinone</div>
@@ -155,7 +161,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...actions }, dispatch)
+  return {
+    action: bindActionCreators({ ...actions }, dispatch)
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
