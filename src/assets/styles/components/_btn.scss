@@ -56,7 +56,7 @@
 
 	&.ui-btn-default {
 		line-height: 38px;
-		color: $fz;
+		color: $color;
 		border: 1px solid $border;
 		background-color: #fff;
 		@include hovers((border-color,$main,$main-l)(color,$main,$main-l));

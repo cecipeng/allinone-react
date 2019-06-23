@@ -35,17 +35,42 @@ $sub-lr: 			    $red-l;
 $bgdark:                #3d3d3d;
 $bgdark-d:              #333;
 $bgdark-l:              #555;
+
+// 
 $border: 			    #ddd;
 $border-d: 		        #ccc;
 $border-l: 	            #e7e7e7;
+
+//
 $bg: 			        #ddd;
 $bg-d: 	                #ccc;
 $bg-l: 	                            #f7f7f7;
-$fz:                                #575153;
-$fz-d: 			                    #222;
-$fz-l: 		                        #8e8c8c;
-$fz-lr: 		        #aaa;
+
+// disabled color
+$disabled-color:        #999;
+$disabled-bg:           #ddd;
+$disabled-border:       #ccc;
+
+//color
+$color:                 #666; //575153
+$color-d: 			    #333; //222
+$color-l: 		        #999; //8e8c8c
+$color-lr: 		        #aaa; //aaa
+$color-disable: 		$color-l;
+
+//font-size
+$fz-s:                  unit(12);
+$fz:                    unit(14);
+$fz-l:                  unit(16);
+$fz-xl:                 unit(18);
+$fz-xxl:                unit(20);
+$fz-xxxl:               unit(24);
+
 $icon:                  #fff;
+
+$shadow-s:              0 unit(1) unit(6) rgba(0,0,0,.2);
+$shadow:                0 unit(1) unit(6) rgba(0,0,0,.2);
+$shadow-l:              0 unit(1) unit(6) rgba(0,0,0,.2);
 
 //--------------------- radius ---------------------//
 
@@ -83,6 +108,9 @@ $wrapper-w:				unit(1200);      // 正文 width
 $min-w:				    unit(1024);      // 正文 width,1024还需加上滚动条宽度
 $side-w:				unit(234);      // 侧栏 width
 $padding:  				unit(30);
+$com-height:            unit(30);       // 标准高度
+$com-height-l:          unit(36);
+$com-height-s:          unit(20);
 
 
 

@@ -47,14 +47,14 @@
 			@extend %iconfont;
 			@extend %icon-guanbijiantou;
 			cursor: pointer;
-			color: $fz-l;
+			color: $color-l;
 			font-size: 16px;
 			z-index: $zindex-modal + 1;
 			&:hover {
-				color: $fz;
+				color: $color;
 			}
 			&:active {
-				color: $fz-d;
+				color: $color-d;
 			}
 		}
 	}
@@ -71,7 +71,7 @@
 			float: left;
 			line-height: 40px;
 			font-size: 16px;
-			color: $fz-d;
+			color: $color-d;
 		}
 	}
 	.modal-body {
@@ -79,7 +79,7 @@
 		.notice {
 			line-height: 25px;
 			font-size: 14px;
-			color: $fz-d;
+			color: $color-d;
 			text-align: center;
 		}
 	}

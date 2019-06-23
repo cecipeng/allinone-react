@@ -160,7 +160,7 @@
             line-height: 20px;
             margin-bottom: 35px;
             font-size: 14px;
-            color: $fz-l;
+            color: $color-l;
             border-left: 4px solid $border;
             background-color: $bg-l;
         }
@@ -169,7 +169,7 @@
             margin-bottom: 25px;
             line-height: 24px;
             font-size: 14px;
-            color: $fz;
+            color: $color;
             text-align: left;
         }
         //图片
@@ -185,7 +185,7 @@
             margin-top: 25px;
             line-height: 64px;
             font-size: 24px;
-            color: $fz-d;
+            color: $color-d;
             font-weight: bold;
         }
         //二级标题
@@ -194,7 +194,7 @@
             padding-top: 50px;
             line-height: 50px;
             font-size: 20px;
-            color: $fz-d;
+            color: $color-d;
             font-weight: bold;
             border-bottom: 1px solid $border;
         }
@@ -204,7 +204,7 @@
             padding-top: 25px;
             line-height: 26px;
             font-size: 16px;
-            color: $fz-d;
+            color: $color-d;
             font-weight: bold;
         }
         //二级标题
@@ -213,7 +213,7 @@
             padding-top: 10px;
             line-height: 16px;
             font-size: 14px;
-            color: $fz-d;
+            color: $color-d;
             font-weight: bold;
         }
         //二级标题
@@ -223,7 +223,7 @@
             padding-top: 10px;
             line-height: 20px;
             font-size: 12px;
-            color: $fz-d;
+            color: $color-d;
             font-weight: bold;
         }
         //代码片段
@@ -250,7 +250,7 @@
                 margin-bottom: 10px;
                 line-height: 24px;
                 font-size: 14px;
-                color: $fz;
+                color: $color;
             }
         }
         //有序列表
@@ -262,7 +262,7 @@
                 margin-bottom: 10px;
                 line-height: 24px;
                 font-size: 14px;
-                color: $fz;
+                color: $color;
             }
         }
         //代码片段通用
@@ -270,7 +270,7 @@
             padding: 0;
             border-radius: $radius;
             
-            color: $fz;
+            color: $color;
             margin-bottom: 20px;
             .hljs {
                 background-color: $bg-l;
@@ -292,14 +292,14 @@
             line-height: 38px;
             margin-bottom: 10px;
             font-size: 18px;
-            color: $fz-d;
+            color: $color-d;
             border-bottom: 3px solid $border;
         }
         .com-userhead {
             margin-bottom: 25px;
             .name {
                 font-size: 16px;
-                color: $fz;
+                color: $color;
             }
         }
         .btnwrap {
@@ -320,7 +320,7 @@
                 @extend %icon-edit;
                 margin-right: 10px;
                 font-size: 18px;
-                color: $fz-l;
+                color: $color-l;
                 @include transition;
             }
             .fav {
@@ -354,7 +354,7 @@
                 display: block;
                 line-height: 30px;
                 font-size: 14px;
-                color: $fz;
+                color: $color;
                 @extend %tof;
                 &:hover {
                     text-decoration: underline;
@@ -368,7 +368,7 @@
         height: 50px;
         line-height: 50px;
         font-size: 14px;
-        color: $fz-l;
+        color: $color-l;
         .result {
             color: $main;
             font-size: 18px;

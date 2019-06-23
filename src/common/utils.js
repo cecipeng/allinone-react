@@ -40,6 +40,7 @@ const UTIL = {
                     // console.log("Allinone："+response.data.meta.message);
                     break;
                 case "1003": //网络异常
+                // 统一跳转到一个网络异常的界面
                     break;
                 default: //请求成果,或其他业务返回码
                     return response

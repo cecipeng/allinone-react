@@ -21,7 +21,7 @@
 		margin: 0 5px 10px;
 		background-color: $bg;
 		font-size: 14px;
-		color: $fz;
+		color: $color;
 		cursor: pointer;
 		@include hover(background-color,$main-l,$main-d);
 		&:hover,

@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 
 import UTIL from '../../../common/utils'
-import Modal from '../../../common/components/modal/index';
-
+import Radio, { RadioGroup } from '../../../common/components/radio/index';
+Radio.Group = RadioGroup
 export class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -26,7 +26,7 @@ export class Login extends React.Component {
   /**
    * 执行登录
    */
-  loginIn (e) {
+  loginIn(e) {
     e.preventDefault()
 
     // 1.按钮切换为：正在登录中
@@ -34,15 +34,15 @@ export class Login extends React.Component {
 
     // 2.验证输入合法性
     if (this.validate()) {
-        UTIL.request('post','api/login/verify',{
-            'userName': this.state.username,
-            'password': this.state.password
-        }).then((res) => {
-          if (res.data.meta.code == '2001') {
-            this.setMessage('帐号或者密码错误！')
-            this.setLoginState(false)
-            return
-          } else
+      UTIL.request('post', 'api/login/verify', {
+        'userName': this.state.username,
+        'password': this.state.password
+      }).then((res) => {
+        if (res.data.meta.code == '2001') {
+          this.setMessage('帐号或者密码错误！')
+          this.setLoginState(false)
+          return
+        } else
           if (res.data.meta.code == '0000') {
             // 3.清空错误提示
             this.setMessage('')
@@ -66,23 +66,23 @@ export class Login extends React.Component {
             this.setMessage(res.data.meta.message)
             console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
           }
-        })
+      })
     }
   }
 
   /**
    * 表单验证合法性
    */
-  validate () {
+  validate() {
     if (this.state.username.length === 0) {
-        this.setMessage('用户名不能为空！')
-        this.setLoginState(false)
-        return false
+      this.setMessage('用户名不能为空！')
+      this.setLoginState(false)
+      return false
     }
     if (this.state.password.length === 0) {
-        this.setMessage('密码不能为空！')
-        this.setLoginState(false)
-        return false
+      this.setMessage('密码不能为空！')
+      this.setLoginState(false)
+      return false
     }
     return true
   }
@@ -91,9 +91,9 @@ export class Login extends React.Component {
    * 设置：登录状态
    * @param {登录状态，boolean} state 
    */
-  setLoginState (state) {
+  setLoginState(state) {
     this.setState({
-        isLogining: state
+      isLogining: state
     })
   }
 
@@ -101,16 +101,16 @@ export class Login extends React.Component {
    * 设置：提示信息
    * @param {提示信息，string} text 
    */
-  setMessage (text) {
+  setMessage(text) {
     this.setState({
-        message: text
+      message: text
     })
   }
 
   /**
    * 设置：用户名
    */
-  setUsername (e) {
+  setUsername(e) {
     this.setState({
       username: e.target.value
     })
@@ -119,7 +119,7 @@ export class Login extends React.Component {
   /**
    * 设置：密码
    */
-  setPassword (e) {
+  setPassword(e) {
     this.setState({
       password: e.target.value
     })
@@ -128,11 +128,41 @@ export class Login extends React.Component {
   render() {
     return (
       <div className='layout-mod mod-login'>
-        <Modal
-          titleText = '111'
-          isVisible
-          isMask
-        ></Modal>
+        <Radio.Group
+        type='button'
+        buttonSize='small'
+        value='b'
+          radioList={[
+            {
+              value: 'a',
+              icon: 'list'
+            },
+            {
+              text: (<div>2</div>),
+              value: 'b',
+              icon: 'detail'
+            },
+            {
+              text: (<div>2</div>),
+              value: 'c',
+              icon: 'detail'
+            }
+          ]}
+        />
+        <Radio
+        value='qq'
+          isDisabled={false}
+          icon='detail'
+        >
+          <div>xxx</div>
+        </Radio>
+        <Radio
+        value='qq'
+          isDisabled={false}
+        >
+          <div>xxx</div>
+        </Radio>
+
         <div className='layout-wrapper'>
           <div className='formbox'>
             <div className='form-title'>登录 Allinone</div>
@@ -142,11 +172,11 @@ export class Login extends React.Component {
             <div className='form-row form-pwd'>
               <input type='password' value={this.state.password} onChange={this.setPassword} className='form-input form-input-wide' placeholder='密码' />
             </div>
-            <p className='errortip'>{ this.state.message }</p>
+            <p className='errortip'>{this.state.message}</p>
             <div className='btnwrap'>
-              { this.state.isLogining ?
-                ( <a className='ui-btn ui-btn-wide ui-btn-main s-disabled'>正在登录...</a> ) :
-                ( <a className='ui-btn ui-btn-wide ui-btn-main' onClick={this.loginIn}>登录</a> )
+              {this.state.isLogining ?
+                (<a className='ui-btn ui-btn-wide ui-btn-main s-disabled'>正在登录...</a>) :
+                (<a className='ui-btn ui-btn-wide ui-btn-main' onClick={this.loginIn}>登录</a>)
               }
             </div>
           </div>
@@ -156,14 +186,10 @@ export class Login extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return state.userInfo
-}
-
 function mapDispatchToProps(dispatch) {
   return {
     action: bindActionCreators({ ...actions }, dispatch)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(Login)

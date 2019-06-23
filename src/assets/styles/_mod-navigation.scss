@@ -8,7 +8,6 @@
 //网址导航
 .mod-navigation {
     background-color: $bg-l;
-    padding-top: $header-h;
     .navigation-box {
         padding-bottom: 0;
         padding-top: 15px;
@@ -179,35 +178,6 @@
             float: left;
             @extend %cf;
             display: inline-block;
-            border: 1px solid $border;
-		    background-color: #fff;
-            border-radius: $radius;
-        }
-        .btn-view {
-            display: inline-block;
-            float: left;
-            width: 28px;
-            height: 28px;
-            line-height: 28px;
-            @extend %iconfont;
-            color: $fz;
-            font-size: 16px;
-            &:hover {
-                color: $main;
-            }
-            &.on {
-                background-color: $main-d;
-                color: #fff;
-            }
-        }
-        .btn-view-list {
-            @extend %icon-menu1;
-        }
-        .btn-view-detail {
-            @extend %icon-menu;
-        }
-        .btn-view-slider {
-            @extend %icon-listview;
         }
     }
 
@@ -220,12 +190,12 @@
             padding-left: 10px;
             line-height: 22px;
             font-size: 20px;
-            color: $fz-d;
+            color: $color-d;
             border-left: 4px solid $border-d;
             .subtitle {
                 padding-left: 10px;
                 font-size: 14px;
-                color: $fz-l;
+                color: $color-l;
             }
         }
         .mynav-sort {
@@ -406,7 +376,7 @@
                 height: 30px;
                 line-height: 30px;
                 font-size: 14px;
-                color: $fz;
+                color: $color;
                 text-align: right;
             }
         }
@@ -526,7 +496,7 @@
         height: 30px;
         line-height: 30px;
         text-align: center;
-        color: $fz-l;
+        color: $color-l;
         font-size: 12px;
         cursor: pointer;
         &:hover {

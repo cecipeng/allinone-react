@@ -13,7 +13,7 @@
 	&.disabled {
 		.btn-rel {
 			background: $border !important;
-			color: $fz-l;
+			color: $color-l;
 			cursor: default;
 		}
 	}
@@ -25,7 +25,7 @@
 		padding: 0 25px 0 15px;
 		cursor: pointer;
 		font-size: 14px;	//
-		color: $fz-d;	//
+		color: $color-d;	//
 		border-radius: 3px;
 		border: 1px solid $border;	//
 		// &:hover + .dropdown {
@@ -43,7 +43,7 @@
 		margin-top: -6px;
 		content: "";
 		font-size: 12px;
-		color: $fz;
+		color: $color;
 		@extend %iconfont;
 		@extend %icon-arrow3;
 	}
@@ -65,12 +65,12 @@
 			line-height: 30px;
 			padding: 0 15px;
 			font-size: 14px;
-			color: $fz;
+			color: $color;
 			@extend %tof;
 			cursor: pointer;
 			transition: color 0.3s ease-out, background-color 0.3s ease-out;
 			&:hover {
-				color: $fz-d;
+				color: $color-d;
 				background-color: #f4f6f8;
 			}
 			&:active {

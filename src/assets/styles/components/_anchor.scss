@@ -58,7 +58,7 @@
             > .anchor-subitem > .anchor-item {
                 padding-left: 0;
                 > .anchor-link {
-                    color: $fz;
+                    color: $color;
                     &.anchor-link-active {
                         color: $main !important;
                         &:before {
@@ -104,7 +104,7 @@
         margin-bottom: 4px;
         line-height: 20px;
         font-size: 14px;
-        color: $fz;
+        color: $color;
         // @extend %tof;
         cursor: pointer;
         &:hover {
@@ -130,7 +130,7 @@
     .anchor-subitem {
         .anchor-link {
             font-size: 12px;
-            color: $fz-l;
+            color: $color-l;
             font-weight: 400;
         }
         .anchor-link-active:before {

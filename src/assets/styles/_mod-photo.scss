@@ -126,7 +126,7 @@ $top :                  20px;
         }
         &__inforitem {
             font-size: 12px;
-            color: $fz-l;
+            color: $color-l;
         }
         //操作
         .ui-card__ctrl-mainlink {
@@ -248,7 +248,7 @@ $top :                  20px;
                 line-height: $preview-height;
                 text-align: center;
                 background-color: #ddd;
-                color: $fz-l;
+                color: $color-l;
                 font-size: 24px;
                 @extend %iconfont;
                 cursor: pointer;
@@ -298,14 +298,14 @@ $top :                  20px;
             }
             .subtext {
                 margin-bottom: 6px;
-                color: $fz-l;
+                color: $color-l;
                 font-size: 12px;
             }
             .introduction {
                 padding: 10px;
                 max-height: 136px;
                 margin: 10px 10px 30px;
-                color: $fz;
+                color: $color;
                 font-size: 14px;
                 border: 1px solid $border;
                 background-color: #f5f5f5;
@@ -381,7 +381,7 @@ $top :                  20px;
                 min-width: 40px;
                 padding-top: 45px;
                 margin: 0 10px;
-                color: $fz;
+                color: $color;
                 font-size: 14px;
                 &:before {
                     @extend %iconfont;
@@ -392,7 +392,7 @@ $top :                  20px;
                     height: 40px;
                     line-height: 40px;
                     font-size: 30px;
-                    color: $fz-l;
+                    color: $color-l;
                 }
             }
             .para-gq {
@@ -537,7 +537,7 @@ $top :                  20px;
                 .label {
                     float: left;
                     line-height: 30px;
-                    color: $fz-l;
+                    color: $color-l;
                     margin-right: 10px;
                 }
                 .tag {

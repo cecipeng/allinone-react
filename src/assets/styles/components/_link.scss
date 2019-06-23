@@ -17,7 +17,7 @@
 
 	//--------------------- 黑底 ---------------------//
 	&.ui-link-light {
-		color: $fz-l;
+		color: $color-l;
 		@include hover(color,$main,$main-d);
 	}
 }

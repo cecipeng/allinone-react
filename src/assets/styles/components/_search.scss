@@ -65,12 +65,12 @@
 			line-height: 30px;
 			padding: 0 15px;
 			font-size: 14px;
-			color: $fz;
+			color: $color;
 			@extend %tof;
 			cursor: pointer;
 			transition: color 0.3s ease-out, background-color 0.3s ease-out;
 			&:hover {
-				color: $fz-d;
+				color: $color-d;
 				background-color: #f4f6f8;
 			}
 			&:active {

@@ -76,7 +76,7 @@ $ui-card-margin :     20px;
         width: 95%;
         line-height: 50px;
         font-size: 24px;
-        color: $fz;
+        color: $color;;
     }
     //背景图
     &__bg {
@@ -118,7 +118,7 @@ $ui-card-margin :     20px;
     &__infor {
         line-height: 20px;
         font-size: 12px;
-        color: $fz-l;
+        color: $color-l;
         text-align: left;
     }
     // 右上角操作栏
@@ -162,7 +162,7 @@ $ui-card-margin :     20px;
             li {
                 line-height: 30px;
                 font-size: 14px;
-                color: $fz;
+                color: $color;;
                 text-align: left;
                 padding: 0 20px;
                 cursor: pointer;
@@ -208,7 +208,7 @@ $ui-card-margin :     20px;
     margin-top: 15px;
     margin-left: 20px;
     font-size: 14px;
-    color: $fz-l;
+    color: $color-l;
     &__link {
         cursor: pointer;
         &:hover {
@@ -222,6 +222,6 @@ $ui-card-margin :     20px;
         color: #bbb;
     }
     &__position {
-        color: $fz;
+        color: $color;;
     }
 }
