@@ -116,7 +116,9 @@ export class Modal extends React.Component {
 
               {/* 内容区域 */}
               <div className='modal-body' style={this.props.bodyStyle}>
-                <p className='notice'>modal.text</p>
+                {
+                  this.props.children ? this.props.children : <p className='notice'>modal.text</p>
+                }
               </div>
               {/* 内容区域 */}
 

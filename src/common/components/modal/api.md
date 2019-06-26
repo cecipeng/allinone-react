@@ -41,6 +41,12 @@
 | 绑定的props | 来源 | 类型 | 数据类型/参数类型 |
 | actions.updateShowMask | mask元组件 | action | isShowMask(boolean) |
 
+## 使用案例
+### 1.自定义内部
+```
+
+```
+
 
 ## 附
 ### 1. 如何使用ReactNode
