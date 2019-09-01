@@ -74,7 +74,7 @@ $fzrem: 30;
 
 //渐变效果
 @mixin transition($type:color) {
-    transition: $type 0.3s ease-out;
+    transition: $type 0.2s ease-out;
 }
 
 //hover and active

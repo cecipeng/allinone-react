@@ -21,7 +21,8 @@ export default class RadioGroup extends React.Component {
         // value: '', // Radio组选中值
         type: 'radio', // Radio组样式类型
         buttonSize: 'middle', // Radio组大小（'large'/'middle'/'small'）（仅type='button'时有效）
-        isDisabledAll: false // 是否全部禁用
+        isDisabledAll: false, // 是否全部禁用
+        onChange: ()=>{}, // 选项变化时的回调函数
     }
 
     componentWillMount () {
@@ -59,6 +60,8 @@ export default class RadioGroup extends React.Component {
         this.setState({
             value: newVal
         })
+        const callback = this.props.onChange
+        typeof callback === 'function' && callback(newVal)
     }
     renderRadioList () {
         let _ListDom
@@ -81,8 +84,7 @@ export default class RadioGroup extends React.Component {
     }
     render() {
         return (
-            <div 
-                className = {
+            <div className = {
                     classNames(
                         'com-radio-group',
                         {[`com-radio-group--${this.props.buttonSize}`] : this.props.buttonSize !== 'middle'},

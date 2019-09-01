@@ -1,34 +1,23 @@
-# 单选框 Radio
+# 下拉菜单 Select
 
 元组件。
-多个备选项中选择其一
+向下弹出的列表，可从列表项中选择一项
 
 ## Props
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
-| value | 选中的值 | 任意 | 无 |
-| icon | 图标 | string | '' |
-| isCheck | 是否选中 | boolean | false |
+| options | 下拉菜单配置 | array | 无 |
+| defaultValue | 指定默认选中的条目的value（使用默认按钮时生效） | any | 无 |
+| dropdownWidth | 下拉菜单宽度 | string | 和选择器同宽 |
+| size | 大小 | 'large'/'middle'/'small' | 'middle' |
 | isDisabled | 是否禁用 | boolean | false |
 
-## RadioGroup Props
-| 参数 | 说明 | 数据类型 | 默认值 |
-| - | - | - | - |
-| value | Radio组选中值 | 任意 | 无 |
-| defaultValue | Radio组默认选中值 | 任意 | 无 |
-| buttonSize | Radio组大小（仅type='button'时有效） | 'large'/'middle'/'small' | 'middle' |
-| radioList | 以配置形式设置各Radio | array | 无 |
-| isDisabledAll | 是否全部禁用 | boolean | false |
-| type | Radio组样式类型 | 'radio'/'button' | 'radio' |
-
 ```
-// radioList的数据结构：
-radioList = [
-    { // 每个Radio的配置
-        text : string|ReacNode = '', // 文本（带图标时可不设置）
-        value : any = '', // radio值
-        isDisabled : boolean = false, // 是否禁用
-        icon : 'xx', // 图标对应类名（仅在type='button'时有效）
+// options的数据结构：
+options = [
+    { // 每个选项的配置
+        text : string = '', // 文本
+        value : string = '', // 选项value值
     }
 ]
 ```
@@ -36,41 +25,50 @@ radioList = [
 ## State
 | 参数 | 说明 | 数据类型 | 初始值 | 修改途径
 | - | - | - | - | - |
-| isCheck | 是否选中 | boolean | props.isCheck | |
+| selectOption | 选中项（数据结构同props.options） | array | 无 | |
+| isOpenDropdown | 是否打开下拉菜单 | boolean | false | |
 
 ## 使用案例
-### 1.使用单个Radio
+### 1.使用默认按钮
 ```
-import Radio from 'xxx/common/components/radio/index'
+import Select from 'xxx/common/components/select/index'
 
-<Radio
-    value='a'
-    isCheck
-    isDisabled = {false}
-    icon='detail'
->
-    <div>xxx</div>
-</Radio>
-```
-
-### 2.使用Radio组
-```
-import Radio, { RadioGroup } from 'xxx/common/components/radio/index'
-Radio.Group = RadioGroup
-<Radio.Group
-    isDisabledAll
-    value='b'
-    radioList={[
+<Select
+    defaultValue={2}
+    size='large'
+    isDisabled
+    dropdownWidth='100px'
+    options={[
         {
-            text: '1',
-            value: 'a',
-            icon: 'list'
+            text: 1,
+            value:1
         },
         {
-            text: (<div>2</div>),
-            value: 'b',
-            icon: 'detail'
+            text: 2,
+            value:2
         }
     ]}
-/>
+>
+</Select>
+```
+
+### 2.使用自定义按钮
+```
+import Select from 'xxx/common/components/select/index'
+
+<Select
+    defaultValue={2}
+    options={[
+        {
+            text: 1,
+            value:1
+        },
+        {
+            text: 2,
+            value:2
+        }
+    ]}
+>
+    <p>点我打开</p>
+</Select>
 ```

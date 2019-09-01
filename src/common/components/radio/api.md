@@ -20,6 +20,7 @@
 | radioList | 以配置形式设置各Radio | array | 无 |
 | isDisabledAll | 是否全部禁用 | boolean | false |
 | type | Radio组样式类型 | 'radio'/'button' | 'radio' |
+| onChange | 选项变化时的回调函数 | function | 无 |
 
 ```
 // radioList的数据结构：

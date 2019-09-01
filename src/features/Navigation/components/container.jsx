@@ -1,80 +1,103 @@
 import React from 'react'
+import classNames from 'classNames'
 import UTIL from '../../../common/utils'
-import NavList from './navList';
-import Radio, { RadioGroup } from '../../../common/components/radio/index';
-import Modal from '../../../common/components/modal/index';
-import Select from '../../../common/components/select/index';
+import NavList from './navList'
+import Radio, { RadioGroup } from '../../../common/components/radio/index'
+import Modal from '../../../common/components/modal/index'
+import Select from '../../../common/components/select/index'
 Radio.Group = RadioGroup
 
 export default class Navigation extends React.Component {
     constructor(props) {
         super(props)
-
+        this.state = {
+            navListData : [], // 存储请求数据
+            viewMode : '', // 列表显示模式。默认空字符串（详细模式），'listMode'（缩图模式）、'sliderMode'（收起模式）
+        }
         this.requestData = this.requestData.bind(this)
+        this.viewModeChange = this.viewModeChange.bind(this)
     }
     componentDidMount () {
         this.requestData()
     }
     requestData () {
         UTIL.request('get', 'api/navigator/member').then((res) => {
-            // if (res.data.meta.code == '0000') {
-            // } else {
-            // this.setMessage(res.data.meta.message)
-            // console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
-            // }
-          })
+            if (res.data.meta.code == '0000') {
+                this.setState({
+                    navListData: res.data.datas
+                })
+                
+            } else {
+            this.setMessage(res.data.meta.message)
+            console.log('Allinone ------> （导航模块接口错误信息）' + res.data.meta.message)
+            }
+        })
+    }
+    /**
+     * 显示模式改变
+     * @param {选择的模式，radio的value值} val 
+     */
+    viewModeChange (val) {
+        let _modeClass = ''
+        switch(val) {
+            case 'detailMode': 
+                _modeClass = ''
+                break
+            case 'listMode': 
+                _modeClass = 'is-listmode'
+                break
+            case 'sliderMode': 
+                _modeClass = 'is-slidermode'
+                break
+        }
+        this.setState({
+            viewMode: _modeClass
+        })
     }
     render () {
         return (
             <div className='layout-mod mod-navigation'>
-    	        <div className='navigation-box'>
+    	        <div
+                    className={
+                        classNames(
+                            'navigation-box',
+                            {[this.state.viewMode]: true}
+                        )
+                    }
+                >
                     <div className='layout-wrapper'>
-                    <Select
-                        defaultValue={2}
-                        options={[
-                            {
-                                text: 1,
-                                value:1
-                            },
-                            {
-                                text: 2,
-                                value:2
-                            }
-                        ]}
-                    >
-                    </Select>
-                    <Select ></Select>
                         <div className='ui-maintitle maintitle-mynav' data-style='style1'>
                             <h4 className='maintitle'>我的导航</h4>      
                             <div className='frbox'>
-                                <p className='viewwrap'>
+                                <div className='viewwrap'>
                                     <Radio.Group
                                         type='button'
                                         value='b'
+                                        onChange={this.viewModeChange}
                                         radioList={[
                                             {
                                                 text: '详细',
-                                                value: 'detail',
+                                                value: 'detailMode',
                                                 icon: 'detail'
                                             },
                                             {
                                                 text: '缩略',
-                                                value: 'list',
+                                                value: 'listMode',
                                                 icon: 'list'
                                             },
                                             {
                                                 text: '收起',
-                                                value: 'slider',
+                                                value: 'sliderMode',
                                                 icon: 'slider'
                                             },
                                         ]}
                                     />
-                                </p>
+                                </div>
                                 <a className='ui-btn ui-btn-default btn-editor' data-size='size-s'><i className='edit'></i>编辑</a>  
                             </div>  
                         </div>
                         {/* <comError :text='showError.text' :type='showError.type' v-if='showError.show' size='smallCol'></comError> */}
-                        <NavList></NavList>
+                        <NavList data={this.state.navListData.member} />
                     </div>
                 </div>
 
@@ -82,7 +105,7 @@ export default class Navigation extends React.Component {
                     <div className='ui-maintitle maintitle-sysnav' data-style='style1'>
                         <h4 className='maintitle'>热门导航</h4>  
                     </div>
-                    <NavList></NavList>
+                    <NavList data={this.state.navListData.system} />
                 </div>
                 {/* 弹窗：编辑导航 */}
                 <Modal

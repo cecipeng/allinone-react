@@ -3,9 +3,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from '../redux/actions'
 
-import UTIL from '../../../common/utils'
+// ====== Components ====== //
 import Radio, { RadioGroup } from '../../../common/components/radio/index';
 Radio.Group = RadioGroup
+
+// ====== Helper ====== //
+import UTIL from '../../../common/utils'
+
 export class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -42,30 +46,29 @@ export class Login extends React.Component {
           this.setMessage('帐号或者密码错误！')
           this.setLoginState(false)
           return
-        } else
-          if (res.data.meta.code == '0000') {
-            // 3.清空错误提示
-            this.setMessage('')
+        } else if (res.data.meta.code == '0000') {
+          // 3.清空错误提示
+          this.setMessage('')
 
-            // 4.存储localStorage
-            localStorage.setItem('userId', res.data.datas.userId);
-            localStorage.setItem('userName', res.data.datas.userName);
-            localStorage.setItem('userHead', res.data.datas.userHead);
-            localStorage.setItem('accessToken', res.data.datas.accessToken);
+          // 4.存储localStorage
+          localStorage.setItem('userId', res.data.datas.userId);
+          localStorage.setItem('userName', res.data.datas.userName);
+          localStorage.setItem('userHead', res.data.datas.userHead);
+          localStorage.setItem('accessToken', res.data.datas.accessToken);
 
-            // 5.按钮切换为：登录
-            this.setLoginState(false)
+          // 5.按钮切换为：登录
+          this.setLoginState(false)
 
-            // 6.存储用户信息到store
-            this.props.action.updateUserInfo(res.data.datas)
+          // 6.存储用户信息到store
+          this.props.action.updateUserInfo(res.data.datas)
 
-            // 7.跳转到前一个页面
-            this.props.history.goBack()
+          // 7.跳转到前一个页面
+          this.props.history.goBack()
 
-          } else {
-            this.setMessage(res.data.meta.message)
-            console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
-          }
+        } else {
+          this.setMessage(res.data.meta.message)
+          console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
+        }
       })
     }
   }
@@ -74,17 +77,7 @@ export class Login extends React.Component {
    * 表单验证合法性
    */
   validate() {
-    if (this.state.username.length === 0) {
-      this.setMessage('用户名不能为空！')
-      this.setLoginState(false)
-      return false
-    }
-    if (this.state.password.length === 0) {
-      this.setMessage('密码不能为空！')
-      this.setLoginState(false)
-      return false
-    }
-    return true
+    
   }
 
   /**
@@ -185,6 +178,18 @@ export class Login extends React.Component {
     )
   }
 }
+const reduxFormLogin = reduxForm({
+  form: 'LoginForm',
+  validate:(value) => {
+    const errors = {}
+    if(!value.username) {
+      errors.username = '用户名不能为空！'
+    } else if (!value.password) {
+      errors.username = '密码不能为空！'
+    }
+    return errors
+  }
+})(Login);
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -192,4 +197,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default connect(null, mapDispatchToProps)(reduxFormLogin)

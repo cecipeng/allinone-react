@@ -4,81 +4,137 @@
 // author:  590000
 //-----------------------------------------------------
 
+// 通用
+$ui-dropdown-width: $com-width;
+$ui-dropdown-height: $com-height;		// 行高
+$ui-dropdown-padding: 0 unit(25) 0 unit(15);		// 内间距
+$ui-dropdown-radius: $radius;
+$ui-dropdown-fz: $fz;
+$ui-dropdown-color: $color;
+$ui-dropdown-border: $border;
+$ui-dropdown-count: 5;   // 最多显示N条，其他出现滚动条
+
+// 其他尺寸
+$ui-dropdown-height-l: $com-height-l;
+$ui-dropdown-height-s: $com-height-s;
+$ui-dropdown-padding-l: 0 unit(25) 0 unit(15);
+$ui-dropdown-padding-s: 0 unit(25) 0 unit(15);
+$ui-dropdown-radius-l: $radius-l;
+$ui-dropdown-radius-s: $radius-s;
+$ui-dropdown-fz-l: $fz-l;
+$ui-dropdown-fz-s: $fz-s;
+
+// item
+$ui-dropdown-item-height: $com-height;		// 行高
+$ui-dropdown-item-padding: 0 unit(15);		// 内间距
+$ui-dropdown-item-fz: $fz;
+$ui-dropdown-item-color: $color;
+$ui-dropdown-item-hover-color: $color-d;
+$ui-dropdown-item-hover-bg: $bg-l;
+$ui-dropdown-item-active-color: $color-d;
+$ui-dropdown-item-active-bg: $bg;
 
 //--------------------- 通用下拉菜单---------------------//
 .ui-dropdown {
 	display: inline-block;
 	vertical-align: middle;
 	position: relative;
-	&.disabled {
-		.btn-rel {
-			background: $border !important;
-			color: $color-l;
-			cursor: default;
-		}
-	}
+	width: $ui-dropdown-width;
+	
 	.btn-rel {
 		display: block;
 		position: relative;
-		height: 40px;
-		line-height: 38px;
-		padding: 0 25px 0 15px;
+		height: $ui-dropdown-height;
+		line-height: $ui-dropdown-height - unit(2);
+		padding: $ui-dropdown-padding;
+		font-size: $ui-dropdown-fz;
+		color: $ui-dropdown-color;
+		border-radius: $ui-dropdown-radius;
+		border: 1px solid $ui-dropdown-border;
 		cursor: pointer;
-		font-size: 14px;	//
-		color: $color-d;	//
-		border-radius: 3px;
-		border: 1px solid $border;	//
-		// &:hover + .dropdown {
-		// 	display: block;
-		// }
+		@extend %tof;
 	}
 	//小三角
 	.dropdown-arrow {
 		position: absolute;
-		right: 5px;
+		right: unit(10);
 		top: 50%;
-		width: 12px;
-		height: 12px;
-		line-height: 12px;
-		margin-top: -6px;
-		content: "";
-		font-size: 12px;
-		color: $color;
+		width: unit(12);
+		height: unit(12);
+		line-height: unit(12);
+		margin-top: unit(-6);
+		font-size: unit(12);
+		color: $ui-dropdown-color;
 		@extend %iconfont;
 		@extend %icon-arrow3;
 	}
 	//下拉内容
 	.dropdown-list {
-		// display: none;
 		position: absolute;
-		border: 1px solid $border;
+		left: 0;
+		top: 100%;
+		width: 100%;
+		margin-top: unit(-1);
+		border: 1px solid $ui-dropdown-border;
 		background-color: #fff;
 		text-align: center;
 		z-index: $zindex-dd;
 		.droplist {
+			max-height: $ui-dropdown-count * $ui-dropdown-height;
 			overflow-y: auto;
 			overflow-x: hidden;
 		}
 		.dropitem {
 			display: block;
-			height: 30px;
-			line-height: 30px;
-			padding: 0 15px;
-			font-size: 14px;
-			color: $color;
+			height: $ui-dropdown-item-height;
+			line-height: $ui-dropdown-item-height;
+			padding: $ui-dropdown-item-padding;
+			font-size: $ui-dropdown-item-fz;
+			color: $ui-dropdown-item-color;
+			text-align: left;
 			@extend %tof;
 			cursor: pointer;
 			transition: color 0.3s ease-out, background-color 0.3s ease-out;
 			&:hover {
-				color: $color-d;
-				background-color: #f4f6f8;
+				color: $ui-dropdown-item-hover-color;
+				background-color: $ui-dropdown-item-hover-bg; // #f4f6f8;
 			}
 			&:active {
-				color: blue;
-				background-color: #e2e9f0;
+				color: $ui-dropdown-item-active-color;
+				background-color: $ui-dropdown-item-active-bg; // #e2e9f0;
 			}
 		}
 	}	
+
+	///////// 大小
+	&.is-disabled {
+		.dropdown-mainlink * {
+			cursor: not-allowed;
+		}
+		.btn-rel {
+			background: $disabled-bg !important;
+			color: $disabled-color;
+			border-color: $disabled-border;
+		}
+	}
+	&--large {
+		.btn-rel {
+			height: $ui-dropdown-height-l;
+			line-height: $ui-dropdown-height-l - unit(2);
+			padding: $ui-dropdown-padding-l;
+			font-size: $ui-dropdown-fz-l;
+			border-radius: $ui-dropdown-radius-l;
+		}
+	}
+	&--small {
+		.btn-rel {
+			height: $ui-dropdown-height-s;
+			line-height: $ui-dropdown-height-s - unit(2);
+			padding: $ui-dropdown-padding-s;
+			font-size: $ui-dropdown-fz-s;
+			border-radius: $ui-dropdown-radius-s;
+		}
+	}
 
 	///////// 位置
 	//下
