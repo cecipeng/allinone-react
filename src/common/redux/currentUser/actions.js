@@ -1,0 +1,1 @@
+export { action as updateCurrentUserAction } from './updateCurrentUser';

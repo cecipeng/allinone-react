@@ -39,7 +39,7 @@
 
 【使用外部】
 | 绑定的props | 来源 | 类型 | 数据类型/参数类型 |
-| actions.updateShowMask | mask元组件 | action | isShowMask(boolean) |
+| actions.toggleShowMask | mask元组件 | action | isShowMask(boolean) |
 
 ## 使用案例
 ### 1.自定义内部

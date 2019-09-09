@@ -1,6 +1,6 @@
 import React from 'react'
 import Radio from './radio'
-import classNames from 'classNames'
+import classNames from 'classnames'
 
 export default class RadioGroup extends React.Component {
     constructor (props) {

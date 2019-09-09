@@ -1,17 +1,17 @@
-import { UPDATE_MASK_ZIndex } from './actionTypes';
+import { actionTypes } from '../utils/constants';
 
 // action creator
-export function updateMaskZIndex(maskZIndex) {
+export const action = (maskZIndex) => {
     return {
-        type: UPDATE_MASK_ZIndex,
+        type: actionTypes.UPDATE_MASK_ZIndex,
         maskZIndex
     }
 }
 
 // reducer
-export function reducer(state,action) {
+export const reducer = (state, action) => {
     switch(action.type) {
-        case UPDATE_MASK_ZIndex:
+        case actionTypes.UPDATE_MASK_ZIndex:
             return {
                 ...state,
                 maskZIndex: action.maskZIndex

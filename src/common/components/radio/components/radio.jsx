@@ -1,5 +1,6 @@
 import React from 'react'
-import classNames from 'classNames'
+import classNames from 'classnames'
+
 export default class Radio extends React.Component {
     constructor (props) {
         super(props)

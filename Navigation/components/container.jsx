@@ -1,6 +1,6 @@
 import React from 'react'
 import classNames from 'classNames'
-import UTIL from '../../../common/utils'
+import UTIL from '../../../common/utils/utils'
 import NavList from './navList'
 import Radio, { RadioGroup } from '../../../common/components/radio/index'
 import Modal from '../../../common/components/modal/index'

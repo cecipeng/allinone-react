@@ -1,8 +1,8 @@
 import initialState from './initialState'
-import { reducer as updateUserInfo } from './updateUserInfo'
+import { reducer as updateCurrentUser } from './updateCurrentUser'
 
 const reducers = [
-  updateUserInfo
+  updateCurrentUser
 ];
 
 export default function reducer(state = initialState, action) {

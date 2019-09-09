@@ -1,8 +1,13 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+
+// ====== Components ====== //
 import Header from './header'
 import { view as Home } from '../../Home/index'
-import { view as Navigation } from '../../Navigation/index'
+// import { view as Navigation } from '../../Navigation/index'
+
+// ====== Constants ====== //
+import { routerConstants } from '../../../common/utils/constants'
 
 export default class RootPage extends React.Component {
     render () {
@@ -13,8 +18,8 @@ export default class RootPage extends React.Component {
                 </div>
                 <div className="layout-body">
                     <Switch>
-                        <Route exact path='/rootPage/home' component={Home}/>
-                        <Route path='/rootPage/navigation' component={Navigation}/>
+                        <Route exact path={routerConstants.HOME} component={Home}/>
+                        {/* <Route path={routerConstants.NAVIGATION} component={Navigation}/> */}
                     </Switch>
                 </div>
             </div>

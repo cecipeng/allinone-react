@@ -19,7 +19,7 @@ export class Modal extends React.Component {
   componentDidMount () {
     // 设置是否显示遮罩
     const _isShowMask = this.props.isMask
-    this.props.actions.updateShowMask(_isShowMask)
+    this.props.actions.toggleShowMask(_isShowMask)
   }
   componentWillUnmount() {
     console.log('componentWillUnmount');

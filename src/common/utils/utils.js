@@ -1,33 +1,35 @@
 import axios from 'axios'
+
+// ====== Constants ====== //
+import { routerConstants } from '../../common/utils/constants'
 import { apiConfig } from './constants'
 
 const UTIL = {
-    request: function (method,url,params) {
-        method = method.toUpperCase();
+    request: (method, url, params) => {
         let config = apiConfig
+
+        method = method.toUpperCase();
+
         if (method === 'GET') {
-            if (params) {
-                apiConfig = Object.assign({}, apiConfig , {
-                    params: params
-                })
-            }
-        } else 
-        if (method === 'POST') {
-            
-            config = Object.assign({}, config , {
+            config = params && Object.assign({}, config , {
+                params: params
+            })
+        } else if (method === 'POST') {
+            config = params && Object.assign({}, config , {
                 // data: JSON.stringify(params)
                 data: params
             })
         }
+
         config = Object.assign({}, config , {
             url: url,
             method: method
         })
-        return axios(config)
-        .then(function (response) {
+
+        return axios(config).then(function (response) {
             switch(response.data.meta.code) {
                 case "1001": //未登录
-                    window.location.href = '/login' //跳转到登录页
+                    window.location.href = routerConstants.LOGIN //跳转到登录页
                     break;
                 case "1002": //请求参数错误
                     // const mess = {

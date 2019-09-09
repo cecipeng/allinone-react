@@ -1,32 +1,38 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+
+// ====== Components ====== //
 import UserHead from '../../../common/components/userHead/index'
+
+// ====== Constants ====== //
+import { reducerNameConstants, routerConstants } from '../../../common/utils/constants'
+
 export class Header extends React.Component {
     render() {
+        const { currentUserReducer } = this.props
         return (
             <div className="com-header">
                 <div className="layout-wrapper layout-bfc">
                     <div className="layout-bfc__right">
                         {
-                            this.props.userInfo != null ? (
-                                <div className="header-userdrop ui-dropdown">
-                                    <UserHead userInfo={this.props.userInfo} />
-                                </div>
-                            ) : (
-                                <div className="unlogin">
-                                    <NavLink className="ui-link ui-link-light" to="/login">登录</NavLink>
-                                    <NavLink target="_blank" className="ui-link ui-link-light" to="/login">注册</NavLink>
-                                </div>
-                            )
+                            currentUserReducer ?
+                            (<div className="header-userdrop ui-dropdown">
+                                <UserHead userInfo={currentUserReducer} />
+                            </div>)
+                            :
+                            (<div className="unlogin">
+                                <NavLink className="ui-link ui-link-light" to={routerConstants.LOGIN}>登录</NavLink>
+                                <NavLink target="_blank" className="ui-link ui-link-light" to={routerConstants.LOGIN}>注册</NavLink>
+                            </div>)
                         }
                     </div > 
                     <div className="layout-bfc__content">
                         <span className="logo" />
                         <div className="com-mainmenu">
                             <ul className="mainmenu">
-                                <li><NavLink activeClassName="is-active" className="item" to="/rootPage/home">Home</NavLink></li>
-                                <li><NavLink activeClassName="is-active" className="item" to="/rootPage/navigation">naviation</NavLink></li>
+                                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.HOME}>Home</NavLink></li>
+                                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.NAVIGATION}>naviation</NavLink></li>
                             </ul >
                         </div >
                     </div >
@@ -38,7 +44,9 @@ export class Header extends React.Component {
 
 
 function mapStateToProps(state) {
-    return state.userInfo
+    return {
+        currentUserReducer: state[reducerNameConstants.CURRENT_USER_REDUCER]
+    }
 }
-  
+
 export default connect(mapStateToProps)(Header)

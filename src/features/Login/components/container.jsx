@@ -1,124 +1,80 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
+import { reduxForm, Field, SubmissionError, hasSubmitFailed } from 'redux-form'
 import { connect } from 'react-redux'
-import * as actions from '../redux/actions'
+
+// ====== Actions ====== //
+import * as currentUserAction from '../../../common/redux/currentUser/actions'
+
+// ====== Helper ====== //
+import UTIL from '../../../common/utils/utils'
 
 // ====== Components ====== //
 import Radio, { RadioGroup } from '../../../common/components/radio/index';
 Radio.Group = RadioGroup
 
-// ====== Helper ====== //
-import UTIL from '../../../common/utils'
-
 export class Login extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      username: '', // 用户名
-      password: '', // 密码
-      isLogining: false, // 是否：正在登录中
-      message: '' // 提示信息
-    }
-    this.loginIn = this.loginIn.bind(this)
-    this.validate = this.validate.bind(this)
-    this.setLoginState = this.setLoginState.bind(this)
-    this.setMessage = this.setMessage.bind(this)
-    this.setUsername = this.setUsername.bind(this)
-    this.setPassword = this.setPassword.bind(this)
+    this.handleLoginIn = this.handleLoginIn.bind(this)
   }
 
   /**
-   * 执行登录
+   * 点击登录
    */
-  loginIn(e) {
-    e.preventDefault()
-
-    // 1.按钮切换为：正在登录中
-    this.setLoginState(true)
-
-    // 2.验证输入合法性
-    if (this.validate()) {
+  handleLoginIn (data) {
+    const { currentUserAction } = this.props
+    // 1.验证空值
+    if(!data.username) {
+      throw new SubmissionError({
+        _error: '用户名不能为空!'
+      })
+    } else if (!data.password) {
+      throw new SubmissionError({
+        _error: '密码不能为空!'
+      })
+    } else {
+      // 2.验证输入合法性
       UTIL.request('post', 'api/login/verify', {
-        'userName': this.state.username,
-        'password': this.state.password
+        'userName': data.username,
+        'password': data.password
       }).then((res) => {
-        if (res.data.meta.code == '2001') {
-          this.setMessage('帐号或者密码错误！')
-          this.setLoginState(false)
-          return
-        } else if (res.data.meta.code == '0000') {
-          // 3.清空错误提示
-          this.setMessage('')
+        if (res.data.meta.code === '2001') {
+          throw new SubmissionError({
+            _error: '帐号或者密码错误！!'
+          })
+        } else if (res.data.meta.code === '0000') {
 
-          // 4.存储localStorage
+          // 3.存储localStorage
           localStorage.setItem('userId', res.data.datas.userId);
           localStorage.setItem('userName', res.data.datas.userName);
           localStorage.setItem('userHead', res.data.datas.userHead);
           localStorage.setItem('accessToken', res.data.datas.accessToken);
 
-          // 5.按钮切换为：登录
-          this.setLoginState(false)
+          // 4.存储用户信息到store
+          currentUserAction.updateCurrentUserAction(res.data.datas)
 
-          // 6.存储用户信息到store
-          this.props.action.updateUserInfo(res.data.datas)
-
-          // 7.跳转到前一个页面
-          this.props.history.goBack()
+          // 5.跳转到前一个页面
+          this.props.history.push('/home')
 
         } else {
-          this.setMessage(res.data.meta.message)
           console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
+          throw new SubmissionError({
+            _error: res.data.meta.message
+          })
         }
       })
     }
   }
 
-  /**
-   * 表单验证合法性
-   */
-  validate() {
-    
-  }
-
-  /**
-   * 设置：登录状态
-   * @param {登录状态，boolean} state 
-   */
-  setLoginState(state) {
-    this.setState({
-      isLogining: state
-    })
-  }
-
-  /**
-   * 设置：提示信息
-   * @param {提示信息，string} text 
-   */
-  setMessage(text) {
-    this.setState({
-      message: text
-    })
-  }
-
-  /**
-   * 设置：用户名
-   */
-  setUsername(e) {
-    this.setState({
-      username: e.target.value
-    })
-  }
-
-  /**
-   * 设置：密码
-   */
-  setPassword(e) {
-    this.setState({
-      password: e.target.value
-    })
-  }
-
   render() {
+    const {
+      submitting, // 表单提交状态
+      error, // 表单提交错误信息
+      submitFailed, // 表单是否提交失败
+      handleSubmit, // 表单提交操作
+    } = this.props
+
     return (
       <div className='layout-mod mod-login'>
         <Radio.Group
@@ -157,44 +113,43 @@ export class Login extends React.Component {
         </Radio>
 
         <div className='layout-wrapper'>
-          <div className='formbox'>
-            <div className='form-title'>登录 Allinone</div>
-            <div className='form-row form-username'>
-              <input type='text' value={this.state.username} onChange={this.setUsername} className='form-input form-input-wide' placeholder='用户名' />
+          <form onSubmit={handleSubmit(this.handleLoginIn)}>
+            <div className='formbox'>
+              <div className='form-title'>登录 Allinone</div>
+              <div className='form-row form-username'>
+                <Field name="username" component='input' type='text' className='form-input form-input-wide' placeholder='用户名' />
+              </div>
+              <div className='form-row form-pwd'>
+                <Field name="password" component='input' type='password' className='form-input form-input-wide' placeholder='密码' />
+              </div>
+              <p className='errortip'>{submitFailed && error}</p>
+              <div className='btnwrap'>
+                <button type="submit" className={`ui-btn ui-btn-wide ui-btn-main ${submitting && 's-disabled'}`}>
+                  { submitting ? '正在登录...' : '登录' }
+                </button>
+              </div>
             </div>
-            <div className='form-row form-pwd'>
-              <input type='password' value={this.state.password} onChange={this.setPassword} className='form-input form-input-wide' placeholder='密码' />
-            </div>
-            <p className='errortip'>{this.state.message}</p>
-            <div className='btnwrap'>
-              {this.state.isLogining ?
-                (<a className='ui-btn ui-btn-wide ui-btn-main s-disabled'>正在登录...</a>) :
-                (<a className='ui-btn ui-btn-wide ui-btn-main' onClick={this.loginIn}>登录</a>)
-              }
-            </div>
-          </div>
+          </form>
         </div>
       </div >
     )
   }
 }
+
 const reduxFormLogin = reduxForm({
-  form: 'LoginForm',
-  validate:(value) => {
-    const errors = {}
-    if(!value.username) {
-      errors.username = '用户名不能为空！'
-    } else if (!value.password) {
-      errors.username = '密码不能为空！'
-    }
-    return errors
-  }
+  form: 'LoginForm'
 })(Login);
 
-function mapDispatchToProps(dispatch) {
+function mapStateToProps(state) {
   return {
-    action: bindActionCreators({ ...actions }, dispatch)
+    submitFailed: hasSubmitFailed('LoginForm')(state) // 获取redux-form 的 submitFailed字段
   }
 }
 
-export default connect(null, mapDispatchToProps)(reduxFormLogin)
+function mapDispatchToProps(dispatch) {
+  return {
+    currentUserAction: bindActionCreators({ ...currentUserAction }, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(reduxFormLogin)

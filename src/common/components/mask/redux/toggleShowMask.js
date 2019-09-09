@@ -1,17 +1,17 @@
-import { UPDATE_SHOW_MASK } from './actionTypes';
+import { actionTypes } from '../utils/constants';
 
 // action creator
-export function updateShowMask(isShowMask) {
+export const action = (isShowMask) => {
     return {
-        type: UPDATE_SHOW_MASK,
+        type: actionTypes.TOGGLE_SHOW_MASK,
         isShowMask
     }
 }
 
 // reducer
-export function reducer(state,action) {
+export const reducer = (state, action) => {
     switch(action.type) {
-        case UPDATE_SHOW_MASK:
+        case actionTypes.TOGGLE_SHOW_MASK:
             console.log(state);
             
             var new1 = {
