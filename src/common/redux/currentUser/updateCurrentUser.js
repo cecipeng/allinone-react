@@ -1,3 +1,4 @@
+// ====== Constant ====== //
 import { actionTypes } from './utils/constants';
 
 // action creator

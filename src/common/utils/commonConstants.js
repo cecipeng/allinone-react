@@ -15,16 +15,3 @@ export const apiConfig = {
         Authorization: localStorage.accessToken || "" //身份验证，与后端约定每次请求附上token值验明是否登录 
     }
 }
-
-// store 各模块名
-export const reducerNameConstants = {
-    CURRENT_USER_REDUCER :                          'currentUserReducer',
-}
-
-// 路由
-export const routerConstants = {
-    LOGIN :                             '/login',
-    ROOT_PAGE :                         '/rootPage',
-    HOME :                              '/home',
-    NAVIGATION :                        '/navigation',
-}

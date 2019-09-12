@@ -7,7 +7,7 @@ import { view as Login } from './features/Login/index'
 import  { Mask } from './common/components/mask/index'
 
 // ====== Constants ====== //
-import { routerConstants } from './common/utils/constants'
+import { routerConstants } from './common/utils/routerConstants'
 
 export default class App extends React.Component {
   render() {

@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux'
 import { reduxForm, Field, SubmissionError, hasSubmitFailed } from 'redux-form'
 import { connect } from 'react-redux'
 
-// ====== Actions ====== //
+// ====== Action ====== //
+import * as loginAction from '../redux/actions'
 import * as currentUserAction from '../../../common/redux/currentUser/actions'
 
-// ====== Helper ====== //
+// ====== Util ====== //
 import UTIL from '../../../common/utils/utils'
 
-// ====== Components ====== //
+// ====== Component ====== //
 import Radio, { RadioGroup } from '../../../common/components/radio/index';
 Radio.Group = RadioGroup
 
@@ -23,7 +24,7 @@ export class Login extends React.Component {
    * 点击登录
    */
   handleLoginIn (data) {
-    const { currentUserAction } = this.props
+    const { history } = this.props
     // 1.验证空值
     if(!data.username) {
       throw new SubmissionError({
@@ -34,36 +35,40 @@ export class Login extends React.Component {
         _error: '密码不能为空!'
       })
     } else {
-      // 2.验证输入合法性
-      UTIL.request('post', 'api/login/verify', {
+      // 2.后台验证
+      loginAction.signInAction({
         'userName': data.username,
         'password': data.password
-      }).then((res) => {
-        if (res.data.meta.code === '2001') {
-          throw new SubmissionError({
-            _error: '帐号或者密码错误！!'
-          })
-        } else if (res.data.meta.code === '0000') {
+      }, history)
+      // UTIL.request('post', 'api/login/verify', {
+      //   'userName': data.username,
+      //   'password': data.password
+      // }).then((res) => {
+      //   if (res.data.meta.code === '2001') {
+      //     throw new SubmissionError({
+      //       _error: '帐号或者密码错误！!'
+      //     })
+      //   } else if (res.data.meta.code === '0000') {
 
-          // 3.存储localStorage
-          localStorage.setItem('userId', res.data.datas.userId);
-          localStorage.setItem('userName', res.data.datas.userName);
-          localStorage.setItem('userHead', res.data.datas.userHead);
-          localStorage.setItem('accessToken', res.data.datas.accessToken);
+      //     // 3.存储localStorage
+      //     localStorage.setItem('userId', res.data.datas.userId);
+      //     localStorage.setItem('userName', res.data.datas.userName);
+      //     localStorage.setItem('userHead', res.data.datas.userHead);
+      //     localStorage.setItem('accessToken', res.data.datas.accessToken);
 
-          // 4.存储用户信息到store
-          currentUserAction.updateCurrentUserAction(res.data.datas)
+      //     // 4.存储用户信息到store
+      //     currentUserAction.updateCurrentUserAction(res.data.datas)
 
-          // 5.跳转到前一个页面
-          this.props.history.push('/home')
+      //     // 5.跳转到前一个页面
+      //     this.props.history.push('/home')
 
-        } else {
-          console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
-          throw new SubmissionError({
-            _error: res.data.meta.message
-          })
-        }
-      })
+      //   } else {
+      //     console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
+      //     throw new SubmissionError({
+      //       _error: res.data.meta.message
+      //     })
+      //   }
+      // })
     }
   }
 

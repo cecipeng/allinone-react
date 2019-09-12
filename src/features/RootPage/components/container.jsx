@@ -7,7 +7,7 @@ import { view as Home } from '../../Home/index'
 // import { view as Navigation } from '../../Navigation/index'
 
 // ====== Constants ====== //
-import { routerConstants } from '../../../common/utils/constants'
+import { routerConstants } from '../../../common/utils/routerConstants'
 
 export default class RootPage extends React.Component {
     render () {

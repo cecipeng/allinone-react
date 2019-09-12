@@ -5,8 +5,8 @@ import { reducer as formReducer } from 'redux-form'
 import currentUserReducer from '../common/redux/currentUser/reducer'
 // import maskReducer from '../common/components/mask/redux/reducer'
 
-// ====== Constants ====== //
-import { reducerNameConstants } from '../common/utils/constants'
+// ====== Constant ====== //
+import { reducerNameConstants } from '../common/utils/reducerNameConstants'
 
 
 const reducerMap = {

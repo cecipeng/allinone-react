@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-// ====== Constants ====== //
-import { routerConstants } from '../../common/utils/constants'
-import { apiConfig } from './constants'
+// ====== Constant ====== //
+import { routerConstants } from './routerConstants'
+import { apiConfig } from './commonConstants'
 
 const UTIL = {
     request: (method, url, params) => {
