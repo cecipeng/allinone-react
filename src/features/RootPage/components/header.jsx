@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom'
 import UserHead from '../../../common/components/userHead/index'
 
 // ====== Constants ====== //
-import { reducerNameConstants } from '../../../common/utils/reducerNameConstants'
-import { routerConstants } from '../../../common/utils/routerConstants'
+import reducerNameConstants from '../../../common/utils/reducerNameConstants'
+import routerConstants from '../../../common/utils/routerConstants'
 
 export class Header extends React.Component {
     render() {

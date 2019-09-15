@@ -4,11 +4,11 @@ import { reduxForm, Field, SubmissionError, hasSubmitFailed } from 'redux-form'
 import { connect } from 'react-redux'
 
 // ====== Action ====== //
-import * as loginAction from '../redux/actions'
+import * as loginActionCreator from '../redux/actions'
 import * as currentUserAction from '../../../common/redux/currentUser/actions'
 
 // ====== Util ====== //
-import UTIL from '../../../common/utils/utils'
+// import UTIL from '../../../common/utils/utils'r
 
 // ====== Component ====== //
 import Radio, { RadioGroup } from '../../../common/components/radio/index';
@@ -24,7 +24,7 @@ export class Login extends React.Component {
    * 点击登录
    */
   handleLoginIn (data) {
-    const { history } = this.props
+    const { history, loginAction } = this.props
     // 1.验证空值
     if(!data.username) {
       throw new SubmissionError({
@@ -36,39 +36,10 @@ export class Login extends React.Component {
       })
     } else {
       // 2.后台验证
-      loginAction.signInAction({
+      loginAction.loginAction({
         'userName': data.username,
         'password': data.password
       }, history)
-      // UTIL.request('post', 'api/login/verify', {
-      //   'userName': data.username,
-      //   'password': data.password
-      // }).then((res) => {
-      //   if (res.data.meta.code === '2001') {
-      //     throw new SubmissionError({
-      //       _error: '帐号或者密码错误！!'
-      //     })
-      //   } else if (res.data.meta.code === '0000') {
-
-      //     // 3.存储localStorage
-      //     localStorage.setItem('userId', res.data.datas.userId);
-      //     localStorage.setItem('userName', res.data.datas.userName);
-      //     localStorage.setItem('userHead', res.data.datas.userHead);
-      //     localStorage.setItem('accessToken', res.data.datas.accessToken);
-
-      //     // 4.存储用户信息到store
-      //     currentUserAction.updateCurrentUserAction(res.data.datas)
-
-      //     // 5.跳转到前一个页面
-      //     this.props.history.push('/home')
-
-      //   } else {
-      //     console.log('Allinone ------> （登录接口错误信息）' + res.data.meta.message)
-      //     throw new SubmissionError({
-      //       _error: res.data.meta.message
-      //     })
-      //   }
-      // })
     }
   }
 
@@ -153,7 +124,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    currentUserAction: bindActionCreators({ ...currentUserAction }, dispatch)
+    currentUserAction: bindActionCreators({ ...currentUserAction }, dispatch),
+    loginAction            : bindActionCreators(loginActionCreator, dispatch),
   }
 }
 

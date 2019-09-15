@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // ====== Constant ====== //
-import { routerConstants } from './routerConstants'
+import routerConstants from './routerConstants'
 import { apiConfig } from './commonConstants'
 
 const UTIL = {
@@ -49,7 +49,7 @@ const UTIL = {
             }
         })
         .catch(function (error) {
-            console.log(error);
+            console.log('Allinone ------> （错误信息）' + error)
         });
     }
 }

@@ -1,5 +1,12 @@
 // api接口
-export const apiEndpointConstants = {
-    // login 模块
-    SIGN_IN :                             ['api/login/verify', 'POST'],
+const apiEndpointConstants = {
+    // ----------------- common
+    // auth
+    LOGIN_AUTH :                            ['api/login/verify', 'POST'],
+
+    // ----------------- 模块
+    // login
+    LOGIN :                                 ['api/login/verify', 'POST'],
 }
+
+export default apiEndpointConstants

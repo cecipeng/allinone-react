@@ -1,1 +1,1 @@
-export { action as signInAction } from './signIn';
+export { action as loginAction } from './login';

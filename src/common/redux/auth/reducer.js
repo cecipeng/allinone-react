@@ -1,8 +1,10 @@
 import initialState from './initialState'
-import { reducer as login } from './login'
+import { reducer as loginAuthWithPassword } from './loginAuthWithPassword'
+import { reducer as loginAuthWithToken } from './loginAuthWithToken'
 
 const reducers = [
-  login
+  loginAuthWithPassword,
+  loginAuthWithToken
 ];
 
 export default function reducer(state = initialState, action) {
