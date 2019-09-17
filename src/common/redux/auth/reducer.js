@@ -1,10 +1,8 @@
 import initialState from './initialState'
-import { reducer as loginAuthWithPassword } from './loginAuthWithPassword'
-import { reducer as loginAuthWithToken } from './loginAuthWithToken'
+import { reducer as updateUserLoginToken } from './updateUserLoginToken'
 
 const reducers = [
-  loginAuthWithPassword,
-  loginAuthWithToken
+  updateUserLoginToken,
 ];
 
 export default function reducer(state = initialState, action) {

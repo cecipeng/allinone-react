@@ -1,2 +1,1 @@
-export { action as loginAuthWithPasswordAction } from './login';
-export { action as loginAuthWithTokenAction } from './loginAuth';
+export { action as updateUserLoginTokenAction } from './updateUserLoginToken'

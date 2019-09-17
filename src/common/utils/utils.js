@@ -51,7 +51,22 @@ const UTIL = {
         .catch(function (error) {
             console.log('Allinone ------> （错误信息）' + error)
         });
-    }
+    },
+
+    getCurrentUserFromLocalstorage: () => {
+      return {
+        userId: localStorage.getItem("userId"),
+        userName: localStorage.getItem("userName"),
+        userHead: localStorage.getItem("userHead"),
+        accessToken: localStorage.getItem("accessToken"),
+      }
+    },
+    setCurrentUserToLocalstorage: ({userId, userName, userHead, accessToken}) => {
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("userHead", userHead);
+      localStorage.setItem("accessToken", accessToken);
+    },
 }
 
 export default UTIL
