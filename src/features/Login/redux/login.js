@@ -19,8 +19,8 @@ import UTIL from '../../../common/utils/utils'
 const updateLoginStatusAndMessageAction = (status, msg) => ({
   type: actionTypes.UPDATE_LOGIN_STATUS_AND_MESSAGE,
   payload: {
-    loginStatus: status,
-    loginMessage: msg
+    status: status,
+    message: msg
   }
 });
 // thunk
@@ -74,11 +74,8 @@ export const action = (params, history) => {
 export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_LOGIN_STATUS_AND_MESSAGE:
-      return {
-        ...state,
-        status: action.payload.loginStatus,
-        message: action.payload.loginMessage
-      };
+      return state.set('status', action.payload.status)
+                  .set('message', action.payload.message)
     default:
       return state;
   }

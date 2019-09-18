@@ -11,12 +11,7 @@ export const action = token => ({
 export const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.UPDATE_USER_LOGIN_TOKEN:
-      return {
-        ...state,
-        userLoginAuth: {
-          token: action.payload
-        }
-      };
+      return state.setIn(['userLoginAuth', 'token'], action.payload)
     default:
       return state;
   }
