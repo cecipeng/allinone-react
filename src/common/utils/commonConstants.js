@@ -1,4 +1,4 @@
-import defaultConfig from '../../config/config'
+import { defaultConfig } from '../../config/config'
 
 // 开发环境api地址
 const baseUrlConstans = {
