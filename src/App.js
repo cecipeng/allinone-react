@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
+import intl from 'react-intl-universal'
 
 // ====== Components ====== //
 import { view as RootPage } from './features/RootPage/index'
@@ -18,8 +19,22 @@ import routerConstants from './common/utils/routerConstants'
 import * as currentUserActionCreator from "./common/redux/currentUser/actions";
 import * as authActionCreator from "./common/redux/auth/actions";
 
+// 载入语言包
+const intlLang = {
+  'en': require('./intl/en.json'),
+  'zn': require('./intl/zh.json')
+}
 
 class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isIntlInitDone: false // 是否初始化完成语言包
+    }
+  }
+  componentDidMount() {
+    this.intlInit();
+  }
   componentWillMount () {
     const { currentUserAction, authAction } = this.props
     const { userId, userName, userHead, accessToken } = UTIL.getCurrentUserFromLocalstorage()
@@ -31,9 +46,19 @@ class App extends React.Component {
     })
     authAction.updateUserLoginTokenAction(accessToken)
   }
+  // 初始化国际化语言包
+  intlInit () {
+    intl.init({
+      currentLocale: 'en',
+      intlLang,
+    })
+    .then(() => {
+      this.setState({isIntlInitDone: true});
+    })
+  }
   render() {
     return (
-      <div id="app">
+      this.state.initDone && <div id="app">
         <Switch>
           <Route path={routerConstants.ROOT_PAGE} component={RootPage} />
           <Route path={routerConstants.LOGIN} component={Login} />
