@@ -9,8 +9,10 @@
 | options | 下拉菜单配置 | array | 无 |
 | defaultValue | 指定默认选中的条目的value（使用默认按钮时生效） | any | 无 |
 | dropdownWidth | 下拉菜单宽度 | string | 和选择器同宽 |
+| placement | 下拉菜单位置 | string(bottomStart/bottomCenter/bottomEnd/topStart/topCenter/topEnd) | bottomStart |
 | size | 大小 | 'large'/'middle'/'small' | 'middle' |
 | isDisabled | 是否禁用 | boolean | false |
+| getSelectOption | 父组件获取当前选中值 | function | - |
 
 ```
 // options的数据结构：
@@ -56,6 +58,10 @@ import Select from 'xxx/common/components/select/index'
 ```
 import Select from 'xxx/common/components/select/index'
 
+handleGetSelectOption(option) {
+  console.log(option.value, option.text)
+}
+
 <Select
     defaultValue={2}
     options={[
@@ -68,6 +74,7 @@ import Select from 'xxx/common/components/select/index'
             value:2
         }
     ]}
+    getSelectOption={this.handleGetSelectOption}
 >
     <p>点我打开</p>
 </Select>

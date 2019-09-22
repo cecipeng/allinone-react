@@ -1,8 +1,8 @@
 // api接口
 const apiEndpointConstants = {
     // ----------------- common
-    // auth
-    LOGIN_AUTH :                            ['api/login/verify', 'POST'],
+    // currentUser
+    UPDATE_LANG_TYPE :                            ['api/member/updateInfo', 'POST'],
 
     // ----------------- 模块
     // login

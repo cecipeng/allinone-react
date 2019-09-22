@@ -1,6 +1,4 @@
 {
-  "SIMPLE": "Simple Sentence",
-  "LANG_TYPE": "paas-us",
-  "INPUT_MOBILE": "Mobile Number",
-  "HELLO": "Hello, {name}. Welcome to {where}!"
+  "ROOT_PAGE_FOOTER_LANGUAGE": "Language:",
+  "LOGIN_PAGE_TITLE": "Log in to Allinone"
 }

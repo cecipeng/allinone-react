@@ -53,19 +53,32 @@ const UTIL = {
         });
     },
 
+    // 从localstorage获取用户信息
     getCurrentUserFromLocalstorage: () => {
       return {
         userId: localStorage.getItem("userId"),
         userName: localStorage.getItem("userName"),
         userHead: localStorage.getItem("userHead"),
         accessToken: localStorage.getItem("accessToken"),
+        langType: localStorage.getItem("langType"),
       }
     },
-    setCurrentUserToLocalstorage: ({userId, userName, userHead, accessToken}) => {
+    // 用户信息写入localstorage
+    setCurrentUserToLocalstorage: ({userId, userName, userHead, accessToken, langType}) => {
       localStorage.setItem("userId", userId);
       localStorage.setItem("userName", userName);
       localStorage.setItem("userHead", userHead);
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("langType", langType);
+    },
+
+    // 从localstorage获取语言
+    getLangTypeFromLocalstorage: () => {
+      return localStorage.getItem("langType")
+    },
+    // 最新设置的语言写入localstorage
+    setLangTypeToLocalstorage: (langType) => {
+      localStorage.setItem("langType", langType)
     },
 }
 

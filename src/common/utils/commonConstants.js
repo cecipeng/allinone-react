@@ -15,3 +15,15 @@ export const apiConfig = {
         Authorization: localStorage.accessToken || "" //身份验证，与后端约定每次请求附上token值验明是否登录 
     }
 }
+
+// 支持的语言包
+export const supportLang = [
+  {
+    id: 'en',
+    name: 'en',
+  },
+  {
+    id: 'zn',
+    name: '简体中文',
+  },
+]

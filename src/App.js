@@ -14,15 +14,19 @@ import UTIL from './common/utils/utils'
 
 // ====== Constants ====== //
 import routerConstants from './common/utils/routerConstants'
+import reducerNameConstants from './common/utils/reducerNameConstants'
+
+// ====== Config ====== //
+import { defaultConfig } from './config/config'
 
 // ====== Action ====== //
 import * as currentUserActionCreator from "./common/redux/currentUser/actions";
 import * as authActionCreator from "./common/redux/auth/actions";
 
 // 载入语言包
-const intlLang = {
+const locales = {
   'en': require('./intl/en.json'),
-  'zn': require('./intl/zh.json')
+  'zn': require('./intl/zn.json'),
 }
 
 class App extends React.Component {
@@ -32,25 +36,37 @@ class App extends React.Component {
       isIntlInitDone: false // 是否初始化完成语言包
     }
   }
-  componentDidMount() {
-    this.intlInit();
-  }
-  componentWillMount () {
-    const { currentUserAction, authAction } = this.props
-    const { userId, userName, userHead, accessToken } = UTIL.getCurrentUserFromLocalstorage()
+ 
+  componentDidMount () {
+    const { currentUserAction, authAction, } = this.props
+    
+    // 从localstorage获取用户信息和token，写入redux中
+    const { userId, userName, userHead, accessToken, langType } = UTIL.getCurrentUserFromLocalstorage()
     currentUserAction.updateCurrentUserAction({
       userId: userId,
       userName: userName,
       userHead: userHead,
-      accessToken: accessToken
+      accessToken: accessToken,
+      langType: langType || defaultConfig.language,
     })
     authAction.updateUserLoginTokenAction(accessToken)
+
+  }
+  componentDidUpdate (prevProps) {
+    if(prevProps.currentUserReducer !== this.props.currentUserReducer)  {
+      this.intlInit ()
+    }
   }
   // 初始化国际化语言包
   intlInit () {
+    const { currentUserReducer } = this.props
+
+    // 从redux获取当前用户的语言，初始化语言包
+    const langTypeFromRedux = currentUserReducer.langType
+    
     intl.init({
-      currentLocale: 'en',
-      intlLang,
+      currentLocale: langTypeFromRedux,
+      locales,
     })
     .then(() => {
       this.setState({isIntlInitDone: true});
@@ -58,7 +74,8 @@ class App extends React.Component {
   }
   render() {
     return (
-      this.state.initDone && <div id="app">
+      this.state.isIntlInitDone && 
+      <div id="app">
         <Switch>
           <Route path={routerConstants.ROOT_PAGE} component={RootPage} />
           <Route path={routerConstants.LOGIN} component={Login} />
@@ -70,6 +87,12 @@ class App extends React.Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    currentUserReducer: state[reducerNameConstants.CURRENT_USER_REDUCER]
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     currentUserAction: bindActionCreators(currentUserActionCreator, dispatch),
@@ -78,6 +101,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(App);

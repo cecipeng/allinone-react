@@ -16,7 +16,7 @@ import UTIL from '../../../common/utils/utils'
 
 // ----------------- action creator
 // 更新错误信息
-const updateLoginStatusAndMessageAction = (status, msg) => ({
+const updateLoginStatusAndMessageSuccessAction = (status, msg) => ({
   type: actionTypes.UPDATE_LOGIN_STATUS_AND_MESSAGE,
   payload: {
     status: status,
@@ -33,7 +33,7 @@ export const action = (params, history) => {
       if (_meta.code === apiStatusCodeConstants.LOGIN_INFO_ERROR) {
         // 1. 更新登录状态，返回错误信息
         dispatch(
-          updateLoginStatusAndMessageAction(
+          updateLoginStatusAndMessageSuccessAction(
             storeStatusConstants.loginStatus.LOGGED_OUT,
             _meta.message
           )
@@ -46,7 +46,8 @@ export const action = (params, history) => {
           userId: _data.userId,
           userName: _data.userName,
           userHead: _data.userHead,
-          accessToken: _data.accessToken
+          accessToken: _data.accessToken,
+          langType: _data.langType,
         })
 
         // 2. 存储用户信息 => store
@@ -54,7 +55,7 @@ export const action = (params, history) => {
 
         // 3. 更新登录提示信息
         dispatch(
-          updateLoginStatusAndMessageAction(
+          updateLoginStatusAndMessageSuccessAction(
             storeStatusConstants.loginStatus.LOGGED_IN,
             _meta.message
           )

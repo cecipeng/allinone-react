@@ -2,6 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { reduxForm, Field, SubmissionError, hasSubmitFailed } from 'redux-form'
 import { connect } from 'react-redux'
+import intl from 'react-intl-universal'
 
 // ====== Action ====== //
 import * as loginActionCreator from '../redux/actions'
