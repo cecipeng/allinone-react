@@ -1,3 +1,5 @@
+import intl from 'react-intl-universal'
+
 // ====== Constant ====== //
 import { actionTypes } from '../utils/constants'
 import routerConstants from '../../../common/utils/routerConstants'
@@ -31,11 +33,12 @@ export const action = (params, history) => {
       const _data = response.data.datas
       // 验证不通过时
       if (_meta.code === apiStatusCodeConstants.LOGIN_INFO_ERROR) {
+        const errorMsg = intl.get('LOGIN_PAGE_MEG_USERNAME_OR_PASSWORD_ERROR')
         // 1. 更新登录状态，返回错误信息
         dispatch(
           updateLoginStatusAndMessageSuccessAction(
             storeStatusConstants.loginStatus.LOGGED_OUT,
-            _meta.message
+            errorMsg
           )
         )
       }

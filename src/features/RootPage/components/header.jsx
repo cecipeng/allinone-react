@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import intl from 'react-intl-universal'
 
 // ====== Components ====== //
 import UserHead from '../../../common/components/userHead/index'
@@ -23,8 +24,8 @@ export class Header extends React.Component {
                 </div>)
                 :
                 (<div className="unlogin">
-                  <NavLink className="ui-link ui-link-light" to={routerConstants.LOGIN}>登录</NavLink>
-                  <NavLink target="_blank" className="ui-link ui-link-light" to={routerConstants.LOGIN}>注册</NavLink>
+                  <NavLink className="ui-link ui-link-light" to={routerConstants.LOGIN}>{intl.get('ROOT_PAGE_HEADER_SIGN_IN')}</NavLink>
+                  <NavLink target="_blank" className="ui-link ui-link-light" to={routerConstants.LOGIN}>{intl.get('ROOT_PAGE_HEADER_SIGN_UP')}</NavLink>
                 </div>)
             }
           </div >
@@ -32,8 +33,8 @@ export class Header extends React.Component {
             <span className="logo" />
             <div className="com-mainmenu">
               <ul className="mainmenu">
-                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.HOME}>Home</NavLink></li>
-                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.NAVIGATION}>naviation</NavLink></li>
+                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.HOME}>{intl.get('ROOT_PAGE_HEADER_NAV_HOME')}</NavLink></li>
+                <li><NavLink activeClassName="is-active" className="item" to={routerConstants.NAVIGATION}>{intl.get('ROOT_PAGE_HEADER_NAV_NAVIGATION')}</NavLink></li>
               </ul >
             </div >
           </div >

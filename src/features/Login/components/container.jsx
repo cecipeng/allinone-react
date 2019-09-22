@@ -28,11 +28,11 @@ export class Login extends React.Component {
     // 1.验证空值
     if (!data.username) {
       throw new SubmissionError({
-        _error: '用户名不能为空!'
+        _error: intl.get('LOGIN_PAGE_MEG_USERNAME_EMPTY')
       })
     } else if (!data.password) {
       throw new SubmissionError({
-        _error: '密码不能为空!'
+        _error: intl.get('LOGIN_PAGE_MEG_PASSWORD_EMPTY')
       })
     } else {
       // 2.后台验证
@@ -88,14 +88,14 @@ export class Login extends React.Component {
         <div className='layout-wrapper'>
           <form onSubmit={handleSubmit(this.handleLoginIn)}>
             <div className='formbox'>
-              <div className='form-title'>登录 Allinone</div>
+              <div className='form-title'>{intl.get('LOGIN_PAGE_TITLE')}</div>
               <div className='form-row form-username'>
                 <Field
                   name='username'
                   component='input'
                   type='text'
                   className='form-input form-input-wide'
-                  placeholder='用户名'
+                  placeholder={intl.get('LOGIN_PAGE_USERNAME')}
                 />
               </div>
               <div className='form-row form-pwd'>
@@ -104,11 +104,11 @@ export class Login extends React.Component {
                   component='input'
                   type='password'
                   className='form-input form-input-wide'
-                  placeholder='密码'
+                  placeholder={intl.get('LOGIN_PAGE_PASSWORD')}
                 />
               </div>
               <p className='errortip'>
-                {hasSubmitFailed ? error : loginReducer.message}
+                {hasSubmitFailed ? error : loginReducer.get('message')}
               </p>
               <div className='btnwrap'>
                 <button
@@ -116,7 +116,7 @@ export class Login extends React.Component {
                   className={`ui-btn ui-btn-wide ui-btn-main ${submitting &&
                     's-disabled'}`}
                 >
-                  {submitting ? '正在登录...' : '登录'}
+                  {submitting ? intl.get('LOGIN_PAGE_BTN_LOGGING') : intl.get('LOGIN_PAGE_BTN_LOGIN')}
                 </button>
               </div>
             </div>
