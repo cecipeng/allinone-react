@@ -1,1 +1,0 @@
-export { updateUserInfo } from './updateUserInfo';
