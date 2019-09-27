@@ -1,24 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from "redux"
-import { NavLink } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 import intl from 'react-intl-universal'
 
 // ====== Components ====== //
-import UserHead from '../../../common/components/userHead/index'
 import Select from '../../../common/components/select/index'
 
 // ====== Constants ====== //
 import reducerNameConstants from '../../../common/utils/reducerNameConstants'
-import routerConstants from '../../../common/utils/routerConstants'
 import { supportLang } from '../../../common/utils/commonConstants'
-import { log } from 'util'
 
 // ====== Util ====== //
 import UTIL from '../../../common/utils/utils'
 
 // ====== Action ====== //
-import * as currentUserActionCreator from "../../../common/redux/currentUser/actions";
+import * as currentUserActionCreator from '../../../common/redux/currentUser/actions';
 
 class Footer extends React.Component {
   constructor (props) {
@@ -30,7 +26,7 @@ class Footer extends React.Component {
     this.handleSetCurrentLanguage = this.handleSetCurrentLanguage.bind(this)
   }
   handleSetCurrentLanguage (newlang) {
-    const { currentUserAction, currentUserReducer } = this.props
+    const { currentUserAction } = this.props
     const { currentLanguage } = this.state
 
     if (newlang.value !== currentLanguage) {
@@ -59,18 +55,17 @@ class Footer extends React.Component {
       }
     })
     return (
-      <div className="com-footer">
-        <div className="layout-wrapper">
-          <ul className="com-footer-link">
+      <div className='com-footer'>
+        <div className='layout-wrapper'>
+          <ul className='com-footer-link'>
             <li>
-              <label className="com-footer-link__label">{intl.get('ROOT_PAGE_FOOTER_LANGUAGE')}</label>
+              <label className='com-footer-link__label'>{intl.get('ROOT_PAGE_FOOTER_LANGUAGE')}</label>
               <Select
                 defaultValue={currentLanguage}
                 placement='topStart'
                 options={languageOption}
                 getSelectOption={this.handleSetCurrentLanguage}
-              >
-              </Select>
+              />
             </li>
           </ul >
         </div >

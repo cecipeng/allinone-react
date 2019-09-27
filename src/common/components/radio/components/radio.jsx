@@ -53,9 +53,9 @@ export default class Radio extends React.Component {
                 onClick = {this.onChangeState}
                 data-value = {this.props.value}
             >
-                <span className="com-radio__btn"></span>
+                <span className='com-radio__btn' />
                 {
-                    this.props.icon && <span className={_iconClassName}></span>
+                    this.props.icon && <span className={_iconClassName} />
                 }
                 {
                     this.props.children ? <span className='com-radio__con'>{this.props.children}</span> : null

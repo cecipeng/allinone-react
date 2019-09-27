@@ -85,9 +85,9 @@ export class Modal extends React.Component {
       return (
         <div className='modal-footer'>
           {
-            isCancelBtn && <a onClick={this.onCancel} href='javascript:void(0)' className='ui-btn ui-btn-default'>{cancelBtn}</a>
+            isCancelBtn && <span onClick={this.onCancel} className='ui-btn ui-btn-default'>{cancelBtn}</span>
           }
-          <a onClick={this.onOk} href='javascript:void(0)' className='ui-btn ui-btn-main'>{okBtn}</a>
+          <span onClick={this.onOk} className='ui-btn ui-btn-main'>{okBtn}</s>
         </div>
       )
     }

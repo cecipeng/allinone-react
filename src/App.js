@@ -75,7 +75,7 @@ class App extends React.Component {
   render() {
     return (
       this.state.isIntlInitDone && 
-      <div id="app">
+      <div id='app'>
         <Switch>
           <Route path={routerConstants.ROOT_PAGE} component={RootPage} />
           <Route path={routerConstants.LOGIN} component={Login} />
