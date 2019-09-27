@@ -14,7 +14,7 @@ import reducerNameConstants from '../../../common/utils/reducerNameConstants'
 import Radio, { RadioGroup } from '../../../common/components/radio/index'
 Radio.Group = RadioGroup
 
-export class Login extends React.Component {
+class Login extends React.Component {
   constructor(props) {
     super(props)
     this.handleLoginIn = this.handleLoginIn.bind(this)
@@ -107,16 +107,16 @@ export class Login extends React.Component {
                   placeholder={intl.get('LOGIN_PAGE_PASSWORD')}
                 />
               </div>
-              <p className='errortip'>
-                {hasSubmitFailed ? error : loginReducer.get('message')}
-              </p>
+              <p className='errortip'>{hasSubmitFailed ? error : loginReducer.get('message')}</p>
               <div className='btnwrap'>
                 <button
                   type='submit'
                   className={`ui-btn ui-btn-wide ui-btn-main ${submitting &&
                     's-disabled'}`}
                 >
-                  {submitting ? intl.get('LOGIN_PAGE_BTN_LOGGING') : intl.get('LOGIN_PAGE_BTN_LOGIN')}
+                  {submitting
+                    ? intl.get('LOGIN_PAGE_BTN_LOGGING')
+                    : intl.get('LOGIN_PAGE_BTN_LOGIN')}
                 </button>
               </div>
             </div>
@@ -127,7 +127,7 @@ export class Login extends React.Component {
   }
 }
 
-const reduxFormLogin = reduxForm({
+Login = reduxForm({
   form: 'LoginForm'
 })(Login)
 
@@ -147,4 +147,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxFormLogin)
+)(Login)
