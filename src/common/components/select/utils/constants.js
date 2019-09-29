@@ -22,5 +22,5 @@ export const PLACEMENT = [
   {
     name: 'topEnd',
     className: 'ui-dropdown--top-end'
-  },
+  }
 ]

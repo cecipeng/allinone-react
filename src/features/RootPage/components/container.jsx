@@ -11,22 +11,22 @@ import { view as Home } from '../../Home/index'
 import routerConstants from '../../../common/utils/routerConstants'
 
 export default class RootPage extends React.Component {
-    render () {
-        return (
-            <div className='layout'>
-                <div className='layout-header'>
-                    <Header />
-                </div>
-                <div className='layout-body'>
-                    <Switch>
-                        <Route exact path={routerConstants.HOME} component={Home}/>
-                        {/* <Route path={routerConstants.NAVIGATION} component={Navigation}/> */}
-                    </Switch>
-                </div>
-                <div className='layout-footer'>
-                    <Footer />
-                </div>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className='layout'>
+        <div className='layout-header'>
+          <Header />
+        </div>
+        <div className='layout-body'>
+          <Switch>
+            <Route exact path={routerConstants.HOME} component={Home} />
+            {/* <Route path={routerConstants.NAVIGATION} component={Navigation}/> */}
+          </Switch>
+        </div>
+        <div className='layout-footer'>
+          <Footer />
+        </div>
+      </div>
+    )
+  }
 }

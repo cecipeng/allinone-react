@@ -1,5 +1,5 @@
 // ====== Constant ====== //
-import { actionTypes } from "./utils/constants";
+import { actionTypes } from './utils/constants'
 import apiStatusCodeConstants from '../../utils/apiStatusCodeConstants'
 
 // ====== Api ====== //
@@ -12,10 +12,10 @@ import UTIL from '../../utils/utils'
 const updateLangTypeSuccessAction = newLang => ({
   type: actionTypes.UPDATE_LANG_TYPE,
   payload: newLang
-});
+})
 
 // thunk
-export const action = (params) => {
+export const action = params => {
   return function(dispatch) {
     return updateLangTypeApi(params).then(response => {
       const _meta = response.data.meta
@@ -33,9 +33,9 @@ export const action = (params) => {
 // ----------------- reducer
 export const reducer = (state, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_LANG_TYPE:
-      return state.set('langType', action.payload);
-    default:
-      return state;
+  case actionTypes.UPDATE_LANG_TYPE:
+    return state.set('langType', action.payload)
+  default:
+    return state
   }
-};
+}

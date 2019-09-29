@@ -17,4 +17,4 @@ const reducerMap = {
   form: formReducer
 };
 
-export default combineReducers(reducerMap);
+export default combineReducers(reducerMap)

@@ -1,1 +1,1 @@
-export { action as updateLangTypeAction } from './updateLangType';
+export { action as updateLangTypeAction } from './updateLangType'

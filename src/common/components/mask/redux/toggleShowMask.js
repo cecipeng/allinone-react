@@ -1,27 +1,25 @@
-import { actionTypes } from '../utils/constants';
+import { actionTypes } from '../utils/constants'
 
 // action creator
-export const action = (isShowMask) => {
-    return {
-        type: actionTypes.TOGGLE_SHOW_MASK,
-        isShowMask
-    }
+export const action = isShowMask => {
+  return {
+    type: actionTypes.TOGGLE_SHOW_MASK,
+    isShowMask
+  }
 }
 
 // reducer
 export const reducer = (state, action) => {
-    switch(action.type) {
-        case actionTypes.TOGGLE_SHOW_MASK:
-            console.log(state);
-            
-            var new1 = {
-                ...state,
-                isShowMask: state.isShowMask ? true : action.isShowMask
-            }
-            
-            console.log(new1);
-            
-            return new1
-        default: return state
-    }
+  // switch (action.type) {
+  // case actionTypes.TOGGLE_SHOW_MASK:
+  //   console.log(state)
+  //   const new1 = {
+  //     isShowMask: state.isShowMask ? true : action.isShowMask,
+  //     ...state
+  //   }
+  //   console.log(new1)
+  //   return new1
+  // default:
+  //   return state
+  // }
 }

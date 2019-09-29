@@ -5,7 +5,7 @@ const initialState = Map({
   userName: null,
   userHead: null,
   accessToken: null,
-  langType: null,
+  langType: null
 })
 
 export default initialState

@@ -107,7 +107,9 @@ class Login extends React.Component {
                   placeholder={intl.get('LOGIN_PAGE_PASSWORD')}
                 />
               </div>
-              <p className='errortip'>{hasSubmitFailed ? error : loginReducer.get('message')}</p>
+              <p className='errortip'>
+                {hasSubmitFailed ? error : loginReducer.get('message')}
+              </p>
               <div className='btnwrap'>
                 <button
                   type='submit'
@@ -127,7 +129,7 @@ class Login extends React.Component {
   }
 }
 
-Login = reduxForm({
+const LoginWithReduxForm = reduxForm({
   form: 'LoginForm'
 })(Login)
 
@@ -147,4 +149,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(LoginWithReduxForm)

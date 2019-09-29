@@ -16,14 +16,14 @@ export class Modal extends React.Component {
     this.onMaskClick = this.onMaskClick.bind(this)
     this._closeModal = this._closeModal.bind(this)
   }
-  componentDidMount () {
+  componentDidMount() {
     // 设置是否显示遮罩
     const _isShowMask = this.props.isMask
     this.props.actions.toggleShowMask(_isShowMask)
   }
   componentWillUnmount() {
-    console.log('componentWillUnmount');
-}
+    console.log('componentWillUnmount')
+  }
   static defaultProps = {
     container: document.getElementsByTagName('body'),
     title: '标题', // 标题内容
@@ -45,16 +45,16 @@ export class Modal extends React.Component {
     isFooter: true, // 是否显示底部
     okBtnCallback: null, // 确定按钮的回调
     cancelBtnCallback: null, // 点击遮罩层或右上角叉或取消按钮的回调
-    afterCloseCallback: null, // 完全关闭后的回调
+    afterCloseCallback: null // 完全关闭后的回调
   }
-  onOk () {
+  onOk() {
     this._closeModal()
     const okCallback = this.props.okBtnCallback
     const callback = this.props.afterCloseCallback
     typeof okCallback === 'function' && okCallback()
     typeof callback === 'function' && callback()
   }
-  onCancel () {
+  onCancel() {
     this._closeModal()
     const cancelCallback = this.props.cancelBtnCallback
     const callback = this.props.afterCloseCallback
@@ -65,72 +65,82 @@ export class Modal extends React.Component {
   /**
    * 点击弹窗外关闭弹窗
    */
-  onMaskClick (e) {
+  onMaskClick(e) {
     if (e.target === e.currentTarget && this.props.isMaskClosable) {
-      this._closeModal(e);
+      this._closeModal(e)
     }
   }
-  _closeModal () {
+  _closeModal() {
     this.setState({
       isVisible: false
     })
   }
-  onAfterClose () {
+  onAfterClose() {
     const callback = this.props.afterCloseCallback
     typeof callback === 'function' && callback()
   }
-  renderFooter () {
+  renderFooter() {
     const { okBtn, cancelBtn, isFooter, isCancelBtn } = this.props
     if (isFooter) {
       return (
         <div className='modal-footer'>
-          {
-            isCancelBtn && <span onClick={this.onCancel} className='ui-btn ui-btn-default'>{cancelBtn}</span>
-          }
-          <span onClick={this.onOk} className='ui-btn ui-btn-main'>{okBtn}</s>
+          {isCancelBtn && (
+            <span onClick={this.onCancel} className='ui-btn ui-btn-default'>
+              {cancelBtn}
+            </span>
+          )}
+          <span onClick={this.onOk} className='ui-btn ui-btn-main'>
+            {okBtn}
+          </span>
         </div>
       )
     }
   }
-  render () {
+  render() {
+    const { custormStyle } = this.props.style
     return (
       <React.Fragment>
-        {
-          this.state.isVisible ? <div className='ui-modal' onClick={this.onMaskClick} style={this.props.style} style={{
-            zIndex: this.props.zIndex
-          }}>
-            <div className='' style={{ width: this.props.width }} className={`modal-dialog ${this.props.isCentered && 'is-centered'}`}>
-              {
-                this.props.isClosable && <a className='close-modal' onClick={this.onCancel} />
-              }
+        {this.state.isVisible ? (
+          <div
+            className='ui-modal'
+            onClick={this.onMaskClick}
+            style={{
+              zIndex: this.props.zIndex,
+              custormStyle
+            }}
+          >
+            <div
+              style={{ width: this.props.width }}
+              className={`modal-dialog ${this.props.isCentered && 'is-centered'}`}
+            >
+              {this.props.isClosable && (
+                <span className='close-modal' onClick={this.onCancel} />
+              )}
               {/* 头部 */}
-              {
-                this.props.isHeader && (
-                  <div className='modal-header'>
-                    <p className='title'>{this.props.title}</p>
-                  </div>
-                )
-              }
+              {this.props.isHeader && (
+                <div className='modal-header'>
+                  <p className='title'>{this.props.title}</p>
+                </div>
+              )}
 
               {/* 头部 */}
 
               {/* 内容区域 */}
               <div className='modal-body' style={this.props.bodyStyle}>
-                {
-                  this.props.children ? this.props.children : <p className='notice'>modal.text</p>
-                }
+                {this.props.children ? (
+                  this.props.children
+                ) : (
+                  <p className='notice'>modal.text</p>
+                )}
               </div>
               {/* 内容区域 */}
 
               {/* 尾部,操作按钮 */}
-              {
-                this.renderFooter()
-              }
+              {this.renderFooter()}
               {/* 尾部,操作按钮 */}
             </div>
           </div>
-          : null
-        }
+        ) : null}
       </React.Fragment>
     )
   }
@@ -140,4 +150,7 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators({ ...actions }, dispatch)
   }
 }
-export default connect(null, mapDispatchToProps)(Modal)
+export default connect(
+  null,
+  mapDispatchToProps
+)(Modal)

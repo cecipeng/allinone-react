@@ -14,10 +14,10 @@ import { supportLang } from '../../../common/utils/commonConstants'
 import UTIL from '../../../common/utils/utils'
 
 // ====== Action ====== //
-import * as currentUserActionCreator from '../../../common/redux/currentUser/actions';
+import * as currentUserActionCreator from '../../../common/redux/currentUser/actions'
 
 class Footer extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       currentLanguage: props.currentUserReducer.langType
@@ -25,7 +25,7 @@ class Footer extends React.Component {
 
     this.handleSetCurrentLanguage = this.handleSetCurrentLanguage.bind(this)
   }
-  handleSetCurrentLanguage (newlang) {
+  handleSetCurrentLanguage(newlang) {
     const { currentUserAction } = this.props
     const { currentLanguage } = this.state
 
@@ -35,20 +35,18 @@ class Footer extends React.Component {
       })
 
       currentUserAction.updateLangTypeAction({
-        'langType': newlang.value
+        langType: newlang.value
       })
 
-      UTIL.setLangTypeToLocalstorage(newlang.value);
-      window.location.reload(true)  
+      UTIL.setLangTypeToLocalstorage(newlang.value)
+      window.location.reload(true)
     }
-    
-    
   }
   render() {
     const { currentLanguage } = this.state
 
     // 支持语言的列表
-    const languageOption = supportLang.map((item) => {
+    const languageOption = supportLang.map(item => {
       return {
         text: item.name,
         value: item.id
@@ -59,7 +57,9 @@ class Footer extends React.Component {
         <div className='layout-wrapper'>
           <ul className='com-footer-link'>
             <li>
-              <label className='com-footer-link__label'>{intl.get('ROOT_PAGE_FOOTER_LANGUAGE')}</label>
+              <label className='com-footer-link__label'>
+                {intl.get('ROOT_PAGE_FOOTER_LANGUAGE')}
+              </label>
               <Select
                 defaultValue={currentLanguage}
                 placement='topStart'
@@ -67,9 +67,9 @@ class Footer extends React.Component {
                 getSelectOption={this.handleSetCurrentLanguage}
               />
             </li>
-          </ul >
-        </div >
-      </div >
+          </ul>
+        </div>
+      </div>
     )
   }
 }
@@ -82,11 +82,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    currentUserAction: bindActionCreators(currentUserActionCreator, dispatch),
-  };
+    currentUserAction: bindActionCreators(currentUserActionCreator, dispatch)
+  }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Footer);
+)(Footer)

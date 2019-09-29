@@ -50,7 +50,7 @@ export const action = (params, history) => {
           userName: _data.userName,
           userHead: _data.userHead,
           accessToken: _data.accessToken,
-          langType: _data.langType,
+          langType: _data.langType
         })
 
         // 2. 存储用户信息 => store
@@ -77,11 +77,11 @@ export const action = (params, history) => {
 // ----------------- reducer
 export const reducer = (state, action) => {
   switch (action.type) {
-    case actionTypes.UPDATE_LOGIN_STATUS_AND_MESSAGE:
-      return state
-        .set('status', action.payload.status)
-        .set('message', action.payload.message)
-    default:
-      return state
+  case actionTypes.UPDATE_LOGIN_STATUS_AND_MESSAGE:
+    return state
+      .set('status', action.payload.status)
+      .set('message', action.payload.message)
+  default:
+    return state
   }
 }
