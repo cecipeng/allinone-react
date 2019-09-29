@@ -27,7 +27,7 @@ options = [
 ## State
 | 参数 | 说明 | 数据类型 | 初始值 | 修改途径
 | - | - | - | - | - |
-| selectOption | 选中项（数据结构同props.options） | array | 无 | |
+| selectOption | 选中项（数据结构同props.options） | object | 无 | |
 | isOpenDropdown | 是否打开下拉菜单 | boolean | false | |
 
 ## 使用案例

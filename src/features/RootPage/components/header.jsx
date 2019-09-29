@@ -16,29 +16,35 @@ export class Header extends React.Component {
     return (
       <div className='com-header'>
         <div className='layout-wrapper layout-bfc'>
+          {/* 右侧 */}
           <div className='layout-bfc__right'>
-            {currentUserReducer ? (
-              <div className='header-userdrop ui-dropdown'>
-                <UserHead userInfo={currentUserReducer} />
-              </div>
-            ) : (
-              <div className='unlogin'>
-                <NavLink
-                  className='ui-link ui-link-light'
-                  to={routerConstants.LOGIN}
-                >
-                  {intl.get('ROOT_PAGE_HEADER_SIGN_IN')}
-                </NavLink>
-                <NavLink
-                  target='_blank'
-                  className='ui-link ui-link-light'
-                  to={routerConstants.LOGIN}
-                >
-                  {intl.get('ROOT_PAGE_HEADER_SIGN_UP')}
-                </NavLink>
-              </div>
-            )}
+            {
+              currentUserReducer ? ( 
+                // 已登录
+                <div className='header-userdrop ui-dropdown'>
+                  <UserHead userInfo={currentUserReducer} />
+                </div>
+              ) : (
+                // 未登录
+                <div className='unlogin'>
+                  <NavLink
+                    className='ui-link ui-link-light'
+                    to={routerConstants.LOGIN}
+                  >
+                    {intl.get('ROOT_PAGE_HEADER_SIGN_IN')}
+                  </NavLink>
+                  <NavLink
+                    target='_blank'
+                    className='ui-link ui-link-light'
+                    to={routerConstants.LOGIN}
+                  >
+                    {intl.get('ROOT_PAGE_HEADER_SIGN_UP')}
+                  </NavLink>
+                </div>
+              )}
           </div>
+
+          {/* 导航菜单 */}
           <div className='layout-bfc__content'>
             <span className='logo' />
             <div className='com-mainmenu'>

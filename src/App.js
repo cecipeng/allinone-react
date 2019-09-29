@@ -7,7 +7,7 @@ import intl from 'react-intl-universal'
 // ====== Components ====== //
 import { view as RootPage } from './features/RootPage/index'
 import { view as Login } from './features/Login/index'
-import { Mask } from './common/components/mask/index'
+import { default as Mask } from './common/components/mask/index'
 
 // ====== Util ====== //
 import UTIL from './common/utils/utils'
@@ -23,10 +23,14 @@ import { defaultConfig } from './config/config'
 import * as currentUserActionCreator from './common/redux/currentUser/actions'
 import * as authActionCreator from './common/redux/auth/actions'
 
+// ====== 语言包 ====== //
+import EN from './intl/en.js'
+import ZN from './intl/zn.js'
+
 // 载入语言包
 const locales = {
-  en: require('./intl/en.json'),
-  zn: require('./intl/zn.json')
+  en: EN,
+  zn: ZN
 }
 
 class App extends React.Component {
@@ -96,7 +100,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    currentUserReducer: state[reducerNameConstants.CURRENT_USER_REDUCER]
+    currentUserReducer: state[reducerNameConstants.CURRENT_USER_REDUCER],
   }
 }
 

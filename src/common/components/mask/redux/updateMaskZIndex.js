@@ -1,10 +1,11 @@
+// ====== Constant ====== //
 import { actionTypes } from '../utils/constants'
 
 // action creator
 export const action = maskZIndex => {
   return {
     type: actionTypes.UPDATE_MASK_ZIndex,
-    maskZIndex
+    payload: maskZIndex
   }
 }
 
@@ -12,10 +13,7 @@ export const action = maskZIndex => {
 export const reducer = (state, action) => {
   switch (action.type) {
   case actionTypes.UPDATE_MASK_ZIndex:
-    return {
-      ...state,
-      maskZIndex: action.maskZIndex
-    }
+    return state.set('maskZIndex', action.payload)
   default:
     return state
   }

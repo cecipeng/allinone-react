@@ -6,8 +6,8 @@ import apiEndpointConstants from '../../../common/utils/apiEndpointConstants'
 
 const loginApi = params => {
   return UTIL.request(
-    apiEndpointConstants.LOGIN[1],
     apiEndpointConstants.LOGIN[0],
+    apiEndpointConstants.LOGIN[1],
     params
   )
 }

@@ -10,10 +10,7 @@ import * as loginActionCreator from '../redux/actions'
 // ====== Constant ====== //
 import reducerNameConstants from '../../../common/utils/reducerNameConstants'
 
-// ====== Component ====== //
-import Radio, { RadioGroup } from '../../../common/components/radio/index'
-Radio.Group = RadioGroup
-
+import Modal from '../../../common/components/modal/index'
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -57,38 +54,22 @@ class Login extends React.Component {
 
     return (
       <div className='layout-mod mod-login'>
-        <Radio.Group
-          type='button'
-          buttonSize='small'
-          value='b'
-          radioList={[
-            {
-              value: 'a',
-              icon: 'list'
-            },
-            {
-              text: <div>2</div>,
-              value: 'b',
-              icon: 'detail'
-            },
-            {
-              text: <div>2</div>,
-              value: 'c',
-              icon: 'detail'
-            }
-          ]}
-        />
-        <Radio value='qq' isDisabled={false} icon='detail'>
-          <div>xxx</div>
-        </Radio>
-        <Radio value='qq' isDisabled={false}>
-          <div>xxx</div>
-        </Radio>
-
         <div className='layout-wrapper'>
+          <Modal
+            title='1'
+            isVisible
+          />
+          <Modal
+            title='2'
+            isMask={false}
+            isVisible
+          />
           <form onSubmit={handleSubmit(this.handleLoginIn)}>
             <div className='formbox'>
+              {/* 标题 */}
               <div className='form-title'>{intl.get('LOGIN_PAGE_TITLE')}</div>
+
+              {/* 用户名 */}
               <div className='form-row form-username'>
                 <Field
                   name='username'
@@ -98,6 +79,8 @@ class Login extends React.Component {
                   placeholder={intl.get('LOGIN_PAGE_USERNAME')}
                 />
               </div>
+
+              {/* 密码 */}
               <div className='form-row form-pwd'>
                 <Field
                   name='password'
@@ -107,9 +90,13 @@ class Login extends React.Component {
                   placeholder={intl.get('LOGIN_PAGE_PASSWORD')}
                 />
               </div>
+
+              {/* 错误提示 */}
               <p className='errortip'>
                 {hasSubmitFailed ? error : loginReducer.get('message')}
               </p>
+
+              {/* 登录按钮 */}
               <div className='btnwrap'>
                 <button
                   type='submit'
@@ -121,6 +108,7 @@ class Login extends React.Component {
                     : intl.get('LOGIN_PAGE_BTN_LOGIN')}
                 </button>
               </div>
+              
             </div>
           </form>
         </div>

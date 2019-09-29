@@ -1,25 +1,22 @@
+// ====== Constant ====== //
 import { actionTypes } from '../utils/constants'
 
-// action creator
+// ----------------- action creator
 export const action = isShowMask => {
   return {
     type: actionTypes.TOGGLE_SHOW_MASK,
-    isShowMask
+    payload: isShowMask
   }
 }
 
-// reducer
+// ----------------- reducer
 export const reducer = (state, action) => {
-  // switch (action.type) {
-  // case actionTypes.TOGGLE_SHOW_MASK:
-  //   console.log(state)
-  //   const new1 = {
-  //     isShowMask: state.isShowMask ? true : action.isShowMask,
-  //     ...state
-  //   }
-  //   console.log(new1)
-  //   return new1
-  // default:
-  //   return state
-  // }
+  const currentMaskStatus = state.get('isShowMask')
+  const isShowMask = currentMaskStatus ? true : action.payload // 当前已显示遮罩，并且本次仍然是做显示操作，则
+  switch (action.type) {
+  case actionTypes.TOGGLE_SHOW_MASK:
+    return state.set('isShowMask', isShowMask)
+  default:
+    return state
+  }
 }

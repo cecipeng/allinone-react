@@ -4,6 +4,9 @@ const reducerNameConstants = {
   CURRENT_USER_REDUCER: 'currentUserReducer',
   AUTH_REDUCER: 'authReducer',
 
+  // component
+  MASK_REDUCER: 'maskReducer',
+
   // feature
   LOGIN_REDUCER: 'loginReducer'
 }

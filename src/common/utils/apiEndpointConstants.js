@@ -4,7 +4,7 @@ const apiEndpointConstants = {
   // currentUser
   UPDATE_LANG_TYPE: ['api/member/updateInfo', 'POST'],
 
-  // ----------------- 模块
+  // ----------------- feature
   // login
   LOGIN: ['api/login/verify', 'POST']
 }

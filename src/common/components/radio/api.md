@@ -7,7 +7,7 @@
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
 | value | 选中的值 | 任意 | 无 |
-| icon | 图标 | string | '' |
+| icon | 图标（仅type='button'时有效），与样式中com-radio__icon--XX对应 | string | '' |
 | isCheck | 是否选中 | boolean | false |
 | isDisabled | 是否禁用 | boolean | false |
 
@@ -15,7 +15,6 @@
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
 | value | Radio组选中值 | 任意 | 无 |
-| defaultValue | Radio组默认选中值 | 任意 | 无 |
 | buttonSize | Radio组大小（仅type='button'时有效） | 'large'/'middle'/'small' | 'middle' |
 | radioList | 以配置形式设置各Radio | array | 无 |
 | isDisabledAll | 是否全部禁用 | boolean | false |

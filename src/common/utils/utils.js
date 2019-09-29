@@ -5,8 +5,8 @@ import routerConstants from './routerConstants'
 import { apiConfig } from './commonConstants'
 
 const UTIL = {
-  request: (method, url, params) => {
-    let config = apiConfig
+  request: (url, method, params) => {
+    let config = apiConfig    // api基础配置
 
     method = method.toUpperCase()
 

@@ -1,3 +1,4 @@
+// 下拉菜单位置
 export const PLACEMENT = [
   {
     name: 'bottomStart',

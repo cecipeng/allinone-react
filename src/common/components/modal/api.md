@@ -6,14 +6,14 @@
 ## Props
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
-| container | modal挂载的html节点 | | |
+| container | modal挂载的html节点 | | document.getElementsByTagName('body') |
 | title | 标题内容 | string/ReactNode | '标题' |
 | okBtn | 确认按钮内容 | string/ReactNode | '确定' |
 | cancelBtn | 取消按钮内容 | string/ReactNode | '取消' |
 | okBtnProps | 确认按钮的props | button的props配置 | button的默认props配置 |
 | cancelBtnProps | 取消按钮的props | button的props配置 | button的默认props配置 |
 | isVisible | 弹窗是否可见 | boolean | false |
-| style | modal的自定义样式 | object | {} |
+| custormStyle | modal的自定义样式 | object | {} |
 | bodyStyle | body的自定义样式 | object | {} |
 | width | 宽度 | string/number | 520 |
 | zIndex | 显示层级 | number | 101 |

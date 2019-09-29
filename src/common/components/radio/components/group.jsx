@@ -1,11 +1,11 @@
 import React from 'react'
-import Radio from './radio'
 import classNames from 'classnames'
+import Radio from './radio'
 
 export default class RadioGroup extends React.Component {
   static defaultProps = {
-    // radioList: [], // Radio组配置信息
-    // value: '', // Radio组选中值
+    radioList: [], // Radio组配置信息
+    value: '', // Radio组选中值
     type: 'radio', // Radio组样式类型
     buttonSize: 'middle', // Radio组大小（'large'/'middle'/'small'）（仅type='button'时有效）
     isDisabledAll: false, // 是否全部禁用
@@ -18,53 +18,41 @@ export default class RadioGroup extends React.Component {
       value: ''
     }
 
-    this.radioList = this.props.radioList
+    this.radioList = (props.radioList && props.radioList.length) ? props.radioList : []
+
     this.renderRadioList = this.renderRadioList.bind(this)
     this.initValue = this.initValue.bind(this)
     this.updateValue = this.updateValue.bind(this)
   }
 
   componentWillMount() {
-    // 初始化value
     this.initValue()
   }
-  initValue() {
-    const _props = this.props
-    let _radioList = []
-    let _value
 
-    if (this.radioList && this.radioList.length > 0) {
-      _radioList = this.radioList
-    }
-    // else if (_props.children) {
-    //     React.Children.map(_props.children, (child, index) => {
-    //         _radioList.push({
-    //             text: child.props.children,
-    //             isDisabled : child.props.isDisabled,
-    //             value: child.props.value || index
-    //         })
-    //     })
-    //     this.radioList = _radioList
-    // }
-    if (
-      'value' in _props &&
-      _radioList.some(item => {
-        return item.value === _props.value
+  /**
+   * 初始化value
+   */
+  initValue() {
+    const { value } = this.props // 父级传入的选中值
+    let _value // 按钮组实际选中的值
+
+    if (value &&
+      this.radioList.some(item => {
+        return item.value === value
       })
     ) {
-      _value = _props.value
-    } else if (
-      'defaultValue' in _props &&
-      _radioList.some(item => {
-        return item.value === _props.defaultValue
-      })
-    ) {
-      _value = _props.defaultValue
+      _value = value
     } else {
-      _value = _radioList[0].value
+      _value = this.radioList[0].value // 未传props.value则使用第一个的值
     }
+
     this.updateValue(_value)
   }
+
+  /**
+   * 设置选中的值
+   * @param {any} newVal 
+   */
   updateValue(newVal) {
     this.setState({
       value: newVal
@@ -72,11 +60,13 @@ export default class RadioGroup extends React.Component {
     const callback = this.props.onChange
     typeof callback === 'function' && callback(newVal)
   }
+
+  /**
+   * 渲染radio列表
+   */
   renderRadioList() {
-    let _ListDom
-    const _radioList = this.radioList
-    if (_radioList && _radioList.length > 0) {
-      _ListDom = _radioList.map((item, index) => {
+    if (this.radioList && this.radioList.length) {
+      return this.radioList.map((item, index) => {
         return (
           <Radio
             key={index}
@@ -90,19 +80,17 @@ export default class RadioGroup extends React.Component {
           </Radio>
         )
       })
-      return _ListDom
     }
   }
+
   render() {
+    const { buttonSize, type } = this.props
     return (
       <div
         className={classNames(
           'com-radio-group',
-          {
-            [`com-radio-group--${this.props.buttonSize}`]:
-              this.props.buttonSize !== 'middle'
-          },
-          { 'com-radio-group--button': this.props.type === 'button' }
+          {[`com-radio-group--${buttonSize}`]: type === 'button' && buttonSize !== 'middle' },
+          { 'com-radio-group--button': type === 'button' }
         )}
       >
         {this.renderRadioList()}

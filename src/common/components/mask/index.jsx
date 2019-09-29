@@ -1,23 +1,36 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import * as actions from './redux/actions'
-export class Mask extends React.Component {
+
+// ====== Constant ====== //
+import reducerNameConstants from '../../utils/reducerNameConstants'
+
+// ====== Action ====== //
+import * as maskActionCreator from './redux/actions'
+
+class Mask extends React.Component {
   render() {
+    const { maskReducer } = this.props
+    const isShowMask = maskReducer.get('isShowMask')
+    const maskZIndex = maskReducer.get('maskZIndex')
+    
     return (
       <React.Fragment>
-        {this.props.isShowMask && <div className='com-modalMask' />}
+        {isShowMask && <div className='com-modalMask' style={{zIndex: maskZIndex}} />}
       </React.Fragment>
     )
   }
 }
+
 function mapStateToProps(state) {
-  return state.isShowMask
+  return {
+    maskReducer: state[reducerNameConstants.MASK_REDUCER]
+  }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    action: bindActionCreators({ ...actions }, dispatch)
+    maskAction: bindActionCreators(maskActionCreator, dispatch)
   }
 }
 
