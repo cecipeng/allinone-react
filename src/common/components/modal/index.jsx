@@ -22,7 +22,7 @@ export class Modal extends React.Component {
     isCentered: true, // 是否垂直居中显示
     isMask: true, // 是否展示遮罩
     isCancelBtn: true, // 是否显示取消按钮
-    isMaskClosable: true, // 是否点击蒙层关闭modal
+    isMaskClosable: false, // 是否点击蒙层关闭modal
     isClosable: true, // 是否显示右上角的关闭按钮
     isHeader: true, // 是否显示头部
     isFooter: true, // 是否显示底部
@@ -48,7 +48,7 @@ export class Modal extends React.Component {
     const { isMask, maskAction } = this.props
 
     // 设置是否显示遮罩
-    maskAction.toggleShowMaskAction(isMask)
+    isMask && maskAction.showMaskAction()
   }
   componentWillUnmount() {
     console.log('componentWillUnmount')
@@ -75,7 +75,7 @@ export class Modal extends React.Component {
   }
 
   /**
-   * 点击弹窗外关闭弹窗  ????
+   * 点击弹窗外关闭弹窗
    */
   onMaskClick(e) {
     if (e.target === e.currentTarget && this.props.isMaskClosable) {
@@ -88,10 +88,9 @@ export class Modal extends React.Component {
    */
   _closeModal() {
     const { isMask, maskAction } = this.props
-    console.log(isMask);
     
     // 关闭遮罩（弹窗实例定义了要显示遮罩，才做关闭操作，避免多弹窗下误关遮罩）
-    isMask && maskAction.toggleShowMaskAction(false)
+    isMask && maskAction.hiddenMaskAction()
 
     this.setState({
       isVisible: false

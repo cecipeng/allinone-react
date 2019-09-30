@@ -1,9 +1,11 @@
 import initialState from './initialState'
-import { reducer as toggleShowMask } from './toggleShowMask'
+import { reducer as showMask } from './showMask'
+import { reducer as hiddenMask } from './hiddenMask'
 import { reducer as updateMaskZIndex } from './updateMaskZIndex'
 
 const reducers = [
-  toggleShowMask,
+  showMask,
+  hiddenMask,
   updateMaskZIndex
 ]
 

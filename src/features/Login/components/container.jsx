@@ -10,7 +10,6 @@ import * as loginActionCreator from '../redux/actions'
 // ====== Constant ====== //
 import reducerNameConstants from '../../../common/utils/reducerNameConstants'
 
-import Modal from '../../../common/components/modal/index'
 class Login extends React.Component {
   constructor(props) {
     super(props)
@@ -55,15 +54,6 @@ class Login extends React.Component {
     return (
       <div className='layout-mod mod-login'>
         <div className='layout-wrapper'>
-          <Modal
-            title='1'
-            isVisible
-          />
-          <Modal
-            title='2'
-            isMask={false}
-            isVisible
-          />
           <form onSubmit={handleSubmit(this.handleLoginIn)}>
             <div className='formbox'>
               {/* 标题 */}
