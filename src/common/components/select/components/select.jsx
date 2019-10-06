@@ -4,6 +4,9 @@ import classNames from 'classnames'
 // ====== Constants ====== //
 import { PLACEMENT } from '../utils/constants'
 
+// ====== Components ====== //
+import Icon from '../../icon/index'
+
 export default class Select extends React.Component {
   static defaultProps = {
     placement: 'bottomStart', // 菜单弹出位置
@@ -16,6 +19,7 @@ export default class Select extends React.Component {
       // 下拉菜单配置
       {
         text: '', // 显示内容
+        icon: '', // 图标
         value: '' // 选项value值
       }
     ],
@@ -51,16 +55,19 @@ export default class Select extends React.Component {
     const { getSelectOption, options } = this.props
     let _value = value || options[0].value
     let _text
+    let _icon
 
     options.forEach((item) => {
       if (item.value === _value) {
         _text = item.text
+        _icon = item.icon
       }
     })
     this.setState(
       {
         selectOption: {
           value: _value,
+          icon: _icon,
           text: _text
         }
       },
@@ -129,6 +136,7 @@ export default class Select extends React.Component {
         onClick={() => { this.onClickItem(item.value) }}
         data-value={item.value}
       >
+        item.icon && item.icon.length && <Icon type={item.icon} />
         <span className='dropitem'>{item.text}</span>
       </li>
     ))

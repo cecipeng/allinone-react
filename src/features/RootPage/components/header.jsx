@@ -5,6 +5,7 @@ import intl from 'react-intl-universal'
 
 // ====== Components ====== //
 import UserHead from '../../../common/components/userHead/index'
+import Select from '../../../common/components/select/index'
 
 // ====== Constants ====== //
 import reducerNameConstants from '../../../common/utils/reducerNameConstants'
@@ -22,7 +23,22 @@ export class Header extends React.Component {
               currentUserReducer ? ( 
                 // 已登录
                 <div className='header-userdrop ui-dropdown'>
-                  <UserHead userInfo={currentUserReducer} />
+                  <Select
+                    defaultValue={2}
+                    options={[
+                        {
+                            text: 1,
+                            value:1
+                        },
+                        {
+                            text: 2,
+                            value:2
+                        }
+                    ]}
+                    getSelectOption={this.handleGetSelectOption}
+                >
+                    <UserHead userInfo={currentUserReducer} />
+                  </Select>
                 </div>
               ) : (
                 // 未登录

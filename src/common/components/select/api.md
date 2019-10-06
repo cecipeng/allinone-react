@@ -19,6 +19,7 @@
 options = [
     { // 每个选项的配置
         text : string = '', // 文本
+        icon: '', // 图标
         value : string = '', // 选项value值
     }
 ]
@@ -43,10 +44,12 @@ import Select from 'xxx/common/components/select/index'
     options={[
         {
             text: 1,
+            icon: '',
             value:1
         },
         {
             text: 2,
+            icon: '',
             value:2
         }
     ]}
@@ -67,10 +70,12 @@ handleGetSelectOption(option) {
     options={[
         {
             text: 1,
+            icon: '',
             value:1
         },
         {
             text: 2,
+            icon: '',
             value:2
         }
     ]}
