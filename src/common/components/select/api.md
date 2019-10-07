@@ -1,14 +1,18 @@
-# 下拉菜单 Select
+# 选择器 Select
 
 元组件。
-向下弹出的列表，可从列表项中选择一项
+弹出的列表，可从列表项中选择一项作为整体的值，用于代替原生的select选择器
+
+## 与Dropdown的区别
+- Select的触发按钮为当前选中值的展示，在点击列表项后，返回一个选择的值作为select的选中值，传入固定的text、value等字段
+- Dropdown的触发按钮可自定义，列表项也可以自定义，点击列表项后，根据自定义的操作处理不同的事情，如跳转页面等
 
 ## Props
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
 | options | 下拉菜单配置 | array | 无 |
 | defaultValue | 指定默认选中的条目的value（使用默认按钮时生效） | any | 无 |
-| dropdownWidth | 下拉菜单宽度 | string | 和选择器同宽 |
+| selectWidth | 下拉菜单宽度 | string | 和选择器同宽 |
 | placement | 下拉菜单位置 | string(bottomStart/bottomCenter/bottomEnd/topStart/topCenter/topEnd) | bottomStart |
 | size | 大小 | 'large'/'middle'/'small' | 'middle' |
 | isDisabled | 是否禁用 | boolean | false |
@@ -29,10 +33,9 @@ options = [
 | 参数 | 说明 | 数据类型 | 初始值 | 修改途径
 | - | - | - | - | - |
 | selectOption | 选中项（数据结构同props.options） | object | 无 | |
-| isOpenDropdown | 是否打开下拉菜单 | boolean | false | |
+| isOpenSelect | 是否打开下拉菜单 | boolean | false | |
 
 ## 使用案例
-### 1.使用默认按钮
 ```
 import Select from 'xxx/common/components/select/index'
 
@@ -40,47 +43,20 @@ import Select from 'xxx/common/components/select/index'
     defaultValue={2}
     size='large'
     isDisabled
-    dropdownWidth='100px'
+    selectWidth='100px'
     options={[
         {
             text: 1,
-            icon: '',
+            icon: 'icon-left',
             value:1
         },
         {
             text: 2,
-            icon: '',
-            value:2
-        }
-    ]}
->
-</Select>
-```
-
-### 2.使用自定义按钮
-```
-import Select from 'xxx/common/components/select/index'
-
-handleGetSelectOption(option) {
-  console.log(option.value, option.text)
-}
-
-<Select
-    defaultValue={2}
-    options={[
-        {
-            text: 1,
-            icon: '',
-            value:1
-        },
-        {
-            text: 2,
-            icon: '',
+            icon: 'icon-left',
             value:2
         }
     ]}
     getSelectOption={this.handleGetSelectOption}
 >
-    <p>点我打开</p>
 </Select>
 ```

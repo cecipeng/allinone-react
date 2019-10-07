@@ -1,12 +1,22 @@
 import React from 'react'
 
+// ====== Components ====== //
+import Icon from '../../../common/components/icon/index'
+
 const UserHead = (userInfo) => {
   return (
     <div className='com-userhead'>
       <span className='head'>
-        <img src={userInfo.userHead} alt='' />
+        {
+          userInfo.userHead ? 
+          <img src={userInfo.userHead} alt='' />
+          :
+          <Icon type='icon-default-head' />
+        }
       </span>
-      <span className='name'>{userInfo.userName}</span>
+      {
+        userInfo.userName && <span className='name'>{userInfo.userName}</span>
+      }
     </div>
   )
 }

@@ -91,6 +91,13 @@ const UTIL = {
   // 最新设置的语言写入localstorage
   setLangTypeToLocalstorage: langType => {
     localStorage.setItem('langType', langType)
+  },
+
+  /**
+   * 生成唯一的随机数（15位）
+   */
+  getRandomId: (number=15) => {
+    return Number(Math.random().toString().substr(3, number) + Date.now()).toString(36);
   }
 }
 

@@ -3,7 +3,7 @@
 //-----------------------------------------------------
 // author:  590000
 //-----------------------------------------------------
-
+$userhead-size: unit(30);
 
 //--------------------- 通用header ---------------------//
 
@@ -33,30 +33,24 @@
 	.logo {
 		display: inline-block;
 		vertical-align: middle;
-		height: 40px;
-		line-height: 40px;
-		padding-left: 80px;
+		height: unit(40);
+		line-height: unit(40);
+		padding-left: unit(80);
 		font-size: 16px;
 		color: #fff;
 		@include bgurl('logo.png');
-		background-size: auto 25px;
+		background-size: auto unit(25);
 		background-position: left center;
 		@include hover(transform,scale(1.07),scale(1.07));
 	}
 	//下拉菜单
 	.header-userdrop {
-		padding: 10px 0;
+    padding: ($header-h - $userhead-size) / 2 0;
 		.com-userhead .name {
 			color: #fff;
-			font-size: 14px;
-		}
-		.selector {
-			display: block;
-			padding-right: 24px;
-			line-height: 30px;
 		}
 		.dropdown-list {
-			top: 40px;
+			top: ($header-h - $userhead-size) / 2 + $userhead-size;
 			border: none;
 			.dropitem {
 				color: #fff;

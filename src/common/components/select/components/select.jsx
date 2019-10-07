@@ -1,5 +1,6 @@
 import React from 'react'
 import classNames from 'classnames'
+import $ from 'jquery'
 
 // ====== Constants ====== //
 import { PLACEMENT } from '../utils/constants'
@@ -7,13 +8,15 @@ import { PLACEMENT } from '../utils/constants'
 // ====== Components ====== //
 import Icon from '../../icon/index'
 
+// ====== Util ====== //
+import UTIL from '../../../utils/utils'
+
 export default class Select extends React.Component {
   static defaultProps = {
     placement: 'bottomStart', // 菜单弹出位置
     isDisabled: false, // 是否禁用
-    // trigger: 'hover', // 触发下拉的行为, 移动端不支持 hover   click|hover
     size: 'middle', // 默认按钮大小  'large'/'middle'/'small'
-    dropdownWidth: '', // 下拉菜单宽度，默认为：和选择器同宽
+    selectWidth: '', // 下拉菜单宽度，默认为：和选择器同宽
     defaultValue: '', // 指定默认选中的条目的value，使用默认按钮时生效
     options: [
       // 下拉菜单配置
@@ -34,17 +37,26 @@ export default class Select extends React.Component {
         value: '',
         text: ''
       },
-      isOpenDropdown: false // 是否打开下拉菜单
+      isOpenSelect: false // 是否打开下拉菜单
     }
     this.renderTriggerButton = this.renderTriggerButton.bind(this)
     this.renderOptions = this.renderOptions.bind(this)
     this.setSelectOption = this.setSelectOption.bind(this)
     this.onClickItem = this.onClickItem.bind(this)
-    this.handleDropdownShow = this.handleDropdownShow.bind(this)
+    this.handleHiddenSelect = this.handleHiddenSelect.bind(this)
+    this.handleTriggleSelectShow = this.handleTriggleSelectShow.bind(this)
   }
 
   componentWillMount() {
     this.setSelectOption(this.props.defaultValue)
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this.handleHiddenSelect, false)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.handleHiddenSelect, false)
   }
 
   /**
@@ -81,11 +93,26 @@ export default class Select extends React.Component {
   /**
    * 下拉菜单的显示和隐藏
    */
-  handleDropdownShow() {
+  handleTriggleSelectShow() {
     if (!this.props.isDisabled) {
-      this.setState(oldState => ({
-        isOpenDropdown: !oldState.isOpenDropdown
+      this.setState(prevState => ({
+        isOpenSelect: !prevState.isOpenSelect
       }))
+    }
+  }
+
+  /**
+   * 隐藏下拉菜单
+   */
+  handleHiddenSelect(e) {
+    const _targetId = $(e.target).closest('.com-select').attr('data-id')
+    const _thisId = $(this.refs.select).attr('data-id')
+    e.stopPropagation()
+    
+    if (_targetId !== _thisId) {
+      this.setState({
+        isOpenSelect: false
+      })
     }
   }
 
@@ -95,58 +122,62 @@ export default class Select extends React.Component {
    */
   onClickItem(value) {
     this.setSelectOption(value)
-    this.handleDropdownShow()
+    this.handleTriggleSelectShow()
   }
 
   /**
    * 渲染默认按钮
    */
   renderTriggerButton() {
-    const { children } = this.props
-    const { selectOption } = this.state
+    const { selectOption, isOpenSelect } = this.state
 
-    if (children) {
-      // 支持自定义DOM
-      return children
-    } else {
-      return (
-        <span className='btn-rel'>
-          <span
-            className='selector-btn'
-            data-value={selectOption.value}
-          >
-            {selectOption.text}
-          </span>
-          <i className='dropdown-arrow' />
+    const _styleArrow = isOpenSelect ? { transform: 'rotate(180deg)' } : {}
+    return (
+      <div
+        className='com-select__selection'
+        onClick={this.handleTriggleSelectShow}
+      >
+        <span
+          className='com-select__selection-text'
+          data-value={selectOption.value}
+        >
+          {selectOption.text}
         </span>
-      )
-    }
+        <Icon type='icon-bottom' style={_styleArrow} />
+      </div>
+    )
   }
 
   /**
    * 渲染下拉菜单项
    */
   renderOptions() {
-    return this.props.options.map((item, index) => (
-      <li
-        key={index}
-        className={
-          this.state.selectOption.value === item.value ? 'selected' : ''
-        }
-        onClick={() => { this.onClickItem(item.value) }}
-        data-value={item.value}
-      >
-        item.icon && item.icon.length && <Icon type={item.icon} />
-        <span className='dropitem'>{item.text}</span>
-      </li>
-    ))
+    return this.props.options ?
+       this.props.options.map((item, index) => (
+        <li
+          key={index}
+          className={classNames(
+            'com-select__menu-item',
+            { 'is-selected': this.state.selectOption.value === item.value }
+          )}
+          onClick={() => { this.onClickItem(item.value) }}
+          data-value={item.value}
+        >
+          {
+            item.icon && item.icon.length && <Icon type={item.icon} />
+          }
+          <p className='com-select__menu-text'>{item.text}</p>
+        </li>
+      ))
+      : <div>无内容</div>
   }
 
   render() {
-    const { placement, dropdownWidth, size, isDisabled } = this.props
-    const { isOpenDropdown } = this.state
+    const { placement, selectWidth, size, isDisabled } = this.props
+    const { isOpenSelect } = this.state
     const _mainTrigger = this.renderTriggerButton()
     const _options = this.renderOptions()
+    const _selectId = UTIL.getRandomId()
 
     // 设置下拉菜单位置
     let placementClassName = ''
@@ -159,30 +190,27 @@ export default class Select extends React.Component {
     return (
       <div
         className={classNames(
-          'ui-dropdown',
-          { [`ui-dropdown--${size}`]: size !== 'middle' },
+          'com-select',
+          { [`com-select--${size}`]: size !== 'middle' },
           { 'is-disabled': isDisabled }
         )}
+        ref='select'
+        data-id={_selectId}
       >
         {/* 主按钮 */}
-        <div
-          className='dropdown-mainlink'
-          onClick={this.handleDropdownShow}
-        >
-          {_mainTrigger}
-        </div>
+        {_mainTrigger}
 
         {/* 下拉菜单 */}
-        {isOpenDropdown && (
+        {isOpenSelect && (
           <div
-            className={`dropdown-list ${placementClassName}`}
+            className={`com-select__menu ${placementClassName}`}
             style={{
-              width: dropdownWidth
-                ? dropdownWidth
+              width: selectWidth
+                ? selectWidth
                 : '100%'
             }}
           >
-            <ul className='droplist'>
+            <ul className='com-select__menu-list'>
               {_options}
             </ul>
           </div>

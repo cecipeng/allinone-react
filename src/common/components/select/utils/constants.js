@@ -2,26 +2,26 @@
 export const PLACEMENT = [
   {
     name: 'bottomStart',
-    className: 'ui-dropdown--bottom-start'
+    className: 'com-select--bottom-start'
   },
   {
     name: 'bottomCenter',
-    className: 'ui-dropdown--bottom-center'
+    className: 'com-select--bottom-center'
   },
   {
     name: 'bottomEnd',
-    className: 'ui-dropdown--bottom-end'
+    className: 'com-select--bottom-end'
   },
   {
     name: 'topStart',
-    className: 'ui-dropdown--top-start'
+    className: 'com-select--top-start'
   },
   {
     name: 'topCenter',
-    className: 'ui-dropdown--top-center'
+    className: 'com-select--top-center'
   },
   {
     name: 'topEnd',
-    className: 'ui-dropdown--top-end'
+    className: 'com-select--top-end'
   }
 ]
