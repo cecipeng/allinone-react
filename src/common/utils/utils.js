@@ -83,6 +83,14 @@ const UTIL = {
     localStorage.setItem('accessToken', accessToken)
     localStorage.setItem('langType', langType)
   },
+  // 从localstorage删除用户信息
+  deleteCurrentUserToLocalstorage: () => {
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('userHead')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('langType')
+  },
 
   // 从localstorage获取语言
   getLangTypeFromLocalstorage: () => {

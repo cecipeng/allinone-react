@@ -11,7 +11,31 @@ import Dropdown from '../../../common/components/dropdown/index'
 import reducerNameConstants from '../../../common/utils/reducerNameConstants'
 import routerConstants from '../../../common/utils/routerConstants'
 
+// ====== Util ====== //
+import UTIL from '../../../common/utils/utils'
+
 export class Header extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.handleLogOut = this.handleLogOut.bind(this)
+  }
+
+  /**
+   * 退出登录
+   */
+  handleLogOut () {
+    // 1.从localstorage删除用户信息
+    UTIL.deleteCurrentUserToLocalstorage()
+
+    // 2.从store删除用户信息
+
+    // 3.从store删除登录信息
+
+    // 4.从store删除token
+
+    // 5. 跳转到登录页
+  }
   render () {
     const { currentUserReducer } = this.props
     return (
@@ -30,8 +54,8 @@ export class Header extends React.Component {
                         {
                           text: '退出登录',
                           icon: 'icon-log-out',
-                          handleFunc: () =>{
-                            console.log(1);
+                          handleFunc: () => {
+                            this.handleLogOut()
                           }
                         }
                     ]}
