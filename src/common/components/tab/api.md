@@ -1,62 +1,62 @@
 # 标签页 Tab
 
 元组件。
-弹出的列表，可从列表项中选择一项作为整体的值，用于代替原生的select选择器
+选项卡切换组件
+分为<Tab>容器组件，和<TabPlane>内容组件
 
-## 与Dropdown的区别
-- Select的触发按钮为当前选中值的展示，在点击列表项后，返回一个选择的值作为select的选中值，传入固定的text、value等字段
-- Dropdown的触发按钮可自定义，列表项也可以自定义，点击列表项后，根据自定义的操作处理不同的事情，如跳转页面等
-
-## Props
+## Tab组件 Props
 | 参数 | 说明 | 数据类型 | 默认值 |
 | - | - | - | - |
-| options | 下拉菜单配置 | array | 无 |
-| defaultValue | 指定默认选中的条目的value（使用默认按钮时生效） | any | 无 |
-| selectWidth | 下拉菜单宽度 | string | 和选择器同宽 |
-| placement | 下拉菜单位置 | string(bottomStart/bottomCenter/bottomEnd/topStart/topCenter/topEnd) | bottomStart |
+| placement | tab标签位置 | string(bottom/top/left/right | top |
+| defaultActivePlaneKey | 默认显示的plane | string | 第一个plane |
 | size | 大小 | 'large'/'middle'/'small' | 'middle' |
+| extraContent | tab标签上额外的内容，通常为操作按钮 | jsx代码块 | 无 |
+| changeTabCallback | 切换页签的回调函数 | function | - |
 | isDisabled | 是否禁用 | boolean | false |
-| getSelectOption | 父组件获取当前选中值 | function | - |
 
-```
-// options的数据结构：
-options = [
-    { // 每个选项的配置
-        text : string = '', // 文本
-        icon: '', // 图标
-        value : string = '', // 选项value值
-    }
-]
-```
 
-## State
+## Tab组件 State
 | 参数 | 说明 | 数据类型 | 初始值 | 修改途径
 | - | - | - | - | - |
-| selectOption | 选中项（数据结构同props.options） | object | 无 | |
-| isOpenSelect | 是否打开下拉菜单 | boolean | false | |
+| activePlaneKey | 当前激活的页签id值 | string | 无 | - |
+
+## TabPlane组件 Props
+| 参数 | 说明 | 数据类型 | 默认值 |
+| - | - | - | - |
+| tabKey | plane的id | string | 无 |
+| tabName | tab标签的名字 | string | 'tabName' |
+| tabIcon | tab标签的图标，对应Icon组件的type值 | string | 无 |
+| isActive | 是否激活该plane | boolean | false |
+| isDisabled | 是否禁用该plane | boolean | false |
+| handleEnterPlaneCallback | 进入该plane的特殊回调 | function | - |
+
 
 ## 使用案例
 ```
-import Select from 'xxx/common/components/select/index'
+import Tab, { TabPlane } from 'xxx/common/components/tab/index'
 
-<Select
-    defaultValue={2}
-    size='large'
-    isDisabled
-    selectWidth='100px'
-    options={[
-        {
-            text: 1,
-            icon: 'icon-left',
-            value:1
-        },
-        {
-            text: 2,
-            icon: 'icon-left',
-            value:2
-        }
-    ]}
-    getSelectOption={this.handleGetSelectOption}
+const extraContent = (
+  <div>
+    <a>link 1</a>
+    <a>link 2</a>
+  </div>
+)
+<Tab
+  placement='bottom'
+  defaultActivePlaneKey='cc'
+  changeTabCallback={()=>{console.log('切换每个tab时触发');
+  }}
+  extraContent={extraContent}
+  size='large'
 >
-</Select>
+  <TabPlane tabName='aa' tabKey='aa' tabIcon='icon-left' handleEnterPlaneCallback={()=>{console.log('进入aa时触发')}}>
+    aa
+  </TabPlane>
+  <TabPlane tabName='bb' tabKey='bb' isDisabled>
+    bb
+  </TabPlane>
+  <TabPlane tabName='cc' tabKey='cc' isDisabled>
+    cc
+  </TabPlane>
+</Tab>
 ```

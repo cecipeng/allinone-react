@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 // ====== Components ====== //
 import Header from './header'
@@ -21,6 +21,7 @@ export default class RootPage extends React.Component {
           <Switch>
             <Route exact path={routerConstants.HOME} component={Home} />
             {/* <Route path={routerConstants.NAVIGATION} component={Navigation}/> */}
+            <Redirect to={routerConstants.HOME} />
           </Switch>
         </div>
         <div className='layout-footer'>
