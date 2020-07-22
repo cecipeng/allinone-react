@@ -1,0 +1,106 @@
+@charset "UTF-8";
+//-----------------------------------------------------
+// author:  590000
+//-----------------------------------------------------
+
+//--------------------- 根节点设置 ---------------------//
+body {
+  min-width: $min-w; //modify
+  overflow: auto; //modify
+}
+
+#root {
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+}
+
+//--------------------- 通用类名 ---------------------//
+
+//--------------------- 布局 ---------------------//
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  /////////////////// 常规布局
+  &-header {
+    height: $header-h;
+  }
+
+  &-body {
+    flex: 1;
+    padding-bottom: unit(80); //内容底部留一定距离
+  }
+
+  &-footer {
+    height: $footer-h;
+  }
+
+  /////////////////// 以下为常用的布局效果，视情况使用对应类名
+  //局部滚动条统一使用类名：layout-scroll
+  &-scroll {
+    height: 100%;
+    overflow-y: auto !important;
+  }
+
+  //居中内容统一使用类名：layout-wrapper
+  &-wrapper {
+    width: $wrapper-w;
+    margin: 0 auto;
+    // @include breakpoint($mq-s) {
+    // 	width: $min-w;
+    // }
+  }
+
+  //固定悬浮在居中内容外侧
+  &-fix {
+    position: fixed;
+    left: 50%;
+    bottom: 200px; //
+    width: 180px; //
+    margin-left: -($wrapper-w / 2);  //
+  }
+
+  //BFC布局
+  &-bfc {
+    @extend %cf;
+
+    &__left {
+      float: left;
+    }
+
+    &__right {
+      float: right;
+    }
+
+    &__content {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  //出现弹窗时主体内容不出现滚动条，统一使用类名：layout-mod-pop
+  &.layout--pop {
+    height: 100%;
+    overflow: hidden;
+
+    .layout-footer {
+      position: relative;
+    }
+  }
+
+  //内容少时layout-footer要置底
+  position: relative;
+  min-height: 100%;
+  padding-bottom: $footer-h;
+
+  .layout-footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+}

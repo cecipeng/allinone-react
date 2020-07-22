@@ -1,0 +1,168 @@
+// @charset "UTF-8";
+
+// //--------------------- extend ---------------------//
+
+// // wordbreak
+// %wb {
+//   word-break: break-all;
+//   word-wrap: break-word;
+// }
+
+// // 文字超出显示省略号
+// %tof {
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+// }
+
+// // clearfix
+// %cf {
+//   &::after {
+//     content: "";
+//     display: table;
+//     clear: both;
+//   }
+// }
+
+// //垂直居中
+// %vm {
+//   &::after {
+//     display: inline-block;
+//     vertical-align: middle;
+//     width: 0;
+//     height: 100%;
+//     content: "";
+//   }
+// }
+
+// //--------------------- mixin ---------------------//
+
+// // rem
+// $fzrem: 30;
+
+// @function unit($px, $basefzrem:$fzrem) {
+//   @return $px * 1px;
+//   // @return $px / $basefzrem * 1rem;
+// }
+
+
+// // 设置透明度 0~100
+// @mixin opacity($s) {
+//   opacity: $s/100;
+//   filter: alpha(opacity=$op);
+// }
+
+
+// // 小三角
+// @mixin triangle($d:top,$color:#ddd,$xsize:unit(10),$ysize:unit(10)) {
+//   width: 0;
+//   height: 0;
+//   border-width: $xsize $ysize;
+//   border-color: transparent;
+//   border-#{$d}-color: $color;
+//   border-style: solid;
+// }
+
+// // 绝对定位水平垂直居中
+// @mixin middle($left:-50%,$top:-50%) {
+//   position: absolute;
+//   left: 50%;
+//   top: 50%;
+//   margin-left: $left;
+//   margin-top: $top;
+// }
+
+
+// //渐变效果
+// @mixin transition($type:color) {
+//   transition: $type 0.2s ease-out;
+// }
+
+// //hover and active
+// //$data-hover: ($n1,$hover,$active)($n2,$hover,$active)($n3,$hover,$active);
+// @mixin hovers($data) {
+//   $ease: 0.3s ease-out;
+//   $return: nth(nth($data, 1), 1) $ease;
+
+//   @for $i from 2 through length($data) {
+//     $return: join(#{$return}, #{nth(nth($data, $i), 1) $ease}, 'comma');
+//   }
+
+//   transition: $return;
+
+//   &:hover {
+//     @each $prop, $hover, $active in $data {
+//       #{$prop}: $hover;
+//     }
+//   }
+
+//   &:active {
+//     @each $prop, $hover, $active in $data {
+//       #{$prop}: $active;
+//     }
+//   }
+// }
+
+// @mixin hover($n,$val1,$val2) {
+//   transition: $n 0.3s ease-out;
+
+//   &:hover {
+//     #{$n}: $val1;
+//   }
+
+//   &:active {
+//     #{$n}: $val2;
+//   }
+// }
+
+// // sprite
+// // $global_sprite:
+// //     ('img-logo', 'images/logo.png')  
+// //     ('img-logo2', 'images/logo2.png')  
+// // ;
+// // // each sprite
+// // @each $spName, $spSrc in $global_sprite {
+// //   	%#{$spName} {
+// //     	background-image: url($spSrc);
+// //     	background-repeat: no-repeat;
+// //   	}
+// // }
+// // @example:
+// //   @extend %icon;
+
+
+// // 背景图片
+// @mixin bgurl($url, $repeat:no-repeat, $x:left, $y:top) {
+//   background: url('../../images/#{$url}') $repeat $x $y;
+// }
+
+// // sprites背景图片
+// @mixin sp($x:0,$y:0,$name:icon,$repeat:no-repeat) {
+//   background: url('../images/sprites-#{$name}.png') $repeat $x $y;
+// }
+// // sprites背景图片（带二态）。注：图片名称已固定，可修改
+// @mixin sp2($x:0,$y:0,$repeat:no-repeat) {
+//   background: url('../images/sprites-normal.png') $repeat $x $y;
+//   transition: all 0.3s ease-out;
+
+//   &:hover {
+//     background-image: url('../images/sprites-hover.png');
+//   }
+
+//   &:active {
+//     background-image: url('../images/sprites-active.png');
+//   }
+// }
+
+// // Gradients
+// @mixin linear-gradient($start, $end, $to:bottom) {
+//   background-color: $start; // Old browsers
+//   background-image: linear-gradient(to $to, $start 0%, $end 100%);     // W3C
+//   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=0); // IE6-9
+// }
+
+// @mixin directional-gradient($start, $end, $deg: 45deg) {
+//   background-color: $start; // Old browsers
+//   background-image: linear-gradient($deg, $start 0%, $end 100%);     // W3C
+//   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#{$start}', endColorstr='#{$end}', GradientType=1); // IE6-9
+// }

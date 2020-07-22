@@ -1,0 +1,682 @@
+// @charset "UTF-8";
+
+// /*
+//  * module:  mod-photo
+//  * author:  590000
+//  */
+// $sider-w :              150px;
+// $top :                  20px;
+// //文章列表页
+// .mod-photo {
+//   background-color: $bg-l;
+//   padding-top: $header-h;
+
+//   > .layout-wrapper {
+//     position: relative;
+//     padding-top: $top;
+
+//     @extend %cf;
+//   }
+// }
+
+// .photo {
+//   &-sider {
+//     float: left;
+//     width: $sider-w;
+//     margin-right: -1px;
+//     border-right: 1px solid $border;
+//     //侧栏菜单
+//     &__menu {
+//       li {
+//         height: 50px;
+//         line-height: 50px;
+//         padding: 0 10px 0 20px;
+//         cursor: pointer;
+//         border-left: 3px solid transparent;
+
+//         &:hover {
+//           color: $main;
+
+//           @include transition;
+//         }
+
+//         &.on {
+//           color: $main;
+//           border-left-color: $main;
+//           background-color: rgba(0, 0, 0, 0.05);
+//         }
+//       }
+//     }
+//   }
+
+//   &-container {
+
+//   }
+
+//   &-content {
+//     margin-left: -1px;
+//     min-height: 500px;
+//     padding-left: 20px;
+//     overflow: hidden;
+//     border-left: 1px solid $border;
+//   }
+//   //卡片
+//   &-card {
+//     .ui-card__title-center {
+//       margin-bottom: 30px;
+//     }
+//     // 创建于
+//     &__create {
+//       margin-right: 4px;
+
+//       &::before {
+//         display: inline-block;
+//         vertical-align: middle;
+//         line-height: 20px;
+//         margin-right: 5px;
+
+//         @extend %iconfont;
+//         @extend %icon-clock;
+
+//         font-size: 12px;
+//       }
+//     }
+
+//     &__number {
+//       margin-right: 4px;
+
+//       &::before {
+//         display: inline-block;
+//         vertical-align: middle;
+//         line-height: 20px;
+//         margin-right: 5px;
+
+//         @extend %iconfont;
+//         @extend %icon-tupian1;
+
+//         font-size: 12px;
+//       }
+//     }
+//   }
+//   //瀑布流
+//   &-waterfall {
+//     $margin: 10px;
+
+//     margin-right: -$margin;
+//     padding-bottom: 100px;
+
+//     .vue-waterfall-slot {
+//       padding-bottom: $margin;
+//     }
+
+//     &__item {
+//       position: relative;
+//       height: 100%;
+//       margin-right: $margin;
+//       background-color: #fff;
+//       box-shadow: $shadow;
+//       overflow: hidden;
+//       cursor: pointer;
+
+//       &:hover {
+//         .photo-waterfall__img {
+//           transform: scale(0.8) translateY(100px);
+//         }
+//       }
+//     }
+
+//     &__img {
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//       bottom: 0;
+//       right: 0;
+//       overflow: hidden;
+//       background-color: #ddd; ////
+//       transform-origin: center top;
+
+//       @include transition(transform);
+
+//       img {
+//         width: 100%;
+//         height: 100%;
+//       }
+//     }
+
+//     &__infor {
+//       padding: $margin;
+//     }
+
+//     &__inforitem {
+//       font-size: 12px;
+//       color: $color-l;
+//     }
+//     //操作
+//     .ui-card__ctrl-mainlink {
+//       color: #666;
+//     }
+
+//     .ui-card__ctrl-list {
+//       width: 120px;
+//     }
+//   }
+//   //详情页 - 布局
+//   &-detail {
+//     $infor-width: 350px;
+//     $preview-height: 100px;
+
+//     &-layout {
+//       position: fixed;
+//       left: 0;
+//       top: 0;
+//       right: 0;
+//       bottom: 0;
+//       background-color: rgba(255, 255, 255, 0.9);
+//       padding-right: $infor-width;
+//       z-index: $zindex-modal;
+
+//       &__img {
+//         position: relative;
+//         height: 100%;
+//         border-right: 1px solid $border;
+//         padding: 10px 60px $preview-height+10px;
+//       }
+
+//       &__infor {
+//         position: absolute;
+//         top: 0;
+//         right: 0;
+//         bottom: 0;
+//         width: $infor-width;
+//         padding-top: $header-h;
+//         overflow-y: auto;
+//         overflow-x: hidden;
+//       }
+
+//       &__closebtn {
+//         display: block;
+//         position: absolute;
+//         top: 10px;
+//         right: 10px;
+//         width: 30px;
+//         height: 30px;
+//         font-size: 30px;
+//         color: #999;
+
+//         @extend %iconfont;
+//         @extend %icon-guanbijiantou;
+
+//         cursor: pointer;
+
+//         &:hover {
+//           color: $main;
+//         }
+//       }
+//     }
+//     //大图预览
+//     &__img {
+//       position: relative;
+//       height: 100%;
+
+//       @extend %vm;
+
+//       font-size: 0;
+//       text-align: center;
+
+//       img {
+//         display: inline-block;
+//         vertical-align: middle;
+//         max-width: 99%;
+//         max-height: 100%;
+//       }
+
+//       &-prev {
+//         position: absolute;
+//         left: 10px;
+//         top: 50%;
+//         width: 50px;
+//         height: 50px;
+//         margin-top: -$preview-height - 25px;
+//         font-size: 50px;
+//         color: #999;
+
+//         @extend %iconfont;
+//         @extend %icon-arrow-left-copy;
+
+//         cursor: pointer;
+
+//         &:hover {
+//           color: $main;
+//         }
+//       }
+
+//       &-next {
+//         position: absolute;
+//         right: 10px;
+//         top: 50%;
+//         width: 50px;
+//         height: 50px;
+//         margin-top: -$preview-height - 25px;
+//         font-size: 50px;
+//         color: #999;
+
+//         @extend %iconfont;
+//         @extend %icon-arrow-right-copy;
+
+//         cursor: pointer;
+
+//         &:hover {
+//           color: $main;
+//         }
+//       }
+//     }
+//     //小图
+//     &__preview {
+//       position: absolute;
+//       left: 0;
+//       bottom: 0;
+//       right: 0;
+//       height: $preview-height;
+//       padding: 0 30px;
+//       border-top: 1px solid $border;
+
+//       &-prev,
+//       &-next {
+//         position: absolute;
+//         top: 0;
+//         bottom: 0;
+//         width: 30px;
+//         line-height: $preview-height;
+//         text-align: center;
+//         background-color: #ddd;
+//         color: $color-l;
+//         font-size: 24px;
+
+//         @extend %iconfont;
+
+//         cursor: pointer;
+
+//         &:hover {
+//           background-color: #ccc;
+//         }
+//       }
+
+//       &-prev {
+//         left: 0;
+
+//         @extend %icon-arrow-left-copy;
+//       }
+
+//       &-next {
+//         right: 0;
+
+//         @extend %icon-arrow-right-copy;
+//       }
+
+//       &-list {
+//         overflow: hidden;
+
+//         .list {
+//           white-space: nowrap;
+//           padding: 0 5px;
+
+//           li {
+//             display: inline-block;
+//             vertical-align: middle;
+//             width: $preview-height - 20px;
+//             height: $preview-height - 20px;
+//             line-height: $preview-height - 20px;
+//             margin: 10px 3px;
+//             border: 1px solid $border;
+//             background-color: #fff;
+
+//             img {
+//               vertical-align: middle;
+//               max-width: 100%;
+//               max-height: 100%;
+//             }
+//           }
+//         }
+//       }
+//     }
+//     // 信息
+//     &__infor {
+//       padding: 12px;
+
+//       .title {
+//         margin-bottom: 10px;
+//         font-size: 18px;
+//         color: $main;
+
+//         @extend %tof;
+//       }
+
+//       .subtext {
+//         margin-bottom: 6px;
+//         color: $color-l;
+//         font-size: 12px;
+//       }
+
+//       .introduction {
+//         padding: 10px;
+//         max-height: 136px;
+//         margin: 10px 10px 30px;
+//         color: $color;
+//         font-size: 14px;
+//         border: 1px solid $border;
+//         background-color: #f5f5f5;
+//         overflow-y: auto;
+//         overflow-x: hidden;
+//       }
+//     }
+
+//     &__taglist {
+//       @extend %cf;
+
+//       padding: 12px 12px 6px;
+//       background-color: #f5f5f5;
+
+//       li {
+//         float: left;
+//         padding: 0 6px;
+//         margin: 0 6px 6px;
+//         line-height: 20px;
+//         border-radius: 10px;
+//         color: $main;
+//         border: 1px solid $main;
+//         background-color: #fff;
+//       }
+//     }
+//     //参数
+//     &__para {
+//       position: relative;
+//       margin: 30px 0;
+//       padding: 40px 5px 10px;
+//       border: 1px solid $border;
+//       border-radius: $radius-s;
+//       text-align: center;
+
+//       .para-titlewrap {
+//         position: absolute;
+//         left: 0;
+//         right: 0;
+//         top: 20px * 3 / -2;
+//         height: 20px * 3;
+
+//         @extend %vm;
+
+//         text-align: center;
+//       }
+
+//       .para-title {
+//         position: relative;
+//         display: inline-block;
+//         vertical-align: middle;
+//         max-width: 80%;
+//         padding-left: 50px;
+//         padding-right: 10px;
+//         line-height: 20px;
+//         max-height: 20px * 3;
+//         overflow: hidden;
+//         background-color: #fff;
+
+//         @extend %wb;
+
+//         text-align: left;
+
+//         &::before {
+//           position: absolute;
+//           left: 10px;
+//           top: 50%;
+//           width: 30px;
+//           height: 30px;
+//           line-height: 30px;
+//           margin-top: -15px;
+
+//           @extend %iconfont;
+//           @extend %icon-xiangji;
+
+//           font-size: 30px;
+//           color: #bbb;
+//           text-align: center;
+//         }
+//       }
+
+//       .para-con {
+//         position: relative;
+//         display: inline-block;
+//         vertical-align: middle;
+//         min-width: 40px;
+//         padding-top: 45px;
+//         margin: 0 10px;
+//         color: $color;
+//         font-size: 14px;
+
+//         &::before {
+//           @extend %iconfont;
+
+//           position: absolute;
+//           left: 0;
+//           top: 0;
+//           right: 0;
+//           height: 40px;
+//           line-height: 40px;
+//           font-size: 30px;
+//           color: $color-l;
+//         }
+//       }
+
+//       .para-gq {
+//         @extend %icon-kuaimenyoubeijing;
+//       }
+
+//       .para-km {
+//         @extend %icon-kuaimensudu;
+//       }
+
+//       .para-iso {
+//         @extend %icon-iso;
+//       }
+
+//       .para-jj {
+//         @extend %icon-jiaodian;
+//       }
+//     }
+//   }
+//   /////////////////// 添加页面
+//   // 布局
+//   &-addlayout {
+//     &__sider {
+//       float: left;
+//       width: 300px; //////
+//       margin-right: 30px;
+//     }
+
+//     &__content {
+//       overflow: hidden;
+//       padding: 30px;
+//       padding-bottom: 100px;
+//       border: 1px solid $border;
+//       background-color: #fff;
+//     }
+//   }
+//   // 上传的小图
+//   &-smalllist {
+//     text-align: center;
+
+//     li {
+//       position: relative;
+//       display: inline-block;
+//       vertical-align: middle;
+//       width: 60px;
+//       height: 60px;
+//       line-height: 60px;
+//       border: 1px solid $border;
+//       background-color: #fff;
+//       margin: 0 5px 10px;
+//       cursor: pointer;
+
+//       &.on {
+//         border-color: $main;
+
+//         &::after {
+//           position: absolute;
+//           left: 50%;
+//           bottom: -16px;
+//           width: 0;
+//           height: 0;
+//           margin-left: -8px;
+//           border: 8px solid transparent;
+//           border-top-color: $main;
+//           content: '';
+//         }
+//       }
+
+//       &:hover {
+//         border-color: $main;
+//       }
+
+//       &.done {
+//         &::before {
+//           position: absolute;
+//           top: -10px;
+//           right: -10px;
+//           width: 20px;
+//           height: 20px;
+//           line-height: 20px;
+//           border-radius: 50%;
+//           background-color: $main;
+//           color: #fff;
+
+//           @extend %iconfont;
+//           @extend %icon-ok;
+
+//           font-size: 12px;
+//           font-weight: bold;
+//         }
+//       }
+//     }
+//   }
+//   // 添加
+//   &-add {
+//     &__img {
+//       img {
+//         width: 100%;
+//       }
+//     }
+
+//     &__tag {
+//       &-choose {
+//         @extend %cf;
+
+//         margin-bottom: 10px;
+
+//         li {
+//           position: relative;
+//           float: left;
+//           padding: 0 10px;
+//           margin: 5px 20px 5px 0;
+//           height: 30px;
+//           line-height: 28px;
+//           border: 1px dashed $main;
+//           border-radius: 3px;
+//           cursor: pointer;
+
+//           &:hover {
+//             .tag-delete {
+//               display: block;
+//             }
+//           }
+
+//           .tag-delete {
+//             display: none;
+//             position: absolute;
+//             right: -10px;
+//             top: -10px;
+//             width: 20px;
+//             height: 20px;
+//             line-height: 20px;
+//             background-color: #fff;
+//             border: 1px solid $main;
+//             border-radius: 50%;
+
+//             @extend %iconfont;
+//             @extend %icon-guanbijiantou;
+
+//             font-size: 12px;
+//             color: $main;
+//             font-weight: bold;
+
+//             &:hover {
+//               background: $main;
+//               color: #fff;
+//             }
+
+//             &:active {
+//               background: $main-d;
+//             }
+//           }
+//         }
+//       }
+
+//       &-wrap {
+//         padding: 20px 20px 10px;
+//         border: 1px solid $border;
+//         background-color: rgba(0, 0, 0, 0.025);
+
+//         .tagitem {
+//           margin-bottom: 5px;
+//         }
+
+//         .label {
+//           float: left;
+//           line-height: 30px;
+//           color: $color-l;
+//           margin-right: 10px;
+//         }
+
+//         .tag {
+//           display: inline-block;
+//           vertical-align: middle;
+//           line-height: 30px;
+//           padding: 0 10px;
+//           margin-right: 5px;
+//           margin-bottom: 5px;
+//           border: 1px solid transparent;
+//           cursor: pointer;
+
+//           &.done {
+//             color: $main;
+//             border-color: $main;
+//             border-radius: 2px;
+//           }
+
+//           &:hover {
+//             color: $main;
+//           }
+//         }
+
+//         .taglist {
+//           overflow: hidden;
+//         }
+//       }
+//     }
+
+//     &__dec-line {
+//       margin: 50px 0;
+//       height: 1px;
+//       border-top: 1px solid $border;
+//     }
+
+//     &__para {
+//       .ui-dropdown {
+//         width: 100px;
+//         margin-right: 10px;
+
+//         .dropdown-list .dropitem {
+//           text-align: left;
+//         }
+//       }
+//     }
+//   }
+// }

@@ -1,0 +1,123 @@
+// @charset "UTF-8";
+
+// //-----------------------------------------------------
+// // author:  590000
+// //-----------------------------------------------------
+
+// //--------------------- 弹窗通用样式（固定样式） ---------------------//
+// .com-modalMask {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   background-color: rgba(0, 0, 0, 0.75);
+//   z-index: $zindex-modal;
+// }
+// // //是否显示遮罩
+// // background-color: rgba(0,0,0,.75);
+// // &.nomask {
+// // 	background: none;
+// // }
+// .ui-modal {
+//   position: fixed;
+//   left: 0;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   z-index: $zindex-modal+1;
+
+//   .modal-dialog {
+//     position: absolute;
+//     left: 50%;
+//     top: 20%;
+//     transform: translateX(-50%);
+//     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+//     background-color: #fff;
+
+//     &.is-centered {
+//       top: 50%;
+//       transform: translate(-50%, -50%);
+//     }
+
+//     .close-modal {
+//       position: absolute;
+//       right: 10px;
+//       top: 10px;
+//       width: 20px;
+//       height: 20px;
+
+//       @extend %iconfont;
+//       @extend %icon-guanbijiantou;
+
+//       cursor: pointer;
+//       color: $color-l;
+//       font-size: 16px;
+//       z-index: $zindex-modal + 1;
+
+//       &:hover {
+//         color: $color;
+//       }
+
+//       &:active {
+//         color: $color-d;
+//       }
+//     }
+//   }
+
+//   ///////////////////////////////// 默认弹窗样式
+//   .modal-header {
+//     position: relative;
+//     height: 40px;
+//     padding: 0 20px;
+//     border-bottom: 1px solid $border;
+//     // background-color: $bgdark;
+//     .title {
+//       float: left;
+//       line-height: 40px;
+//       font-size: 16px;
+//       color: $color-d;
+//     }
+//   }
+
+//   .modal-body {
+//     overflow-y: auto;
+
+//     .notice {
+//       line-height: 25px;
+//       font-size: 14px;
+//       color: $color-d;
+//       text-align: center;
+//     }
+//   }
+
+//   .modal-footer {
+//     padding: 15px 20px;
+//     text-align: right;
+//     border-top: 1px solid $border-l;
+
+//     .ui-btn {
+//       min-width: 106px;
+//       margin-left: 10px;
+//     }
+//   }
+
+//   &[data-size="size-s"] {
+//   }
+//   ///////////////////////////////// 可配置
+
+//   //弹窗尺寸
+//   .modal-dialog {
+//     &.modal-dialog-small {
+//       width: 30%;
+//     }
+
+//     &.modal-dialog-large {
+//       width: 80%;
+//     }
+
+//     &.modal-dialog-full {
+//       width: 100%;
+//     }
+//   }
+// }

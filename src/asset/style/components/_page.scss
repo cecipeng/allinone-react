@@ -1,0 +1,123 @@
+// @charset "UTF-8";
+// //-----------------------------------------------------
+// // author:  590000
+// //-----------------------------------------------------
+// //--------------------- 分页 ---------------------//
+// %com-page-btn {
+//   display: inline-block;
+//   vertical-align: middle;
+//   height: 28px;
+//   line-height: 26px;
+//   margin: 0 8px;
+//   border: 1px solid #cfcfcf; //
+//   border-radius: 2px;
+//   text-align: center;
+//   font-size: 14px;
+//   color: $color;
+//   cursor: pointer;
+//   background-color: #fff;
+//   transition: border-color 0.3s ease-out, color 0.3s ease-out;
+
+//   &:hover {
+//     border-color: $main-l;
+//     color: $main-l;
+//   }
+
+//   &:active {
+//     border-color: $main-d;
+//     color: $main-d;
+//   }
+// }
+
+// .com-page {
+//   padding: 30px 0 50px;
+//   text-align: center;
+//   font-size: 0;
+
+//   .pagecon {
+//     display: inline-block;
+//     vertical-align: middle;
+//     position: relative;
+//     padding: 0 88px;
+//   }
+
+//   .btn-turnpage {
+//     position: absolute;
+//     top: 0;
+//     min-width: 80px;
+//     padding: 0 6px;
+//     cursor: pointer;
+
+//     @extend %com-page-btn;
+
+//     &::before {
+//       position: absolute;
+//       top: 50%;
+//       width: 10px;
+//       height: 20px;
+//       line-height: 20px;
+//       margin-top: -10px;
+//       letter-spacing: -3px;
+//       font-size: 16px;
+//       color: $color;
+
+//       @include transition;
+
+//       font-family: 'SimSun';
+//     }
+
+//     &.page-prev {
+//       left: 0;
+//       padding-left: 20px;
+
+//       &::before {
+//         left: 6px;
+//         content: "<";
+//       }
+//     }
+
+//     &.page-next {
+//       right: 0;
+//       padding-right: 20px;
+
+//       &::before {
+//         right: 9px;
+//         content: ">";
+//       }
+//     }
+
+//     &:hover {
+//       &::before {
+//         color: $main-l;
+//       }
+//     }
+
+//     &:active {
+//       &::before {
+//         color: $main-d;
+//       }
+//     }
+//   }
+
+//   .btn-num {
+//     @extend %com-page-btn;
+
+//     width: 28px;
+
+//     &.on {
+//       border-color: $main;
+//       color: $main;
+//     }
+//   }
+
+//   .more {
+//     display: inline-block;
+//     vertical-align: middle;
+//     width: 28px;
+//     height: 28px;
+//     line-height: 34px;
+//     text-align: center;
+//     color: $color-l;
+//     font-size: 16px;
+//   }
+// }
