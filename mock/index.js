@@ -5,9 +5,9 @@ const { Random, mock } = Mock
 
 module.exports = {
   // url 前缀
-  prefix: 'demo',
+  prefix: '',
   data: {
-    'GET /user/:id': async (ctx, id) => {
+    'GET /v11/demo/:id': async (ctx, id) => {
       id = parseInt(id, 10)
       // 模拟服务端异常
       if (id === 0) {
@@ -24,7 +24,7 @@ module.exports = {
         email: Random.email()
       })
     },
-    'POST /user': () => mock({
+    'GET /v1/demo/:id': () => mock({
       id: Random.id(),
       name: Random.first(),
       email: Random.email()

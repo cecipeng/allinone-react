@@ -19,17 +19,17 @@ const { wdsProxySetting } = require('@gem-mine/request')
  * }
  */
 const config = {
-  demo: {
+  main: {
     // 本地代理请求配置，修改 wds 配置需要重新 npm start
     wds: {
       url: 'http://gm.zmei.me',
       prefix: ''
     },
     mock: {
-      prefix: '/demo'
+      prefix: ''
     },
     defaults: {
-      url: 'http://gm.zmei.me',
+      url: 'http://47.107.44.199:9080/fefull/',
       prefix: ''
     }
   }
