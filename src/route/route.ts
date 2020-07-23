@@ -1,20 +1,24 @@
 import { asyncLoader } from '../util/loader'
 
+// ====== Constants ====== //
+import ROUTERS from '../constant/routerConstant'
+
 export default {
-  path: '/',
+  path: ROUTERS.HOME,
   component: asyncLoader('page/main'),
   index: true,
   // 子路由
   sub: {
     home: {
-      path: '/',
+      path: ROUTERS.HOME,
       component: asyncLoader('page/main/features/home'),
+      exact:true,
       index: true
     },
     navigation: {
-      path: '/navigation',
-      component: asyncLoader('page/main/features/navigation'),
-    },
+      path: ROUTERS.NAVIGATION,
+      component: asyncLoader('page/main/features/navigation')
+    }
     // simple: {
     //   path: '/',
     //   component: asyncLoader('page/demo/Simple'),

@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import intl from '@gem-mine/intl'
 import LANGUAGE from './language'
 
+// ====== Constants ====== //
+import { DEFAULT_CONFIG } from '../constant/commonConstant'
+
 const locales = {}
 Object.keys(LANGUAGE).forEach((key) => {
   // 如果语言包很小，建议全部使用本地化
@@ -18,7 +21,10 @@ class I18N extends Component<{
   }
 
   componentDidMount(): void {
-    intl.init({ locales }).then(() => {
+    intl.init({
+      locales,
+      defaultLocale: DEFAULT_CONFIG.LANG_TYPE // todo ? 不生效
+    }).then(() => {
       if (this.props.bootstrap) {
         this.props.bootstrap()
       }

@@ -2,7 +2,7 @@ import durex from '@gem-mine/durex'
 import * as dataType from './data'
 
 export interface State {
-  currentUser: dataType.currentUser;
+  currentUser: dataType.CurrentUser;
 }
 
 durex.model({

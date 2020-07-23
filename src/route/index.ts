@@ -1,6 +1,9 @@
 import { router } from '@gem-mine/durex-router'
 import { asyncLoader } from '../util/loader'
 
+// ====== Constants ====== //
+import ROUTERS from '../constant/routerConstant'
+
 // 页面组件
 import NotFound from '../component/status/404'
 import Forbidden from '../component/status/403'
@@ -34,7 +37,7 @@ router.config({
  */
 router.register({
   login: {
-    path: '/login',
+    path: ROUTERS.LOGIN,
     component: asyncLoader('page/login')
   },
   main: mainRoute

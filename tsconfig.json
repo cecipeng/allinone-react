@@ -13,18 +13,15 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "fish": ["node_modules/@sdp.nd/fish"]
     },
-    "typeRoots": [
-      "./node_modules/@types",
-      "./node_modules/@gem-mine/cli-plugin-typescript/@types",
-      "./src/@types"
-    ]
+    "typeRoots": ["./node_modules/@types", "./src/@types"]
   },
-  "include": [
-    "src",
-    "./node_modules/@gem-mine/cli-plugin-typescript/@types"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

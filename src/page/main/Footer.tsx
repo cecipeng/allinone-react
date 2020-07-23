@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import intl from '@gem-mine/intl'
 
 // ====== Components ====== //
@@ -9,31 +9,21 @@ import { LANG_TYPE } from '../../constant/commonConstant'
 
 const { Option } = Select
 
-interface Props {
-  langType: string;
-}
-
-export default function Footer(props: Props): JSX.Element {
-  const { langType } = props
-  const [currentLangType, setCurrentLangType] = useState<string>(langType)
+export default function Footer(): JSX.Element {
+  const { currentLocale } = intl.getLocale()
 
   /**
    * 设置语言
    * @param {下拉菜单选择的语言 string} newVal
    */
   const handleSetCurrentLangType = (newVal): void => {
-    if (newVal !== currentLangType) {
-      // 设置语言的步骤：
-      // 1.修改下拉菜单选中值
-      setCurrentLangType(newVal)
+    intl.setLocale(newVal)
 
-      // 2.新值传给后端修改数据库，并且改写redux的值
+    // 2.新值传给后端修改数据库，并且改写redux的值
+    // todo
 
-      // 3.修改localstorage的值
-
-      // 4.刷新页面以重新初始化语言
-      window.location.reload(true)
-    }
+    // 3.刷新页面以重新初始化语言
+    // window.location.reload(true)
   }
   return (
     <div className="com-footer">
@@ -43,10 +33,10 @@ export default function Footer(props: Props): JSX.Element {
             <label className="com-footer-link__label">
               {intl.get('ROOT_PAGE_FOOTER_LANGUAGE')}
             </label>
-            <Select defaultValue={currentLangType} onChange={handleSetCurrentLangType}>
+            <Select defaultValue={currentLocale} onChange={handleSetCurrentLangType}>
               {
                 LANG_TYPE.map((lang) => (
-                  <Option value={lang.id}>{ lang.label }</Option>
+                  <Option key={lang.id} value={lang.id}>{ lang.label }</Option>
                 ))
               }
             </Select>

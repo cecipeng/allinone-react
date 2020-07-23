@@ -13,7 +13,7 @@ import * as dataType from './data'
 import './style/index.module.scss'
 
 interface Props {
-  currentUser: dataType.currentUser;
+  currentUser: dataType.CurrentUser;
 }
 
 @smart((state) => (
@@ -33,7 +33,7 @@ class Main extends React.Component<Props> {
           <Routes path="main" />
         </div>
         <div className="layout-footer">
-          <Footer langType={currentUser.langType} />
+          <Footer />
         </div>
       </div>
     )

@@ -10,8 +10,8 @@ import './index.module.scss'
 interface Props {
   showName?: boolean;
   layout?: string;
-  shape?: string;
-  size?: string;
+  shape?: 'circle' | 'square' | undefined;
+  size?: number | 'default' | 'large' | 'small' | undefined;
   head: string;
   name: string;
 }

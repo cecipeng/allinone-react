@@ -4,7 +4,7 @@ module.exports = {
   ],
   plugins: [
     ['import', {
-      libraryName: 'antd',
+      libraryName: 'fish',
       libraryDirectory: 'es',
       style: true
     }]
