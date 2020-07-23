@@ -8,8 +8,17 @@ export interface State {
 durex.model({
   name: 'main',
   state: {
-    currentUser: {}
+    currentUser: {} // 当前用户
   },
-  reducers: {},
+  reducers: {
+    /**
+     * 存储当前用户信息
+     */
+    updateCurrentUser(data): void {
+      return this.setField({
+        currentUser: data
+      })
+    }
+  },
   effects: {}
 })

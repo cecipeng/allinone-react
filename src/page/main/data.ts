@@ -3,5 +3,5 @@ export interface CurrentUser {
   'name': string; // 姓名
   'head': string; // 头像资源
   'accessToken': string;
-  'langType': string; // 站点显示语言
+  // 'langType': string; // 站点显示语言
 }

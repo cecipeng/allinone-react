@@ -26,7 +26,7 @@ const config = {
       prefix: ''
     },
     mock: {
-      prefix: ''
+      prefix: 'mock'
     },
     defaults: {
       url: 'http://47.107.44.199:9080/fefull/',

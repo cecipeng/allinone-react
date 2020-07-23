@@ -4,10 +4,11 @@ import mainRequest from './requestUtil'
  * 登录
  * @param params
  */
-export function fetchLoginIn(): any {
+export function fetchLoginIn(params): any {
   const url = 'api/login/verify'
   return mainRequest({
     url,
+    params,
     method: 'POST'
   })
 }

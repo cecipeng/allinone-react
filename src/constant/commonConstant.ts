@@ -15,7 +15,7 @@ export const LANG_TYPE = [
 
 // 默认值
 export const DEFAULT_CONFIG = {
-  ROUTER: ROUTERS.HOME, // 默认页面
+  PAGE: ROUTERS.HOME, // 默认页面
   LANG_TYPE: LANG_TYPE[1].id // 默认语言
 }
 
