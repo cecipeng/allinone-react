@@ -3,8 +3,10 @@
 	"version": "1.0.0",
 	"scripts": {
 		"build": "gms build",
+		"build:doc": "gms build:doc",
 		"build:modern": "gms build --modern",
 		"cache:clean": "rimraf node_modules/.cache",
+		"dev:doc": "gms dev:doc",
 		"lint": "gms lint",
 		"lint:fix": "gms lint --fix",
 		"start": "gms dev",
@@ -30,6 +32,7 @@
 	},
 	"devDependencies": {
 		"@gem-mine/babel-preset-app": "^2.4.1",
+		"@gem-mine/cli-plugin-doc": "^3.0.0",
 		"@gem-mine/cli-plugin-eslint": "^2.7.3",
 		"@gem-mine/cli-plugin-jest": "^1.1.0",
 		"@gem-mine/cli-plugin-typescript": "^2.5.1",
