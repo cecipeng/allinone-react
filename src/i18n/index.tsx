@@ -22,8 +22,8 @@ class I18N extends Component<{
 
   componentDidMount(): void {
     intl.init({
-      locales,
-      defaultLocale: DEFAULT_CONFIG.LANG_TYPE // todo ? 不生效
+      defaultLocale: DEFAULT_CONFIG.LANG_TYPE, // todo ? 不生效
+      locales
     }).then(() => {
       if (this.props.bootstrap) {
         this.props.bootstrap()

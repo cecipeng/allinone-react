@@ -6,13 +6,20 @@ export function setCurrentUserToLocalstorage(data): any {
 }
 
 /**
- * 当前用户信息 todo delete
+ * 语言写入localstorage
  */
-export function currentUserAdapter2(data): any {
-  return {
-    'id': data.userId, // id
-    'name': data.userName, // 姓名
-    'head': data.userHead, // 头像资源
-    'accessToken': data.accessToken
+export function setLangTypeToLocalstorage(lang): any {
+  localStorage.setItem('langType', lang)
+}
+
+/**
+ * 从localstorage读取
+ */
+export function getLocalstorage(name): any {
+  const _storageVal = localStorage.getItem(name)
+  try {
+    return _storageVal ? JSON.parse(_storageVal) : ''
+  } catch {
+    return _storageVal || ''
   }
 }

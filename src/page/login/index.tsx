@@ -61,7 +61,7 @@ function Login(props): JSX.Element {
           // 2. 存储用户信息 => store
           actions.main.updateCurrentUser(_currentUser)
 
-          // 3. 跳转到前一个页面或home页
+          // 3. 跳转到前一个页面或home页 todo：如何跳转前一个页面
           actions.router.push(DEFAULT_CONFIG.PAGE)
         }
       })

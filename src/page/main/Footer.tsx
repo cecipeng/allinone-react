@@ -7,6 +7,9 @@ import { Select } from 'fish'
 // ====== Constants ====== //
 import { LANG_TYPE } from '../../constant/commonConstant'
 
+// ====== Util====== //
+import * as commonUtil from '../../util/commonUtil'
+
 const { Option } = Select
 
 export default function Footer(): JSX.Element {
@@ -17,13 +20,11 @@ export default function Footer(): JSX.Element {
    * @param {下拉菜单选择的语言 string} newVal
    */
   const handleSetCurrentLangType = (newVal): void => {
+    // 1.设置语言
     intl.setLocale(newVal)
 
-    // 2.新值传给后端修改数据库，并且改写redux的值
-    // todo
-
-    // 3.刷新页面以重新初始化语言
-    // window.location.reload(true)
+    // 2.新值写入localstorage
+    commonUtil.setLangTypeToLocalstorage(newVal)
   }
   return (
     <div className="com-footer">
