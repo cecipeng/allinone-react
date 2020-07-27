@@ -23,3 +23,10 @@ export function getLocalstorage(name): any {
     return _storageVal || ''
   }
 }
+
+/**
+ * 删除localstorage的值
+ */
+export function deleteLocalstorage(name): any {
+  localStorage.removeItem(name)
+}

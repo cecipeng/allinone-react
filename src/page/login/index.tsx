@@ -1,6 +1,6 @@
 import React from 'react'
 import intl from '@gem-mine/intl'
-import { reduxForm, Field, SubmissionError } from 'redux-form'
+import { useForm } from 'react-hook-form'
 import { actions } from '@gem-mine/durex'
 
 // ====== Constants ====== //
@@ -12,48 +12,38 @@ import * as apiUtil from '../../util/apiUtil'
 import * as commonUtil from '../../util/commonUtil'
 import * as adapterUtil from '../../util/adapterUtil'
 
-function Login(props): JSX.Element {
-  const {
-    submitting, // 表单提交状态
-    error, // 表单提交错误信息
-    hasSubmitFailed, // 表单是否提交失败
-    handleSubmit // 表单提交操作
-  } = props
+type Forms = {
+  username: string;
+  password: string;
+}
 
+function Login(): JSX.Element {
+  const { register, handleSubmit, formState, errors, setError } = useForm<Forms>({
+    criteriaMode: 'all'
+  })
+  const { isSubmitting } = formState
   /**
    * 点击登录
    */
-  const handleLoginIn = (data): void => {
-    // 1.验证空值
-    if (!data.username) {
-      throw new SubmissionError({
-        _error: intl.get('LOGIN_PAGE_MEG_USERNAME_EMPTY')
-      })
-    } else if (!data.password) {
-      throw new SubmissionError({
-        _error: intl.get('LOGIN_PAGE_MEG_PASSWORD_EMPTY')
-      })
-    } else {
-      // 2.后台验证
-      apiUtil.fetchLoginIn({
-        userName: data.username,
-        password: data.password
-      }).then(response => {
-        const _meta = response.data.meta
-        const _data = response.data.datas
+  const handleLoginIn = (data: Forms): void => {
+    // 后台验证
+    apiUtil.fetchLoginIn({
+      userName: data.username,
+      password: data.password
+    }).then(response => {
+      if (response) {
+        const _code = response.data.meta.code
         // 验证不通过时
-        if (_meta.code === REQUEST_STATUS_CODE.LOGIN_INFO_ERROR) {
-          // const errorMsg = intl.get('LOGIN_PAGE_MEG_USERNAME_OR_PASSWORD_ERROR')
-          // 1. 更新登录状态，返回错误信息
-          // dispatch(
-          //   updateLoginStatusAndMessageSuccessAction(
-          //     storeStatusConstants.loginStatus.LOGGED_OUT,
-          //     errorMsg
-          //   )
-          // )
+        if (_code === REQUEST_STATUS_CODE.LOGIN_INFO_ERROR) {
+          const errorMsg = intl.get('LOGIN_PAGE_MEG_USERNAME_OR_PASSWORD_ERROR')
+          setError('username', {
+            type: 'textError',
+            message: errorMsg
+          })
         }
         // 验证通过时
-        else if (_meta.code === REQUEST_STATUS_CODE.REQUEST_SUCCESS) {
+        else if (_code === REQUEST_STATUS_CODE.REQUEST_SUCCESS) {
+          const _data = response.data.datas
           const _currentUser = adapterUtil.currentUserAdapter(_data)
           // 1. 存储用户信息 => localStorage
           commonUtil.setCurrentUserToLocalstorage(_currentUser)
@@ -64,8 +54,8 @@ function Login(props): JSX.Element {
           // 3. 跳转到前一个页面或home页 todo：如何跳转前一个页面
           actions.router.push(DEFAULT_CONFIG.PAGE)
         }
-      })
-    }
+      }
+    })
   }
 
   return (
@@ -78,39 +68,41 @@ function Login(props): JSX.Element {
 
             {/* 用户名 */}
             <div className="form-row form-username">
-              <Field
+              <input
                 name="username"
-                component="input"
                 type="text"
                 className="form-input form-input-wide"
                 placeholder={intl.get('LOGIN_PAGE_USERNAME')}
+                ref={register({ required: true })}
               />
             </div>
 
             {/* 密码 */}
             <div className="form-row form-pwd">
-              <Field
+              <input
                 name="password"
-                component="input"
                 type="password"
                 className="form-input form-input-wide"
                 placeholder={intl.get('LOGIN_PAGE_PASSWORD')}
+                ref={register({ required: true })}
               />
             </div>
 
             {/* 错误提示 */}
             <p className="errortip">
-              {hasSubmitFailed ? error : ''}
+              {((errors.username && errors.username.types && errors.username.types.required) ||
+                (errors.password && errors.password.types && errors.password.types.required)) && intl.get('LOGIN_PAGE_MEG_EMPTY')}
+              {errors.username && errors.username.type && errors.username.type === 'textError' && intl.get('LOGIN_PAGE_MEG_USERNAME_OR_PASSWORD_ERROR')}
             </p>
 
             {/* 登录按钮 */}
             <div className="btnwrap">
               <button
                 type="submit"
-                className={`ui-btn ui-btn-wide ui-btn-main ${submitting &&
+                className={`ui-btn ui-btn-wide ui-btn-main ${isSubmitting &&
                   's-disabled'}`}
               >
-                {submitting
+                {isSubmitting
                   ? intl.get('LOGIN_PAGE_BTN_LOGGING')
                   : intl.get('LOGIN_PAGE_BTN_LOGIN')}
               </button>
@@ -123,8 +115,4 @@ function Login(props): JSX.Element {
   )
 }
 
-const LoginWithReduxForm = reduxForm({
-  form: 'LoginForm'
-})(Login)
-
-export default LoginWithReduxForm
+export default Login

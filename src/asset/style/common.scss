@@ -20,18 +20,18 @@
 //--------------------- Components ---------------------//
 
 // base
-// @import "fonts/iconfont";      // if you need
+@import "fonts/_iconfont";      // if you need
 @import "_base/_layout";
 // @import "components/_transition"; //过渡动画
 
 // Components - copy - ui
-// @import "components/_btn";
+@import "components/_btn";
 // @import "components/_link";
 // // @import "../components/_ui-crumb/_crumb";
 // @import "components/_dropdown";      //js
 // @import "components/_select";      //js
 // // @import "../components/_ui-placeholder/_placeholder";
-// @import "components/_form";
+@import "components/_form";
 // @import "components/_radio";
 // @import "components/_pop";      //js
 // @import "components/_message";   
@@ -79,7 +79,7 @@
 // @import "_mod-common"; // 通用
 // @import "_mod-article"; // 文章管理
 // @import "_mod-usercenter"; // 个人中心
-// @import "_mod-login"; // 登录注册
+@import "_mod-login"; // 登录注册
 // @import "_mod-navigation"; // 网址导航
 // @import "_mod-makeup"; // 化妆品管理
 // @import "_mod-photo"; // 摄影集

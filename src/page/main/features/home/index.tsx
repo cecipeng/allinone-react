@@ -8,7 +8,7 @@ import './style/index.module.scss'
 
 class Home extends React.Component {
 
-  handleDemo = () => {
+  handleDemo = (): void => {
     apiUtil.fetchDemo('cc').then(response => {
       alert(response)
     })
@@ -16,7 +16,7 @@ class Home extends React.Component {
   render(): JSX.Element {
     return (
       <div>
-        <button onClick={() => { this.handleDemo()}}>请求测试</button>
+        <button onClick={(): void => { this.handleDemo()}}>请求测试</button>
       </div>
     )
   }

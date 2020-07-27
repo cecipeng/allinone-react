@@ -21,7 +21,7 @@ import './asset/style/common.scss'
 importAll(require.context('../src', true, /model(\/.+)?\.(j|t)s$/))
 
 class App extends React.Component {
-  componentDidMount () {
+  componentDidMount (): void {
     // 根据localstorage确认显示语言
     const _langType = commonUtil.getLocalstorage('langType')
     if (!_.isEmpty(_langType)) {

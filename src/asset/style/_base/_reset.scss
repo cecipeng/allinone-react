@@ -97,6 +97,10 @@ select {
   border: none;
   vertical-align: middle;
   outline: none;
+
+}
+input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
 }
 
 textarea {

@@ -133,7 +133,7 @@ $fzrem: 30;
 
 // 背景图片
 @mixin bgurl($url, $repeat:no-repeat, $x:left, $y:top) {
-  background: url('../../images/#{$url}') $repeat $x $y;
+  background: url('../images/#{$url}') $repeat $x $y;
 }
 
 // sprites背景图片

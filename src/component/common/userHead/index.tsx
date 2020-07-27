@@ -9,7 +9,7 @@ import './index.module.scss'
 
 interface Props {
   showName?: boolean;
-  layout?: string;
+  layout?: 'vertical' | 'horizontal' | undefined;
   shape?: 'circle' | 'square' | undefined;
   size?: number | 'default' | 'large' | 'small' | undefined;
   head: string;
@@ -18,7 +18,7 @@ interface Props {
 
 UserHead.defaultProps = {
   showName: true,
-  layout: '',
+  layout: 'horizontal', // horizontal 水平为默认
   shape: 'circle',
   size: 'default'
 }
@@ -35,7 +35,7 @@ export default function UserHead(props: Props): JSX.Element {
       )}
     >
       <span className="head">
-        <Avatar size={size || 'default'} icon="user" shape={shape || 'circle'} src={head} />
+        <Avatar size={size} icon="user" shape={shape} src={head} />
       </span>
       {
         name && showName && <span className="name">{name}</span>

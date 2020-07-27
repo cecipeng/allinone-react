@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { actions } from '@gem-mine/durex'
 import { Link, urlFor, ReactRouterDom } from '@gem-mine/durex-router'
 import intl from '@gem-mine/intl'
+import _ from 'lodash'
 
 // ====== Components ====== //
 import { Menu, Dropdown } from 'fish'
@@ -9,6 +10,9 @@ import UserHead from '../../component/common/userHead'
 
 // ====== Constants ====== //
 import ROUTERS from '../../constant/routerConstant'
+
+// ====== Util====== //
+import * as commonUtil from '../../util/commonUtil'
 
 // ====== DataType ====== //
 import * as dataType from './data'
@@ -22,6 +26,36 @@ export default function Header(props: Props): JSX.Element {
   const [currentMenu, setCurrentMenu] = useState<string>(location.pathname)
   const { currentUser } = props
 
+  /**
+   * 退出登录
+   */
+  const _handleLogOut = (): void => {
+    // 1. 删除localStorage的用户信息
+    commonUtil.deleteLocalstorage('currentUser')
+
+    // 2. 清空store中的用户信息
+    actions.main.updateCurrentUser('')
+  }
+
+  /**
+   * 用户下拉菜单的操作
+   */
+  const _handleUserMenuClick = ({key}): void => {
+    switch (key) {
+    case '0':
+      _handleLogOut()
+      break
+    }
+  }
+
+  /**
+   * 用户下拉菜单
+   */
+  const _userMenu = (
+    <Menu onClick={_handleUserMenuClick}>
+      <Menu.Item key="0">{intl.get('ROOT_PAGE_HEADER_LOGIN_OUT')}</Menu.Item>
+    </Menu>
+  )
   /**
    * 切换菜单
    * @param e
@@ -41,22 +75,16 @@ export default function Header(props: Props): JSX.Element {
         {/* 右侧 */}
         <div className="layout-bfc__right">
           {
-            currentUser ? (
+            !_.isEmpty(currentUser) ? (
               // 已登录
-              <div className="header-userdrop">
-                <Dropdown
-                  placement="bottomLeft"
-                  overlay={(
-                    <Menu>
-                      <Menu.Item key="0">退出登录</Menu.Item>
-                      <Menu.Divider />
-                      <Menu.Item key="1">退出登录</Menu.Item>
-                    </Menu>
-                  )}
-                >
+              <Dropdown
+                trigger={['click']}
+                overlay={_userMenu}
+              >
+                <div className="header-userdrop">
                   <UserHead head={currentUser.head} name={currentUser.name} />
-                </Dropdown>
-              </div>
+                </div>
+              </Dropdown>
             ) : (
               // 未登录
               <div className="unlogin">
