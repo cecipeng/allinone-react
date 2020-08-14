@@ -2,7 +2,7 @@
 
 /*
  * style 	v1.0
- * author:  590000
+ * author:  ceci
  * date:    2020-07-21
  */
 
@@ -45,7 +45,7 @@
 // @import "components/_header";
 // // @import "../components/_com-footer/_footer";
 // // @import "../components/_com-largeview/_largeview";      //js
-// @import "components/_list";
+@import "components/_list";
 // @import "components/_page";
 // @import "components/_search";
 // // @import "../components/_com-star/_star";
@@ -53,7 +53,7 @@
 // @import "components/_tagcloud";
 // @import "components/_loading-mod";
 // @import "components/_error";
-// @import "components/_maintitle";
+@import "components/_maintitle";
 // @import "components/_modal";
 // @import "components/_anchor";
 // // @import "../components/_com-totop/_totop";      //js
@@ -80,6 +80,6 @@
 // @import "_mod-article"; // 文章管理
 // @import "_mod-usercenter"; // 个人中心
 @import "_mod-login"; // 登录注册
-// @import "_mod-navigation"; // 网址导航
+@import "_mod-navigation"; // 网址导航
 // @import "_mod-makeup"; // 化妆品管理
 // @import "_mod-photo"; // 摄影集

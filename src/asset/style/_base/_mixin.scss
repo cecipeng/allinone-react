@@ -35,6 +35,17 @@
   }
 }
 
+//二态 - 直接改变透明度
+%active-opacity {
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:active {
+    opacity: 0.6;
+  }
+}
+
 //--------------------- mixin ---------------------//
 
 // rem
@@ -52,6 +63,13 @@ $fzrem: 30;
   filter: alpha(opacity=$op);
 }
 
+@mixin tof2($s:2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $s;
+  -webkit-box-orient: vertical;
+}
 
 // 小三角
 @mixin triangle($d:top,$color:#ddd,$xsize:unit(10),$ysize:unit(10)) {

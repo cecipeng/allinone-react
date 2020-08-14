@@ -1,228 +1,230 @@
-// @charset "UTF-8";
+@charset "UTF-8";
 
-// //-----------------------------------------------------
-// // author:  590000
-// //-----------------------------------------------------
-
-
-// //--------------------- 文章列表 ---------------------//
-
-// .com-list-article {
-//   .menulist {
-//     margin-right: -30px;
-
-//     @extend %cf;
-
-//     > li {
-//       position: relative;
-//       float: left;
-//       width: 380px;
-//       height: 300px;
-//       margin-bottom: 30px;
-//       margin-right: 30px;
-//       background-color: #fff;
-//       // box-shadow: 1px 1px 2px rgba(0,0,0,.1);
-//       box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-//       overflow: hidden;
-
-//       &:hover {
-//         .list-main {
-//           height: 140px;
-//         }
-//       }
-
-//       .itembox {
-//         display: block;
-//         cursor: pointer;
-//       }
-//     }
-//     //list-图片
-//     .list-image {
-//       height: 200px;
-//       overflow: hidden;
-
-//       @include bgurl('default-article-cover.png');		//
-
-//       img {
-//         width: 100%;
-//         height: 100%;
-//       }
-//     }
-
-//     .list-main {
-//       position: absolute;
-//       left: 0;
-//       bottom: 0;
-//       right: 0;
-//       height: 100px;
-//       padding: 15px 16px 10px;
-
-//       @include transition(height);
-
-//       background-color: #fff;
-//       // overflow: hidden;
-//       &::after {
-//         position: absolute;
-//         left: -10px;
-//         top: -20px;
-//         right: -10px;
-//         height: 20px;
-//         box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.08);
-//         content: "";
-//       }
-//     }
-//     //list-标题
-//     .list-title {
-//       margin-bottom: 10px;
-
-//       .titlewrap {
-//         position: relative;
-//         display: inline-block;
-//         vertical-align: middle;
-//         max-width: 100%;
-//         padding-right: 50px;
-//       }
-
-//       .title {
-//         height: 20px;
-//         line-height: 20px;
-//         font-size: 18px;
-//         color: $color-d;
-
-//         @extend %tof;
-//       }
-
-//       .tag-origin {
-//         position: absolute;
-//         right: 0;
-//         top: 0;
-//         height: 20px;
-//         width: 40px;
-//         line-height: 20px;
-//         font-size: 12px;
-//         text-align: center;
-//         color: #fff;
-//         background-color: $main;
-//       }
-//     }
-
-//     .list-maintxt {
-//       height: 40px;
-//       line-height: 20px;
-//       font-size: 12px;
-//       color: $color-l;
-//       margin-bottom: 16px;
-//       overflow: hidden;
-//     }
-
-//     .list-foot {
-//       text-align: right;
-
-//       .com-userhead {
-//         float: left;
-//       }
-//     }
-//   }
-// }
+//-----------------------------------------------------
+// author:  ceci
+//-----------------------------------------------------
 
 
-// //--------------------- 导航列表 ---------------------//
+//--------------------- 文章列表 ---------------------//
 
-// .com-list-navigation {
-//   .menulist {
-//     margin-right: -20px;
+.com-list-article {
+  .menulist {
+    margin-right: -30px;
 
-//     @extend %cf;
+    @extend %cf;
 
-//     > li {
-//       position: relative;
-//       float: left;
-//       width: 20%;
-//       margin-bottom: 20px;
-//       padding-right: 20px;
-//       // box-shadow: 1px 1px 2px rgba(0,0,0,.1);
-//       .itembox {
-//         position: relative;
-//         display: block;
-//         height: 110px;
-//         padding: 6px 12px 10px;
-//         background-color: #fafafa;
-//         // box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-//         border: 1px solid $border;
-//         cursor: pointer;
+    > li {
+      position: relative;
+      float: left;
+      width: 380px;
+      height: 300px;
+      margin-bottom: 30px;
+      margin-right: 30px;
+      background-color: #fff;
+      // box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
 
-//         &:hover {
-//           .list-title {
-//             padding-right: 50px;
-//           }
+      &:hover {
+        .list-main {
+          height: 140px;
+        }
+      }
 
-//           .title {
-//             color: $main;
-//           }
+      .itembox {
+        display: block;
+        cursor: pointer;
+      }
+    }
+    //list-图片
+    .list-image {
+      height: 200px;
+      overflow: hidden;
 
-//           .list-go {
-//             transform: translateX(0);
-//           }
-//         }
+      @include bgurl('default-article-cover.png');		//
 
-//         &:active {
-//           box-shadow: 0 0 6px rgba(88, 221, 192, 0.5);
-//           border-color: $main;
-//         }
-//       }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
 
-//       .list-title {
-//         position: relative;
-//         border-bottom: 1px solid $border-l;
-//         margin-bottom: 10px;
-//         padding-right: 0;
-//         overflow: hidden;
-//       }
+    .list-main {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      height: 100px;
+      padding: 15px 16px 10px;
 
-//       .title {
-//         height: 40px;
-//         line-height: 40px;
+      @include transition(height);
 
-//         @extend %tof;
+      background-color: #fff;
+      // overflow: hidden;
+      &::after {
+        position: absolute;
+        left: -10px;
+        top: -20px;
+        right: -10px;
+        height: 20px;
+        box-shadow: inset 0 -5px 10px rgba(0, 0, 0, 0.08);
+        content: "";
+      }
+    }
+    //list-标题
+    .list-title {
+      margin-bottom: 10px;
 
-//         font-size: 16px;
-//         color: $color-d;
-//       }
+      .titlewrap {
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        max-width: 100%;
+        padding-right: 50px;
+      }
 
-//       .list-maintxt {
-//         height: 40px;
-//         line-height: 20px;
-//         font-size: 12px;
-//         color: $color-l;
-//         overflow: hidden;
-//       }
+      .title {
+        height: 20px;
+        line-height: 20px;
+        font-size: 18px;
+        color: $color-d;
 
-//       .list-go {
-//         position: absolute;
-//         top: 50%;
-//         right: 0;
-//         padding-right: 20px;
-//         margin-top: -10px;
-//         transform: translateX(100px);
-//         font-size: 20px;
-//         color: $main;
-//         line-height: 20px;
+        @extend %tof;
+      }
 
-//         @include transition(transform);
+      .tag-origin {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 20px;
+        width: 40px;
+        line-height: 20px;
+        font-size: 12px;
+        text-align: center;
+        color: #fff;
+        background-color: $main;
+      }
+    }
 
-//         @extend %iconfont;
-//         @extend %icon-arrow3;
+    .list-maintxt {
+      height: 40px;
+      line-height: 20px;
+      font-size: 12px;
+      color: $color-l;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
 
-//         &::before {
-//           position: absolute;
-//           top: 1px;
-//           right: 0;
-//           width: 20px;
-//           height: 20px;
-//           font-size: 16px;
-//           transform: rotate(-90deg);
-//         }
-//       }
-//     }
-//   }
-// }
+    .list-foot {
+      text-align: right;
+
+      .com-userhead {
+        float: left;
+      }
+    }
+  }
+}
+
+
+//--------------------- 导航列表 ---------------------//
+
+.com-list-nav {
+  &__list {
+    margin-right: -20px;
+
+    @extend %cf;
+
+    > li {
+      position: relative;
+      float: left;
+      width: 20%;
+      margin-bottom: 20px;
+      padding-right: 20px;
+      // box-shadow: 1px 1px 2px rgba(0,0,0,.1);
+    }
+  }
+  &__item {
+    position: relative;
+    display: block;
+    height: 110px;
+    padding: 6px 12px 10px;
+    background-color: #fafafa;
+    // box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+    border: 1px solid $border;
+    cursor: pointer;
+
+    &:hover {
+      .com-list-nav__head {
+        padding-right: 50px;
+      }
+
+      .com-list-nav__title {
+        color: $main;
+      }
+
+      .com-list-nav__go {
+        transform: translateX(0);
+      }
+    }
+
+    &:active {
+      box-shadow: 0 0 6px rgba(88, 221, 192, 0.5);
+      border-color: $main;
+    }
+  }
+
+  &__head {
+    position: relative;
+    border-bottom: 1px solid $border-l;
+    margin-bottom: 10px;
+    padding-right: 0;
+    overflow: hidden;
+  }
+
+  &__title {
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 0;
+    @extend %tof;
+
+    font-size: 16px;
+    color: $color-d;
+  }
+
+  // 描述
+  &__info {
+    height: 40px;
+    line-height: 20px;
+    font-size: 12px;
+    color: $color-l;
+    @include tof2(2);
+  }
+
+  // 跳转标识
+  &__go {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding-right: 20px;
+    margin-top: -10px;
+    transform: translateX(100px);
+    font-size: 20px;
+    color: $main;
+    line-height: 20px;
+
+    @include transition(transform);
+
+    @extend %iconfont;
+    @extend .icon-bottom;
+
+    &::before {
+      position: absolute;
+      top: 1px;
+      right: 0;
+      width: 20px;
+      height: 20px;
+      font-size: 16px;
+      transform: rotate(-90deg);
+    }
+  }
+}

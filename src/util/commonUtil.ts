@@ -30,3 +30,10 @@ export function getLocalstorage(name): any {
 export function deleteLocalstorage(name): any {
   localStorage.removeItem(name)
 }
+
+/**
+ * 生成唯一的随机数（默认15位）
+ */
+export function getRandomId(number = 15): string {
+  return Number(Math.random().toString().substr(3, number) + Date.now()).toString(36)
+}

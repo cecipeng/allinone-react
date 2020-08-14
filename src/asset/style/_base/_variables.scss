@@ -103,9 +103,9 @@ $shadow:                0 0 unit(10) rgba(0, 0, 0, 0.1);
 
 $header-h:              unit(50);      // header height     /// used
 $nav-h:                 unit(64);      // mainnav height  
-$footer-h:              unit(0);      // footer height 
+$footer-h:              unit(50);      // footer height 
 $wrapper-w:				unit(1200);      // 正文 width
-$min-w:				    unit(1024);      // 正文 width,1024还需加上滚动条宽度
+$min-w:				    unit(1400);      // 正文 width,1024还需加上滚动条宽度
 $side-w:				unit(234);      // 侧栏 width
 $padding:  				unit(30);
 $padding-l:  				unit(20);

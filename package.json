@@ -12,6 +12,17 @@
 		"start": "gms dev",
 		"test:unit": "gms test:unit"
 	},
+	"husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
 	"dependencies": {
 		"@gem-mine/durex": "^2.0.6",
 		"@gem-mine/durex-router": "^1.3.0",

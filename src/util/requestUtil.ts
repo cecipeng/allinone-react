@@ -2,6 +2,9 @@ import { message } from 'fish'
 import request from '@gem-mine/request'
 import { urlFor } from '@gem-mine/durex-router'
 import { actions } from '@gem-mine/durex'
+import _ from 'lodash'
+// ====== Util====== //
+import * as commonUtil from '../util/commonUtil'
 
 const { main } = request
 
@@ -10,9 +13,14 @@ const { main } = request
  * @param config
  */
 export default function mainRequest (config): Promise<any> {
-  const method = (config.method || 'GET').toLowerCase()
+  const _method = (config.method || 'GET').toLowerCase()
+  const _currentUser = commonUtil.getLocalstorage('currentUser')
   config.customError = true
-  return main[method](config.url, config).then((response) => {
+  config.headers = {
+    'content-type': 'application/json; charset=utf-8',
+    'Authorization': !_.isEmpty(_currentUser) ? _currentUser.accessToken : '' // 身份验证，与后端约定每次请求附上token值验明是否登录
+  }
+  return main[_method](config.url, config).then((response) => {
     switch (response.data.meta.code) {
     case '1001': // 未登录
       actions.router.push(urlFor('login')) // 跳转到登录页

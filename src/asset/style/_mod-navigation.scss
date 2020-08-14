@@ -1,619 +1,590 @@
-// @charset "UTF-8";
-
-// /*
-//  * module:  mod-navigation
-//  * author:  590000
-//  */
-
-// //网址导航
-// .mod-navigation {
-//   background-color: $bg-l;
-
-//   .navigation-box {
-//     padding-bottom: 0;
-//     padding-top: 15px;
-//     background-color: #fff;
-
-//     &__box {
-//       margin-bottom: unit(10);
-//     }
-
-//     .itembox {
-//       display: block;
-//     }
-//     //缩图模式
-//     &.is-listmode {
-//       padding-bottom: 0;
-//       padding-top: 15px;
-
-//       .com-list-navigation {
-//         .menulist {
-//           > li {
-//             width: 12.5%;
-
-//             .itembox {
-//               height: auto;
-//               padding: 10px;
-//             }
-
-//             .list-maintxt {
-//               display: none;
-//             }
-
-//             .list-title {
-//               border-bottom: none;
-//               margin-bottom: 0;
-//             }
-
-//             .title {
-//               height: 24px;
-//               line-height: 24px;
-//               font-size: 16px;
-//             }
-
-//             .list-go {
-//               font-size: 16px;
-//             }
-//           }
-//         }
-//       }
-//     }
-//     //收起模式
-//     &.is-slidermode {
-//       @extend %cf;
-
-//       > .ui-maintitle {
-//         width: 120px;
-//         height: auto;
-//         float: left;
-//         margin-bottom: 0;
-//         cursor: pointer;
-
-//         .maintitle {
-//           height: auto;
-//           margin-right: 10px;
-//           padding: 0 10px;
-//           border: 1px solid $border;
-//           background-color: $bg-l;
-//           text-align: center;
-//         }
-//       }
-
-//       .com-list-navigation {
-//         overflow: hidden;
-//       }
-
-//       .menulist {
-//         margin-right: 0;
-
-//         > li {
-//           width: auto;
-//           margin-right: 30px;
-//           margin-bottom: 10px;
-//         }
-
-//         .itembox {
-//           height: 30px;
-//           padding: 0;
-//           border: none;
-//           background: none;
-
-//           &:hover {
-//             .list-title {
-//               padding-right: 0;
-//             }
-//             // .list-maintxt {
-//             //     display: block;
-//             // }
-//           }
-//         }
-
-//         .list-title {
-//           border-bottom: none;
-//           margin-bottom: 0;
-//         }
-
-//         .title {
-//           height: 30px;
-//           line-height: 30px;
-//         }
-
-//         .list-go {
-//           display: none;
-//         }
-
-//         .list-maintxt {
-//           display: none;
-//           // position: absolute;
-//           // top: 30px;
-//           // left: 0;
-//           // right: auto;
-//           // max-width: 100px;
-//           // padding: 10px;
-//           // border: 1px solid $border;
-//           // background: $bg-l;
-//         }
-//       }
-//     }
-
-//     .layout-wrapper {
-//       padding-bottom: 10px;
-//     }
-//   }
-//   //公共导航中特定样式
-//   .navigation-box-sysnav {
-//     .itembox {
-//       background-color: #fff;
-//       box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-//       border: 1px solid $border-l;
-//     }
-//     //显示标示
-//     .itembox.is-fav {
-//       &::after {
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         height: 18px;
-//         line-height: 18px;
-//         font-size: 12px;
-//         color: #fff;
-//         padding: 0 5px 0 10px;
-//         background-color: $main;
-//         content: "已收藏";
-//         border-radius: 0 0 0 20px;
-//       }
-//     }
-
-//     .navigation-box.is-slidermode {
-//       > .ui-maintitle .maintitle {
-//         background-color: #fff;
-//       }
-
-//       .itembox {
-//         box-shadow: none;
-//       }
-
-//       .is-fav {
-//         border-bottom: 2px solid $main;
-//       }
-
-//       .is-fav::after {
-//         display: none;
-//       }
-//     }
-//   }
-
-//   .layout-wrapper {
-//     padding-top: 30px;
-
-//     .navigation-box {
-//       background: none;
-//     }
-//   }
-
-//   .maintitle-sysnav {
-//     @extend %icon-hot;
-//   }
-
-//   .maintitle-mynav {
-//     @extend %icon-bussinessman;
-
-//     .btn-editor {
-//       float: left;
-//       margin-left: 15px;
-
-//       .edit {
-//         @extend %iconfont;
-//         @extend %icon-edit;
-
-//         margin-right: 5px;
-//         font-size: 18px;
-//       }
-//     }
-
-//     .viewwrap {
-//       float: left;
-
-//       @extend %cf;
-
-//       display: inline-block;
-//     }
-//   }
-
-//   //编辑弹窗
-//   .navigation-modal-edit {
-//     .edit-maintitle {
-//       margin: 10px 0;
-//       padding-left: 10px;
-//       line-height: 22px;
-//       font-size: 20px;
-//       color: $color-d;
-//       border-left: 4px solid $border-d;
-
-//       .subtitle {
-//         padding-left: 10px;
-//         font-size: 14px;
-//         color: $color-l;
-//       }
-//     }
-
-//     .mynav-sort {
-//       margin-bottom: 10px;
-//       padding-top: 20px;
-//       border-top: 1px dashed $border;
-//       // &:nth-child(2) {
-//       //     border-top: none;
-//       //     // .mynav-sort-list li:first-child {
-//       //     //     .item-edit {
-//       //     //         display: block;
-//       //     //     }
-//       //     // }
-//       // }
-//       &:hover {
-//         .btn-category-ctrl {
-//           opacity: 1;
-//         }
-//       }
-
-//       .btn-category-ctrl {
-//         opacity: 0;
-
-//         @include transition(opactiy);
-
-//         display: inline-block;
-//         vertical-align: middle;
-//         width: 30px;
-//         height: 30px;
-//         line-height: 30px;
-//         border-radius: $radius;
-
-//         @extend %iconfont;
-
-//         &:hover {
-//           background-color: $bg-l;
-//         }
-
-//         &:active {
-//           color: #fff;
-//           background-color: $main;
-//         }
-//       }
-
-//       .btn-move-category {
-//         @extend %icon-move;
-//       }
-
-//       .btn-del-category {
-//         @extend %icon-shanchu;
-//       }
-//     }
-//     //我的导航
-//     .navigation-mynav {
-//       position: relative;
-//       padding: 10px 20px;
-
-//       //添加按钮
-//       .btn-add-navigation {
-//         position: absolute;
-//         top: 70px;
-//         right: 20px;
-//         color: $main;
-//         border-color: $main;
-
-//         &::before {
-//           display: inline-block;
-//           vertical-align: top;
-//           line-height: 38px;
-
-//           @extend %iconfont;
-//           @extend %icon-add;
-
-//           margin-right: 5px;
-//         }
-
-//         &:hover {
-//           background-color: $main;
-//           color: #fff;
-//         }
-
-//         &:active {
-//           background-color: $main-d;
-//           color: #fff;
-//           border-color: $main-d;
-//         }
-//       }
-
-//       .mynav-sort-title.ui-formrow {
-//         padding-left: 100px;
-
-//         .form-label {
-//           width: 90px;
-//         }
-
-//         .form-input {
-//           width: 150px;
-//           margin-right: 10px;
-//           vertical-align: middle;
-//         }
-//       }
-//     }
-
-//     .mynav-sort-list {
-//       min-height: 30px;
-//       padding-left: 100px;
-
-//       @extend %cf;
-
-//       > li {
-//         position: relative;
-//         float: left;
-//         width: 150px;
-//         background-color: #fff;
-//         height: 30px;
-//         padding-left: 10px;
-//         border-radius: 3px;
-//         margin-right: 15px;
-//         margin-bottom: 15px;
-//         background-color: $bg-l;
-//         overflow: hidden;
-
-//         &:hover {
-//           .item-edit {
-//             transform: translateX(0);
-//           }
-//         }
-//       }
-
-//       .item-title {
-//         line-height: 30px;
-//         font-size: 14px;
-//         color: #333;
-
-//         @extend %tof;
-//       }
-
-//       .item-edit {
-//         // display: none;
-//         position: absolute;
-//         right: 0;
-//         top: 0;
-//         bottom: 0;
-//         transition: transform 0.1s;
-//         transform: translateX(100px);
-
-//         @extend %cf;
-
-//         a {
-//           display: block;
-//           float: left;
-//           width: 30px;
-//           height: 30px;
-//           line-height: 30px;
-//           font-size: 18px;
-//           color: #fff;
-//           background-color: rgba(0, 0, 0, 0.7);
-
-//           @extend %iconfont;
-
-//           user-select: none;
-//           cursor: pointer;
-
-//           &:hover {
-//             background-color: $main;
-//           }
-
-//           &:active {
-//             background-color: $main-d;
-//           }
-//         }
-
-//         .btn-edit {
-//           @extend %icon-edit1;
-//         }
-
-//         .btn-del {
-//           @extend %icon-shanchu;
-//         }
-
-//         .btn-move-navigator {
-//           @extend %icon-move;
-//         }
-//       }
-//     }
-//     //公共导航
-//     .navigation-sysnav {
-//       background-color: $bg-l;
-//       padding: 10px 20px;
-//       box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
-//     }
-
-//     .sysnav-sort {
-//       position: relative;
-//       padding-left: 100px;
-
-//       &:nth-child(2) {
-//         margin-top: 20px;
-//         // li:first-child {
-//         //     .item-edit {
-//         //         display: block;
-//         //     }
-//         // }
-//       }
-
-//       .sysnav-sort-text {
-//         position: absolute;
-//         left: 0;
-//         top: 0;
-//         width: 90px;
-//         height: 30px;
-//         line-height: 30px;
-//         font-size: 14px;
-//         color: $color;
-//         text-align: right;
-//       }
-//     }
-
-//     .sysnav-sort-list {
-//       @extend %cf;
-
-//       > li {
-//         position: relative;
-//         float: left;
-//         width: 150px;
-//         background-color: #fff;
-//         height: 30px;
-//         padding-left: 10px;
-//         border-radius: 3px;
-//         margin-right: 15px;
-//         margin-bottom: 15px;
-//         // overflow: hidden;
-//         &:hover {
-//           .item-edit {
-//             display: block;
-//           }
-//         }
-
-//         &.is-fav {
-//           position: relative;
-
-//           &::before {
-//             position: absolute;
-//             right: 0;
-//             bottom: 0;
-//             width: 20px;
-//             height: 20px;
-//             font-size: 20px;
-
-//             @extend %iconfont;
-//             @extend %icon-xuanzejiaobiao;
-
-//             color: $main;
-//           }
-
-//           .item-edit {
-//             display: none;
-//           }
-//         }
-//       }
-
-//       .item-title {
-//         line-height: 30px;
-//         font-size: 14px;
-//         color: #333;
-
-//         @extend %tof;
-//       }
-
-//       .item-edit {
-//         position: absolute;
-//         right: 0;
-//         top: 0;
-//         bottom: 0;
-//         display: none;
-
-//         @extend %cf;
-
-//         .btn-ctrl {
-//           display: block;
-//           float: left;
-//           width: 30px;
-//           height: 30px;
-//           line-height: 30px;
-//           font-size: 18px;
-//           color: #fff;
-//           background-color: rgba(0, 0, 0, 0.7);
-//           cursor: pointer;
-
-//           @extend %iconfont;
-
-//           &:hover {
-//             background-color: $main;
-//           }
-
-//           &:active {
-//             background-color: $main-d;
-//           }
-//         }
-
-//         .btn-add {
-//           @extend %icon-add;
-//         }
-//       }
-//     }
-//   }
-//   //添加导航弹窗
-//   .modal-addNav {
-//     .modal-dialog {
-//       min-width: 420px;
-//     }
-
-//     .modal-body {
-//       padding: 20px 0 10px;
-//       background-color: $bg-l;
-//     }
-
-//     .formwrap {
-//       width: 380px;
-//       margin: 0 auto;
-//     }
-
-//     .ui-formrow {
-//       padding-left: 70px;
-//     }
-
-//     .form-label {
-//       width: 60px;
-//     }
-
-//     .form-input {
-//       width: 100%;
-//     }
-
-//     .ui-dropdown {
-//       display: block;
-//     }
-
-//     .btn-rel-category {
-//       text-align: center;
-//       background-color: #fff;
-//     }
-//   }
-//   //新建分类
-//   .addcategory {
-//     border-top: 1px solid $border;
-//     background-color: $bg-l;
-//   }
-
-//   .btn-addcategory {
-//     display: block;
-//     height: 30px;
-//     line-height: 30px;
-//     text-align: center;
-//     color: $color-l;
-//     font-size: 12px;
-//     cursor: pointer;
-
-//     &:hover {
-//       color: $main;
-//     }
-//   }
-
-//   .add-editbox {
-//     padding: 10px;
-
-//     .btn-add-commit {
-//       float: right;
-//       min-width: 0;
-//       margin-left: 6px;
-//     }
-
-//     .add-input {
-//       overflow: hidden;
-
-//       .form-input {
-//         height: 30px;
-//         line-height: 28px;
-//       }
-//     }
-//   }
-// }
+@charset "UTF-8";
+
+/*
+ * module:  mod-navigation
+ * author:  ceci
+ */
+
+//网址导航
+.mod-nav {
+  background-color: $bg-l;
+  .layout-wrapper {
+    padding-top: 30px;
+    .nav-box {
+      background: none;
+    }
+  }
+
+  // 重写maintitle
+  .ui-maintitle {
+    &--sysnav {
+      @extend .icon-hot;
+    }
+    &--mynav {
+      @extend .icon-user;
+      .com-btn--editor {
+        float: left;
+        margin-left: 15px;
+  
+        .icon-edit {
+          @extend %iconfont;
+          @extend .icon-edit;
+  
+          margin-right: 5px;
+          font-size: 18px;
+        }
+      }
+  
+    }
+  }
+
+  .nav {
+    &-box {
+      padding-bottom: 0;
+      padding-top: 15px;
+      background-color: #fff;
+  
+      // 详情模式
+      &--detail {
+        > .ui-maintitle {
+          &__text {
+            background-color: #fff;
+          }
+        }
+  
+        .com-list-nav__item {
+          box-shadow: none;
+          .is-fav {
+            border-bottom: 2px solid $main;
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+      //缩图模式
+      &--list {
+        padding-bottom: 0;
+        padding-top: 15px;
+  
+        .com-list-nav {
+          &__list {
+            > li {
+              width: 12.5%;
+            }
+          }
+          &__item {
+            height: auto;
+            padding: 10px;
+          }
+
+          &__info {
+            display: none;
+          }
+
+          &__head {
+            border-bottom: none;
+            margin-bottom: 0;
+          }
+
+          &__title {
+            height: 24px;
+            line-height: 24px;
+            font-size: 16px;
+          }
+
+          &__go {
+            font-size: 16px;
+          }
+        }
+      }
+      //收起模式
+      &--close {
+        @extend %cf;
+  
+        > .ui-maintitle {
+          width: 120px;
+          height: auto;
+          float: left;
+          margin-bottom: 0;
+          cursor: pointer;
+  
+          &__text {
+            height: auto;
+            margin-right: 10px;
+            padding: 0 10px;
+            border: 1px solid $border;
+            background-color: $bg-l;
+            text-align: center;
+          }
+        }
+  
+        .com-list-nav {
+          overflow: hidden;
+          &__list {
+            margin-right: 0;
+    
+            > li {
+              width: auto;
+              margin-right: 30px;
+              margin-bottom: 10px;
+            }
+          }
+          &__item {
+            height: 30px;
+            padding: 0;
+            border: none;
+            background: none;
+  
+            &:hover {
+              .com-list-nav__head {
+                padding-right: 0;
+              }
+            }
+          }
+  
+          &__head {
+            border-bottom: none;
+            margin-bottom: 0;
+          }
+  
+          &__title {
+            height: 30px;
+            line-height: 30px;
+          }
+  
+          &__go {
+            display: none;
+          }
+  
+          &__info {
+            display: none;
+            // position: absolute;
+            // top: 30px;
+            // left: 0;
+            // right: auto;
+            // max-width: 100px;
+            // padding: 10px;
+            // border: 1px solid $border;
+            // background: $bg-l;
+          }
+        }
+      }
+
+      //公共导航中特定样式
+      &--sysnav {
+        background: none;
+        .com-list-nav__item {
+          background-color: #fff;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+          border: 1px solid $border-l;
+          //显示标示
+          &.is-fav {
+            &::after {
+              position: absolute;
+              top: 0;
+              right: 0;
+              height: 18px;
+              line-height: 18px;
+              font-size: 12px;
+              color: #fff;
+              padding: 0 5px 0 10px;
+              background-color: $main;
+              content: "已收藏";
+              border-radius: 0 0 0 20px;
+            }
+          }
+        }
+      }
+    }
+
+    // 切换模式
+    &-viewmode {
+      float: left;
+      @extend %cf;
+      display: inline-block;
+    }
+  
+    
+  }
+}
+
+.mod-nav-modal .nav {
+  ////////////////////////////// 编辑弹窗
+  &-edit {
+    &__title {
+      margin: 10px 0;
+      padding-left: 10px;
+      line-height: 22px;
+      font-size: 20px;
+      color: $color-d;
+      border-left: 4px solid $border-d;
+    }
+    &__subtitle {
+      padding-left: 10px;
+      font-size: 14px;
+      color: $color-l;
+    }
+
+    &__category {
+      margin-bottom: 10px;
+      padding-top: 20px;
+      border-top: 1px dashed $border;
+      // &:nth-child(2) {
+      //     border-top: none;
+      //     // .mynav-sort-list li:first-child {
+      //     //     .item-edit {
+      //     //         display: block;
+      //     //     }
+      //     // }
+      // }
+      &:hover .nav-edit__category-ctrl {
+        opacity: 1;
+      }
+
+      &-ctrl {
+        opacity: 0;
+        @include transition(opactiy);
+        display: inline-block;
+        vertical-align: middle;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: $radius;
+        @extend %iconfont;
+        &:hover {
+          background-color: $bg-l;
+        }
+
+        &:active {
+          color: #fff;
+          background-color: $main;
+        }
+        &--move {
+          @extend .icon-move;
+        }
+        &--del {
+          @extend .icon-delete;
+        }
+      }
+    }
+
+    //添加按钮
+    &__addbtn {
+      position: absolute;
+      top: 70px;
+      right: 20px;
+      color: $main;
+      border-color: $main;
+
+      &::before {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 38px;
+
+        @extend %iconfont;
+        @extend .icon-add;
+
+        margin-right: 5px;
+      }
+
+      &:hover {
+        background-color: $main;
+        color: #fff;
+      }
+
+      &:active {
+        background-color: $main-d;
+        color: #fff;
+        border-color: $main-d;
+      }
+    }
+
+    &__list {
+      min-height: 30px;
+      padding-left: 100px;
+      @extend %cf;
+      > li {
+        position: relative;
+        float: left;
+        width: 150px;
+        background-color: #fff;
+        height: 30px;
+        padding-left: 10px;
+        border-radius: 3px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        background-color: $bg-l;
+        overflow: hidden;
+        &:hover {
+          .nav-edit__ctrl {
+            transform: translateX(0);
+          }
+        }
+      }
+    }
+    &__tagtitle {
+      line-height: 30px;
+      font-size: 14px;
+      color: #333;
+      @extend %tof;
+    }
+    &__ctrl {
+      // display: none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      transition: transform 0.1s;
+      transform: translateX(100px);
+      @extend %cf;
+    }
+    &__ctrlbtn {
+      display: block;
+      float: left;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 18px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      @extend %iconfont;
+      user-select: none;
+      cursor: pointer;
+      &:hover {
+        background-color: $main;
+      }
+
+      &:active {
+        background-color: $main-d;
+      }
+      &-edit {
+        @extend .icon-edit;
+      }
+      &-del {
+        @extend .icon-delete;
+      }
+      &-move {
+        @extend .icon-move;
+      }
+    }
+
+    &__box {
+      //我的导航
+      &--mynav {
+        position: relative;
+        padding: 10px 20px;
+        .nav-edit__category-title {
+          padding-left: 100px;
+        }
+        .nav-edit__category-label {
+          width: 90px;
+        }
+
+        .fish-input {
+          width: 150px;
+          margin-right: 10px;
+          vertical-align: middle;
+        }
+      }
+      //公共导航
+      &--sysnav {
+        background-color: $bg-l;
+        padding: 10px 20px;
+        box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    
+    
+
+    .sysnav-sort {
+      position: relative;
+      padding-left: 100px;
+
+      &:nth-child(2) {
+        margin-top: 20px;
+        // li:first-child {
+        //     .item-edit {
+        //         display: block;
+        //     }
+        // }
+      }
+
+      .sysnav-sort-text {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+        color: $color;
+        text-align: right;
+      }
+    }
+
+    .sysnav-sort-list {
+      @extend %cf;
+
+      > li {
+        position: relative;
+        float: left;
+        width: 150px;
+        background-color: #fff;
+        height: 30px;
+        padding-left: 10px;
+        border-radius: 3px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        // overflow: hidden;
+        &:hover {
+          .item-edit {
+            display: block;
+          }
+        }
+
+        &.is-fav {
+          position: relative;
+
+          &::before {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 20px;
+            height: 20px;
+            font-size: 20px;
+
+            @extend %iconfont;
+            @extend .icon-xuanzejiaobiao;
+
+            color: $main;
+          }
+
+          .item-edit {
+            display: none;
+          }
+        }
+      }
+
+      .item-title {
+        line-height: 30px;
+        font-size: 14px;
+        color: #333;
+
+        @extend %tof;
+      }
+
+      .item-edit {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: none;
+
+        @extend %cf;
+
+        .btn-ctrl {
+          display: block;
+          float: left;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          font-size: 18px;
+          color: #fff;
+          background-color: rgba(0, 0, 0, 0.7);
+          cursor: pointer;
+
+          @extend %iconfont;
+
+          &:hover {
+            background-color: $main;
+          }
+
+          &:active {
+            background-color: $main-d;
+          }
+        }
+
+        .btn-add {
+          @extend .icon-add;
+        }
+      }
+    }
+  }
+  //添加导航弹窗
+  .modal-addNav {
+    .modal-dialog {
+      min-width: 420px;
+    }
+
+    .modal-body {
+      padding: 20px 0 10px;
+      background-color: $bg-l;
+    }
+
+    .formwrap {
+      width: 380px;
+      margin: 0 auto;
+    }
+
+    .ui-formrow {
+      padding-left: 70px;
+    }
+
+    .form-label {
+      width: 60px;
+    }
+
+    .form-input {
+      width: 100%;
+    }
+
+    .ui-dropdown {
+      display: block;
+    }
+
+    .btn-rel-category {
+      text-align: center;
+      background-color: #fff;
+    }
+  }
+  //新建分类
+  .addcategory {
+    border-top: 1px solid $border;
+    background-color: $bg-l;
+  }
+
+  .btn-addcategory {
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: $color-l;
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      color: $main;
+    }
+  }
+
+  .add-editbox {
+    padding: 10px;
+
+    .btn-add-commit {
+      float: right;
+      min-width: 0;
+      margin-left: 6px;
+    }
+
+    .add-input {
+      overflow: hidden;
+
+      .form-input {
+        height: 30px;
+        line-height: 28px;
+      }
+    }
+  }
+}

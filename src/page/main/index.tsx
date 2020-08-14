@@ -43,10 +43,12 @@ class Main extends React.Component<Props> {
           <Header currentUser={currentUser} />
         </div>
         <div className="layout-body">
-          <Routes path="main" />
-        </div>
-        <div className="layout-footer">
-          <Footer />
+          <div className="layout-container">
+            <Routes path="main" />
+            <div className="layout-footer">
+              <Footer />
+            </div>
+          </div>
         </div>
       </div>
     )
