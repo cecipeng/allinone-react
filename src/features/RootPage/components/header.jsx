@@ -106,6 +106,15 @@ export class Header extends React.Component {
                     {intl.get('ROOT_PAGE_HEADER_NAV_NAVIGATION')}
                   </NavLink>
                 </li>
+                <li>
+                  <NavLink
+                    activeClassName='is-active'
+                    className='item'
+                    to={routerConstants.CECIUI}
+                  >
+                    {intl.get('ROOT_PAGE_HEADER_NAV_CECIUI')}
+                  </NavLink>
+                </li>
               </ul>
             </div>
           </div>

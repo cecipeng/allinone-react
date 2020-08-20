@@ -1,3 +1,5 @@
+$conf-nsp-ele:      'com-';
+
 // other color
 $org:                   #ddd;
 
@@ -67,6 +69,9 @@ $fz-xxl:                unit(20);
 $fz-xxxl:               unit(24);
 
 $icon:                  #fff;
+$icon-size-s:              unit(30);
+$icon-size:              unit(30);  /// used 2020.3.3
+$icon-size-l:              unit(30);
 
 $shadow-s:              0 unit(1) unit(6) rgba(0,0,0,.2);
 $shadow:                0 unit(1) unit(6) rgba(0,0,0,.2);

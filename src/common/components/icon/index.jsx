@@ -1,10 +1,12 @@
 import React from 'react'
+import classNames from 'classnames'
 
 const Icon = (props) => {
   const type = props.type
   const style = props.style
+  const custormClass = props.custormClass
   return (
-    <span className='com-icon' style={style}>
+    <span className={`com-icon ${custormClass}`} style={style}>
       <svg className="com-icon__svg" aria-hidden="true">
         <use xlinkHref={`#${type}`} />
         <style>

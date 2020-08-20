@@ -8,7 +8,7 @@
 | - | - | - | - |
 | type | 图标类型，参考以下已提供的图标类型列表 | string | 无 |
 | style | 设置图标的样式 | css样式对象 | 无 |
-| class | 图标自定义样式名 | string | '' |
+| custormClass | 图标自定义样式名 | string | '' |
 
 ## 图标类型
 | type | 用途 | 说明 |
@@ -27,5 +27,5 @@
 ```
 import Icon from 'xxx/common/components/icon/index'
 
-<Icon type='icon-left' style={fontSize:16px} class='icon-custorm-css' />
+<Icon type='icon-left' style={fontSize:16px} custormClass='icon-custorm-css' />
 ```

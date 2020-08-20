@@ -10,6 +10,7 @@ const intl = {
   'ROOT_PAGE_FOOTER_LANGUAGE': 'Language:',
   'ROOT_PAGE_HEADER_NAV_HOME': 'Home',
   'ROOT_PAGE_HEADER_NAV_NAVIGATION': 'Navigation',
+  'ROOT_PAGE_HEADER_NAV_CECIUI': 'UI Components',
   'ROOT_PAGE_HEADER_SIGN_IN': 'Sign In',
   'ROOT_PAGE_HEADER_SIGN_UP': 'Sign up',
 

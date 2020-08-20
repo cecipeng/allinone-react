@@ -5,6 +5,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import Header from './header'
 import Footer from './footer'
 import { view as Home } from '../../Home/index'
+import { view as CeciUI } from '../../CeciUI/index'
 // import { view as Navigation } from '../../Navigation/index'
 
 // ====== Constants ====== //
@@ -20,6 +21,7 @@ export default class RootPage extends React.Component {
         <div className='layout-body'>
           <Switch>
             <Route exact path={routerConstants.HOME} component={Home} />
+            <Route exact path={routerConstants.CECIUI} component={CeciUI} />
             {/* <Route path={routerConstants.NAVIGATION} component={Navigation}/> */}
             <Redirect to={routerConstants.HOME} />
           </Switch>
